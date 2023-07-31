@@ -1,16 +1,27 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import LogInRegister from "./src/Screens/LogInRegister";
+import AuthNavigator from "./src/Navigation/StackNavigator";
+import { UserProvider } from "./src/Contexts/UserContext";
+import { NavigationContainer } from "@react-navigation/native";
+import React, { useContext } from "react";
+import Home from './src/Screens/Home'
 
 export default function App() {
-	return <LogInRegister style={styles.container} />;
+    return (
+        // <UserProvider>
+        //     <NavigationContainer>
+        //         <AuthNavigator style={styles.container} />
+        //     </NavigationContainer>
+        // </UserProvider>
+        <Home />
+    );
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "center",
-	},
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+    },
 });
