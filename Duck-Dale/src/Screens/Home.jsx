@@ -1,8 +1,6 @@
-import { StatusBar } from "expo-status-bar";
 import * as ScreenOrientation from "expo-screen-orientation";
-import { useEffect, useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
-import Orientation from "react-native-orientation";
+import { useEffect } from "react";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function Home() {
 	useEffect(() => {
@@ -15,7 +13,10 @@ export default function Home() {
 	};
 	return (
 		<View style={styles.container}>
-			<Text>Hi Lucy!!</Text>
+			<Text>Welcome message</Text>
+			<Text>Avatar</Text>
+			<Text>Monay</Text>
+			{/* <HomeNavigator /> */}
 		</View>
 	);
 }

@@ -1,27 +1,25 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import AuthNavigator from "./src/Navigation/StackNavigator";
-import { UserProvider } from "./src/Contexts/UserContext";
+import { StyleSheet } from "react-native";
+import { AuthNavigator } from "./src/Navigation/StackNavigator";
+import { UserContext, UserProvider } from "./src/Contexts/UserContext";
 import { NavigationContainer } from "@react-navigation/native";
-import React, { useContext } from "react";
-import Home from './src/Screens/Home'
+import { useState } from "react";
 
 export default function App() {
-    return (
-        // <UserProvider>
-        //     <NavigationContainer>
-        //         <AuthNavigator style={styles.container} />
-        //     </NavigationContainer>
-        // </UserProvider>
-        <Home />
-    );
+	const [hasUser, setHasUser] = useState(false);
+	return (
+		<UserContext.Provider value={{ hasUser, setHasUser }}>
+			<NavigationContainer>
+				<AuthNavigator style={styles.container} />
+			</NavigationContainer>
+		</UserContext.Provider>
+	);
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
-    },
+	container: {
+		flex: 1,
+		backgroundColor: "#fff",
+		alignItems: "center",
+		justifyContent: "center",
+	},
 });

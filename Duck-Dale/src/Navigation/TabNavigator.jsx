@@ -1,12 +1,11 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
-import { LogInRegister} from '../Screens/LogInRegister'
+import Home from "../Screens/Home";
 
 const Tab = createBottomTabNavigator();
 export const AppNavigator = () => {
 	return (
 		<Tab.Navigator>
-			<Tab.Screen name="LogInAndRegister" component={LogInRegister} />
+			<Tab.Screen name="Home" component={Home} />
 		</Tab.Navigator>
 	);
 };
