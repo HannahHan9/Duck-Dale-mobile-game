@@ -5,9 +5,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useState } from "react";
 
 export default function App() {
-	const [hasUser, setHasUser] = useState(false);
+	const [user, setUser] = useState(false);
 	return (
-		<UserContext.Provider value={{ hasUser, setHasUser }}>
+		<UserContext.Provider value={{ user, setUser }}>
 			<NavigationContainer>
 				<AuthNavigator style={styles.container} />
 			</NavigationContainer>
