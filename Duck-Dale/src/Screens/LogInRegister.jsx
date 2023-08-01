@@ -5,16 +5,16 @@ import { UserContext } from "../Contexts/UserContext";
 
 const LogInRegister = () => {
 	const [name, setName] = useState("");
-	const { setUser } = useContext(UserContext);
+	const { setHasUser } = useContext(UserContext);
 
 	// const nav = useNavigation();
 
 	const handleSignUp = () => {
-		setUser(true);
+		setHasUser(true);
 	};
 
 	const handleSignIn = () => {
-		setUser(true);
+		setHasUser(true);
 	};
 
 	return (
