@@ -3,15 +3,17 @@ import { AuthNavigator } from "./src/Navigation/StackNavigator";
 import { UserContext, UserProvider } from "./src/Contexts/UserContext";
 import { NavigationContainer } from "@react-navigation/native";
 import { useState } from "react";
+import { CoinProvider } from "./src/Contexts/CoinContext";
 
 export default function App() {
-	const [user, setUser] = useState(false);
 	return (
-		<UserContext.Provider value={{ user, setUser }}>
-			<NavigationContainer>
-				<AuthNavigator style={styles.container} />
-			</NavigationContainer>
-		</UserContext.Provider>
+		<UserProvider>
+			<CoinProvider>
+				<NavigationContainer>
+					<AuthNavigator style={styles.container} />
+				</NavigationContainer>
+			</CoinProvider>
+		</UserProvider>
 	);
 }
 

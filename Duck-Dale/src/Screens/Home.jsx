@@ -3,9 +3,12 @@ import * as ScreenOrientation from "expo-screen-orientation";
 import { useContext, useEffect } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { UserContext } from "../Contexts/UserContext";
+import { CoinContext } from "../Contexts/CoinContext";
+import Coin from "../Components/Coin";
 
 export default function Home() {
 	const nav = useNavigation();
+	const { coins } = useContext(CoinContext);
 	const { user } = useContext(UserContext);
 	useEffect(() => {
 		lockOrientation();
@@ -20,7 +23,7 @@ export default function Home() {
 			<View style={[styles.container, { flexDirection: "row", gap: 250 }]}>
 				<Text style={{ textAlign: "left" }}>Welcome {user}</Text>
 				<Text>Avatar</Text>
-				<Text>Monay</Text>
+				<Coin />
 			</View>
 
 			<View style={{ flexDirection: "row", justifyContent: "center" }}>
