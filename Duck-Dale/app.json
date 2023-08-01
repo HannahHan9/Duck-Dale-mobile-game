@@ -13,13 +13,7 @@
 		},
 		"assetBundlePatterns": ["**/*"],
 		"ios": {
-			"supportsTablet": true,
-			"infoPlist": {
-				"UISupportedInterfaceOrientations": [
-					"UIInterfaceOrientationLandscapeLeft",
-					"UIInterfaceOrientationLandscapeRight"
-				]
-			}
+			"supportsTablet": true
 		},
 		"android": {
 			"adaptiveIcon": {

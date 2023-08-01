@@ -15,11 +15,16 @@ export default function Home() {
 	};
 	return (
 		<View style={styles.container}>
-			<Text>Welcome message</Text>
+		<View style={[styles.container, {flexDirection: "row", gap: 250}]}>
+			<Text style={{textAlign: 'left'}}>Welcome message</Text>
 			<Text>Avatar</Text>
 			<Text>Monay</Text>
+		</View>
+
+		<View style={{flexDirection: "row", justifyContent: "center"}}>
 			<Button title="Farm" onPress={() => nav.navigate("Farm")}></Button>
 			<Button title="Shop" onPress={() => nav.navigate("Shop")}></Button>
+		</View>
 		</View>
 	);
 }
@@ -27,9 +32,8 @@ export default function Home() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		flexDirection: 'row',
 		backgroundColor: "#fff",
-		alignItems: "center",
+		alignItems: "centre",
 		justifyContent: "center",
 	},
 });

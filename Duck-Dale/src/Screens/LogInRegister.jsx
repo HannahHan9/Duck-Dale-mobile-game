@@ -10,6 +10,7 @@ const LogInRegister = () => {
 	// const nav = useNavigation();
 
 	const handleSignUp = () => {
+		
 		setHasUser(true);
 	};
 
