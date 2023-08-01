@@ -2,15 +2,20 @@ import axios from "axios";
 import { logger } from "react-native-logs";
 
 const duckDale = axios.create({
-    baseURL: "https://be-project-x36t.onrender.com/api/"
+    baseURL: "https://be-project-x36t.onrender.com/api/",
 });
 
 export const getAllUsers = () => {
-    return duckDale.get(`/users`).then(({data}) => {
-        log.info(data)
-        return data.users
-    })
-}
+    return duckDale.get(`/users`).then(({ data }) => {
+        return data.users;
+    });
+};
+
+export const getUser = (username) => {
+    return duckDale.get(`/users/${username}`).then(({ data }) => {
+        return data.user;
+    });
+};
 
 // GET all users - https://be-project-x36t.onrender.com/api/users
 // GET all user items - https://be-project-x36t.onrender.com/api/useritems
