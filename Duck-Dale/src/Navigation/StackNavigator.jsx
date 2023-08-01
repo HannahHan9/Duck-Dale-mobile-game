@@ -19,7 +19,7 @@ export const AuthNavigator = () => {
 			}}
 		>
 			{hasUser ? (
-				<Stack.Screen name="Home" component={HomeNavigator} />
+				<Stack.Screen name="HomeNavigator" component={HomeNavigator} />
 			) : (
 				<Stack.Screen name="LogInAndRegister" component={LogInRegister} />
 			)}
