@@ -5,15 +5,13 @@ import { NavigationContainer } from "@react-navigation/native";
 
 function Shop() {
 	return (
-		// <NavigationContainer independent={true}>
-		<View style={{ flexDirection: "row" }}>
+		<View style={{ flex: 1, flexDirection: "row", flexWrap: "wrap" }}>
+			<ShopNavigator />
 			<View style={{ flex: 1 }}>
 				<Coin />
 				<Text>Shop</Text>
 			</View>
-			<ShopNavigator />
 		</View>
-		// </NavigationContainer>
 	);
 }
 
