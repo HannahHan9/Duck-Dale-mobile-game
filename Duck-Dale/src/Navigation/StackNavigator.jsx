@@ -11,10 +11,15 @@ const Stack = createStackNavigator();
 
 export const AuthNavigator = () => {
 	const { hasUser, setHasUser } = useContext(UserContext);
+
 	return (
-		<Stack.Navigator>
+		<Stack.Navigator
+			screenOptions={{
+				headerShown: false,
+			}}
+		>
 			{hasUser ? (
-				<Stack.Screen name="Home" component={Home} />
+				<Stack.Screen name="Home" component={HomeNavigator} />
 			) : (
 				<Stack.Screen name="LogInAndRegister" component={LogInRegister} />
 			)}

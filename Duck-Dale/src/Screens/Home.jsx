@@ -1,8 +1,10 @@
+import { useNavigation } from "@react-navigation/native";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { useEffect } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function Home() {
+	const nav = useNavigation();
 	useEffect(() => {
 		lockOrientation();
 	}, []);
@@ -16,7 +18,8 @@ export default function Home() {
 			<Text>Welcome message</Text>
 			<Text>Avatar</Text>
 			<Text>Monay</Text>
-			{/* <HomeNavigator /> */}
+			<Button title="Farm" onPress={() => nav.navigate("Farm")}></Button>
+			<Button title="Shop" onPress={() => nav.navigate("Shop")}></Button>
 		</View>
 	);
 }
