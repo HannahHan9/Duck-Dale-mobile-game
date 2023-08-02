@@ -1,4 +1,4 @@
-import { createBottomTabNavigator, createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Home from "../Screens/Home";
 import Buy from "../Components/Buy";
 import Sell from "../Components/Sell";

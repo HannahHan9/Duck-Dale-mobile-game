@@ -22,12 +22,12 @@ const LogInRegister = () => {
 	const handleSignIn = () => {
 		getUser(username)
 			.then((user) => {
-				if (user.password === password) {
-					setUser(user.username);
-					setCoins(user.coins);
-				} else {
-					setError(true);
-				}
+				// if (user.password === password) {
+				setUser(user.username);
+				setCoins(user.coins);
+				// } else {
+				// setError(true);
+				// }
 			})
 			.catch((err) => {
 				setError(true);
