@@ -1,7 +1,7 @@
 import { Switch, Text, View } from "react-native";
 import Coin from "../Components/Coin";
 import { ShopNavigator } from "../Navigation/TabNavigator";
-import { NavigationContainer } from "@react-navigation/native";
+import 
 
 function Shop() {
 	return (
