@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 function Buy() {
 	return (
 		<View>
-			<Text>Buy</Text>
+			<Text style={{alignText: "right"}}>Hello where would you render</Text>
 		</View>
 	);
 }

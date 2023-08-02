@@ -1,10 +1,10 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator, createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Home from "../Screens/Home";
 import Buy from "../Components/Buy";
 import Sell from "../Components/Sell";
 import { StyleSheet } from "react-native";
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialTopTabNavigator();
 export const ShopNavigator = () => {
 	return (
 		<Tab.Navigator>
