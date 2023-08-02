@@ -9,7 +9,7 @@ function Shop() {
 			<ShopNavigator />
 			<View style={{ flex: 1 }}>
 				<Coin />
-				<Text>Shop</Text>
+				
 			</View>
 		</View>
 	);
