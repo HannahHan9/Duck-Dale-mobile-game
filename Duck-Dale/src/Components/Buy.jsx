@@ -17,7 +17,13 @@ function Buy() {
 			<ScrollView>
 				{items.map((item) => {
 					if (item.username === user) {
-						return <Text>{item.item_name}</Text>;
+						return (
+							<View style={{ flexDirection: "row", gap: 30 }}>
+								<Text style={{ flex: 0.5 }}>{item.item_name}</Text>
+								<Text>{item.price}</Text>
+								<Text>{item.quantity}</Text>
+							</View>
+						);
 					}
 				})}
 			</ScrollView>
