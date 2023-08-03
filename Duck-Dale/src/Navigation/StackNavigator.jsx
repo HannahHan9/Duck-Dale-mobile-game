@@ -38,11 +38,7 @@ export const AuthNavigator = () => {
 
 export const HomeNavigator = () => {
 	return (
-		<Stack.Navigator
-			screenOptions={{
-				headerShown: false,
-			}}
-		>
+		<Stack.Navigator>
 			<Stack.Screen name="Home" component={Home} />
 			<Stack.Screen name="Farm" component={Farm} />
 			<Stack.Screen name="Shop" component={Shop} />
