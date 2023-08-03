@@ -2,17 +2,20 @@ import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
 import { getAllShopItems } from "../Lib/Api";
 import { useContext, useEffect, useState } from "react";
 
-const Item = ({ item_name, quantity, price, setChoices }) => {
+const Item = ({ item, setChoices }) => {
+	const { item_name, price, quantity } = item;
 	const [border, setBorder] = useState("transparent");
 	const handleSelect = () => {
 		setBorder((current) => {
 			return current === "transparent" ? "white" : "transparent";
 		});
 		setChoices((current) => {
-			if (current.includes(item_name)) {
-				return current.filter((item) => item !== item_name);
+			if (current.includes(item)) {
+				return current.filter((choice) => {
+					return choice !== item;
+				});
 			} else {
-				return [...current, item_name];
+				return [...current, item];
 			}
 		});
 	};
@@ -32,11 +35,6 @@ const Item = ({ item_name, quantity, price, setChoices }) => {
 				<Text style={styles.items} onPress={handleSelect}>
 					{price}🪙
 				</Text>
-				{/* <Button
-					style={[styles.items, { width: 30 }]}
-					title="Select"
-					onPress={handleSelect}
-				></Button> */}
 			</View>
 		</View>
 	);

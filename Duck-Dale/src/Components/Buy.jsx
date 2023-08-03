@@ -1,5 +1,10 @@
 import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
-import { getAllShopItems } from "../Lib/Api";
+import {
+	getAllShopItems,
+	patchShopItems,
+	patchUserCoins,
+	postUserItems,
+} from "../Lib/Api";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../Contexts/UserContext";
 import { CoinContext } from "../Contexts/CoinContext";
@@ -7,17 +12,67 @@ import Item from "./Item";
 
 function Buy() {
 	const { user } = useContext(UserContext);
-	const { setCoins } = useContext(CoinContext);
+	const { coins, setCoins } = useContext(CoinContext);
 	const [items, setItems] = useState([]);
 	const [buyChoices, setBuyChoices] = useState([]);
+	const [error, setError] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
+
+	const handleBuy = () => {
+		setError(null);
+		setIsLoading(true);
+		setItems((current) => {
+			return current.filter((item) => !buyChoices.includes(item));
+		});
+
+		const addPromises = [];
+		const removePromises = [];
+		let total = 0;
+		buyChoices.forEach((item) => {
+			addPromises.push(
+				postUserItems(
+					user,
+					item.item_name,
+					item.description,
+					item.price,
+					item.quantity
+				)
+			);
+			removePromises.push(patchShopItems(item.item_id, 0));
+			total += item.price * item.quantity;
+		});
+		if (coins - total >= 0) {
+			Promise.all(addPromises)
+				.then(() => {
+					Promise.all(removePromises);
+				})
+				.then(() => {
+					return patchUserCoins(user, coins - total);
+				})
+				.then((coins) => {
+					setCoins(coins);
+					setIsLoading(false);
+				})
+
+				.catch(() => {
+					console.log("it broked");
+				});
+		} else {
+			setError("U broke biatch");
+		}
+
+		//check user inventory
+		//if exists => patch
+		//patch user coins
+	};
 
 	useEffect(() => {
 		getAllShopItems().then((items) => {
 			setItems(items);
 		});
-	}, []);
+	}, [coins]);
 	return (
-		<View>
+		<View style={{ flex: 1 }}>
 			<View style={styles.container}>
 				<Text style={[styles.titles, { textAlign: "left", flex: 0.2 }]}>
 					Quantity
@@ -31,18 +86,20 @@ function Buy() {
 					if (item.username === user && item.quantity > 0) {
 						return (
 							<View key={item._id}>
-								<Item
-									item_name={item.item_name}
-									price={item.price}
-									quantity={item.quantity}
-									setChoices={setBuyChoices}
-								/>
+								{isLoading ? (
+									<Text>Loading</Text>
+								) : (
+									<Item item={item} setChoices={setBuyChoices} />
+								)}
 							</View>
 						);
 					}
 				})}
 			</ScrollView>
-			{buyChoices.length ? <Button title="Buy"></Button> : null}
+			{buyChoices.length ? (
+				<Button title="Buy" onPress={handleBuy}></Button>
+			) : null}
+			{error ? <Text>{error}</Text> : null}
 		</View>
 	);
 }

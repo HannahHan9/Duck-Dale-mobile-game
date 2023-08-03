@@ -76,17 +76,22 @@ const LogInRegister = () => {
 	};
 
 	const handleSignIn = () => {
+		setIsLoading(true);
 		getUser(username)
 			.then((user) => {
 				// if (user.password === password) {
-				setUser(user.username);
+				console.log(user.coins);
 				setCoins(user.coins);
+				setUser(user.username);
 				// } else {
 				// setError(true);
 				// }
 			})
 			.catch((err) => {
 				setError(true);
+			})
+			.finally(() => {
+				setIsLoading(false);
 			});
 	};
 	return (
