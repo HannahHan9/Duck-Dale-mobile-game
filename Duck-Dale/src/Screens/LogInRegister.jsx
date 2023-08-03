@@ -1,97 +1,112 @@
 import { useState, useContext } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, StyleSheet, Text, TextInput, View, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../Contexts/UserContext";
 import { getAllUsers, getUser } from "../Lib/Api";
 import { CoinContext } from "../Contexts/CoinContext";
 
 const LogInRegister = () => {
-	const [name, setName] = useState("");
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
-	const [error, setError] = useState(false);
-	const { setUser } = useContext(UserContext);
-	const { setCoins } = useContext(CoinContext);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState(false);
+    const { setUser } = useContext(UserContext);
+    const { setCoins } = useContext(CoinContext);
+    const [newUsername, setNewUsername] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
+    const [firstname, setFirstname] = useState("");
+    const [lastname, setLastname] = useState("");
 
-	// const nav = useNavigation();
+    // const nav = useNavigation();
 
-	const handleSignUp = () => {
-		setUser(true);
-	};
+    const handleSignUp = (firstname, lastname, newUsername, newPassword, confirmPassword) => {
+			if (firstname === null || lastname === null || newUsername === null || newPassword === null || confirmPassword === null) {
+				Alert.alert('Oops!', 'Please fill out all the fields', [{text: 'OK', onPress: () => {}}])
+			}}
+			// getUser(username).then((user) => {
+			// if (user.username === newUsername) {
+			// 	<Text>This username already exists</Text>
+			// 	setUser(false);
+			
 
-	const handleSignIn = () => {
-		getUser(username)
-			.then((user) => {
-				// if (user.password === password) {
-				setUser(user.username);
-				setCoins(user.coins);
-				// } else {
-				// setError(true);
-				// }
-			})
-			.catch((err) => {
-				setError(true);
-			});
-	};
+    const handleSignIn = () => {
+        getUser(username)
+            .then((user) => {
+                // if (user.password === password) {
+                setUser(user.username);
+                setCoins(user.coins);
+                // } else {
+                // setError(true);
+                // }
+            })
+            .catch((err) => {
+                setError(true);
+            });
+    };
 
-	return (
-		<View style={styles.container}>
-			<View>
-				<Text>Register</Text>
+    return (
+        <View style={styles.container}>
+            <View>
+                <Text>Register</Text>
+                <TextInput
+                    value={firstname}
+                    onChangeText={(text) => setFirstname(text)}
+                    placeholder="Enter first name"
+                />
 				<TextInput
-					value={name}
-					onChangeText={(text) => setName(text)}
-					placeholder="Enter name"
-				/>
-				<TextInput title="Username" placeholder="Enter username" />
-				<TextInput
-					title="Password"
-					secureTextEntry={true}
-					placeholder="Enter password"
-				/>
-				<TextInput
-					title="Confirm password"
-					secureTextEntry={true}
-					placeholder="Confirm password"
-				/>
-				<Button title="Sign Up" onPress={handleSignUp} />
-			</View>
-			<Text>----------- OR -----------</Text>
-			<View>
-				<Text>Log In</Text>
-				<TextInput
-					title="Username"
-					placeholder="Enter username"
-					value={username}
-					onChangeText={(text) => {
-						setError(false);
-						setUsername(text);
-					}}
-				/>
-				<TextInput
-					title="Password"
-					secureTextEntry={true}
-					placeholder="Enter password"
-					value={password}
-					onChangeText={(text) => {
-						setError(false);
-						setPassword(text);
-					}}
-				/>
-				<Button title="Sign In" onPress={handleSignIn} />
-				{error ? <Text>Username or password not found</Text> : null}
-			</View>
-		</View>
-	);
+                    value={lastname}
+                    onChangeText={(text) => setLastname(text)}
+                    placeholder="Enter last name"
+                />
+                <TextInput title="Username" placeholder="Enter username" />
+                <TextInput
+                    title="Password"
+                    secureTextEntry={true}
+                    placeholder="Enter password"
+                />
+                <TextInput
+                    title="Confirm password"
+                    secureTextEntry={true}
+                    placeholder="Confirm password"
+                />
+                <Button title="Sign Up" onPress={handleSignUp} />
+            </View>
+            <Text>----------- OR -----------</Text>
+            <View>
+                <Text>Log In</Text>
+                <TextInput
+                    title="Username"
+                    placeholder="Enter username"
+                    value={username}
+                    onChangeText={(text) => {
+                        setError(false);
+                        setUsername(text);
+                    }}
+                />
+                <TextInput
+                    title="Password"
+                    secureTextEntry={true}
+                    placeholder="Enter password"
+                    value={password}
+                    onChangeText={(text) => {
+                        setError(false);
+                        setPassword(text);
+                    }}
+                />
+                <Button title="Sign In" onPress={handleSignIn} />
+                {error ? <Text>Username or password not found</Text> : null}
+            </View>
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "center",
-	},
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+    },
 });
 
 export default LogInRegister;
