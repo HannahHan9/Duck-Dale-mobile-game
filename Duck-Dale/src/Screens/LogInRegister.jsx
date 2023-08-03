@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../Contexts/UserContext";
 import { getAllUsers, getUser, postUser } from "../Lib/Api";
 import { CoinContext } from "../Contexts/CoinContext";
+import { NewUserContext } from "../Contexts/NewUserContext";
 
 const LogInRegister = () => {
     const [username, setUsername] = useState("");
@@ -11,6 +12,7 @@ const LogInRegister = () => {
     const [error, setError] = useState(false);
     const { setUser } = useContext(UserContext);
     const { setCoins } = useContext(CoinContext);
+    const { setNewUser } = useContext(NewUserContext);
     const [newUsername, setNewUsername] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -44,7 +46,7 @@ const LogInRegister = () => {
                 } else {
                     postUser(newUsername, newPassword, firstname, lastname)
                         .then(() => {
-                            setUser(newUsername);
+                            setNewUser(newUsername);
                         })
                         .catch((err) => {
                             Alert.alert(
@@ -115,12 +117,11 @@ const LogInRegister = () => {
                     placeholder="Confirm password"
                     value={confirmPassword}
                     onChangeText={(text) => {
-                        return setConfirmPassword(text).then(() => {
-                            if (confirmPassword !== newPassword) {
-                                setPasswordError(true);
-                            } else {
-                                setPasswordError(false);
-                            }
+                        setConfirmPassword(text);
+                        setPasswordError(() => {
+                            if (text !== newPassword) {
+                                return true;
+                            } else return false;
                         });
                     }}
                 />

@@ -6,44 +6,53 @@ import Farm from "../Screens/Farm";
 import Shop from "../Screens/Shop";
 import { useContext, useState } from "react";
 import { UserContext, UserProvider } from "../Contexts/UserContext";
+import CharacterCreation from "../Screens/CharacterCreation";
+import { NewUserContext } from "../Contexts/NewUserContext";
 
 const Stack = createStackNavigator();
 
 export const AuthNavigator = () => {
-	const { user } = useContext(UserContext);
+    const { user } = useContext(UserContext);
+    const { newUser } = useContext(NewUserContext);
 
-	return (
-		<Stack.Navigator
-			screenOptions={{
-				headerShown: false,
-			}}
-		>
-			{user ? (
-				<Stack.Screen name="HomeNavigator" component={HomeNavigator} />
-			) : (
-				<Stack.Screen name="LogInAndRegister" component={LogInRegister} />
-			)}
+    return (
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false,
+            }}
+        >
+            {user ? (
+                <Stack.Screen name="HomeNavigator" component={HomeNavigator} />
+            ) : null}
 
-			{/* <Stack.Screen name="CharacterCreation" component={LogInRegister} /> */}
-		</Stack.Navigator>
-	);
+            {newUser ? (
+                <Stack.Screen
+                    name="CharacterCreation"
+                    component={CharacterCreation}
+                />
+            ) : null}
+            {!user && !newUser ? (
+                <Stack.Screen name="LogInRegister" component={LogInRegister} />
+            ) : null}
+        </Stack.Navigator>
+    );
 };
 
 export const HomeNavigator = () => {
-	return (
-		<Stack.Navigator>
-			<Stack.Screen name="Home" component={Home} />
-			<Stack.Screen name="Farm" component={Farm} />
-			<Stack.Screen name="Shop" component={Shop} />
-		</Stack.Navigator>
-	);
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Farm" component={Farm} />
+            <Stack.Screen name="Shop" component={Shop} />
+        </Stack.Navigator>
+    );
 };
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: "#abc",
-		alignItems: "center",
-		justifyContent: "center",
-	},
+    container: {
+        flex: 1,
+        backgroundColor: "#abc",
+        alignItems: "center",
+        justifyContent: "center",
+    },
 });
