@@ -16,24 +16,20 @@ const LogInRegister = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
+    const [passwordError, setPasswordError] = useState(false);
 
     // const nav = useNavigation();
 
     const handleSignUp = () => {
         if (
-            firstname === "" ||
-            lastname === "" ||
-            newUsername === "" ||
-            newPassword === "" ||
-            confirmPassword === ""
+            firstname.length > 0 &&
+            lastname.length > 0 &&
+            newUsername.length > 0 &&
+            newPassword.length > 0 &&
+            confirmPassword.length > 0
         ) {
-            Alert.alert("Oops!", "Please fill out all the fields", [
-                { text: "OK", onPress: () => {} },
-            ]);
-        } else {
             getAllUsers().then((users) => {
                 const usernames = users.map((user) => {
-                    console.log(user.username);
                     return user.username;
                 });
                 if (usernames.includes(newUsername)) {
@@ -48,7 +44,6 @@ const LogInRegister = () => {
                 } else {
                     postUser(newUsername, newPassword, firstname, lastname)
                         .then(() => {
-                            console.log("user created");
                             setUser(newUsername);
                         })
                         .catch((err) => {
@@ -60,6 +55,10 @@ const LogInRegister = () => {
                         });
                 }
             });
+        } else {
+            Alert.alert("Oops!", "Please fill out all the fields", [
+                { text: "OK", onPress: () => {} },
+            ]);
         }
     };
 
@@ -116,15 +115,21 @@ const LogInRegister = () => {
                     placeholder="Confirm password"
                     value={confirmPassword}
                     onChangeText={(text) => {
-                        setError(false);
-                        setConfirmPassword(text);
-                        if (confirmPassword !== newPassword) {
-                            setError(true);
-                            // <Text></Text>
-                        }
+                        return setConfirmPassword(text).then(() => {
+                            if (confirmPassword !== newPassword) {
+                                setPasswordError(true);
+                            } else {
+                                setPasswordError(false);
+                            }
+                        });
                     }}
                 />
-                <Button title="Sign Up" onPress={handleSignUp} />
+                {passwordError ? <Text>Password doesn't match!</Text> : null}
+                <Button
+                    title="Sign Up"
+                    onPress={handleSignUp}
+                    disabled={passwordError}
+                />
             </View>
             <Text>----------- OR -----------</Text>
             <View>
