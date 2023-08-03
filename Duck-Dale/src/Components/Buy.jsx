@@ -38,7 +38,7 @@ function Buy() {
 					item.quantity
 				)
 			);
-			removePromises.push(patchShopItems(item.item_id, 0));
+			removePromises.push(patchShopItems(item._id, 0));
 			total += item.price * item.quantity;
 		});
 		if (coins - total >= 0) {
@@ -49,13 +49,16 @@ function Buy() {
 				.then(() => {
 					return patchUserCoins(user, coins - total);
 				})
-				.then((coins) => {
-					setCoins(coins);
-					setIsLoading(false);
+				.then((money) => {
+					setCoins(money);
 				})
 
 				.catch(() => {
 					console.log("it broked");
+				})
+				.finally(() => {
+					setBuyChoices([]);
+					setIsLoading(false);
 				});
 		} else {
 			setError("U broke biatch");
@@ -65,7 +68,7 @@ function Buy() {
 		//if exists => patch
 		//patch user coins
 	};
-
+	console.log(buyChoices);
 	useEffect(() => {
 		getAllShopItems().then((items) => {
 			setItems(items);

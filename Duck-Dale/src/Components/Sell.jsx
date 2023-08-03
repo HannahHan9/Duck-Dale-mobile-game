@@ -1,6 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
-import { getAllUserItems, patchUserItems, postShopItems } from "../Lib/Api";
+import {
+	getAllUserItems,
+	patchUserCoins,
+	patchUserItems,
+	postShopItems,
+} from "../Lib/Api";
 import { UserContext } from "../Contexts/UserContext";
 import Item from "./Item";
 import { CoinContext } from "../Contexts/CoinContext";
@@ -16,9 +21,9 @@ function Sell() {
 	const handleSell = () => {
 		setError(null);
 		setIsLoading(true);
-		setItems((current) => {
-			return current.filter((item) => !sellChoices.includes(item));
-		});
+		// setItems((current) => {
+		// 	return current.filter((item) => !sellChoices.includes(item));
+		// });
 
 		const addPromises = [];
 		const removePromises = [];
@@ -33,7 +38,7 @@ function Sell() {
 					item.quantity
 				)
 			);
-			removePromises.push(patchUserItems(item.item_id, 0));
+			removePromises.push(patchUserItems(item._id, 0));
 			total += item.price * item.quantity;
 		});
 
@@ -41,17 +46,19 @@ function Sell() {
 			.then(() => {
 				Promise.all(removePromises);
 			})
+
 			.then(() => {
-				console.log("here");
 				return patchUserCoins(user, total);
 			})
-			.then((coins) => {
-				setCoins(coins);
-				setIsLoading(false);
+			.then((money) => {
+				setCoins(money);
 			})
-
 			.catch(() => {
 				console.log("it broked");
+			})
+			.finally(() => {
+				setSellChoices([]);
+				setIsLoading(false);
 			});
 
 		//check user inventory
@@ -64,7 +71,6 @@ function Sell() {
 			setItems(items);
 		});
 	}, [coins]);
-	console.log(sellChoices.length);
 	return (
 		<View style={{ flex: 1 }}>
 			<View style={styles.container}>
@@ -80,7 +86,11 @@ function Sell() {
 					if (item.username === user && item.quantity > 0) {
 						return (
 							<View key={item._id}>
-								<Item item={item} setChoices={setSellChoices} />
+								{isLoading ? (
+									<Text>Loading</Text>
+								) : (
+									<Item item={item} setChoices={setSellChoices} />
+								)}
 							</View>
 						);
 					}
