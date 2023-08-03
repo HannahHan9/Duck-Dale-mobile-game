@@ -21,8 +21,8 @@ export default function Home() {
 	return (
 		<View style={styles.container}>
 			<View style={[styles.container, { flexDirection: "row", gap: 250 }]}>
-				<Text style={{ textAlign: "left" }}>Welcome {user}</Text>
-				<Text>Avatar</Text>
+				<Text style={styles.text}>Welcome {user}</Text>
+				<Text>[Avatar]</Text>
 				<Coin />
 			</View>
 
@@ -40,5 +40,8 @@ const styles = StyleSheet.create({
 		backgroundColor: "#fff",
 		alignItems: "centre",
 		justifyContent: "center",
+	},
+	text: {
+		fontSize: 20,
 	},
 });
