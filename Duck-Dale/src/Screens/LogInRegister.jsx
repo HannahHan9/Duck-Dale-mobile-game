@@ -13,21 +13,29 @@ const LogInRegister = () => {
     const { setCoins } = useContext(CoinContext);
     const [newUsername, setNewUsername] = useState("");
     const [newPassword, setNewPassword] = useState("");
-	const [confirmPassword, setConfirmPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
 
     // const nav = useNavigation();
 
-    const handleSignUp = (firstname, lastname, newUsername, newPassword, confirmPassword) => {
-			if (firstname === null || lastname === null || newUsername === null || newPassword === null || confirmPassword === null) {
-				Alert.alert('Oops!', 'Please fill out all the fields', [{text: 'OK', onPress: () => {}}])
-			}}
-			// getUser(username).then((user) => {
-			// if (user.username === newUsername) {
-			// 	<Text>This username already exists</Text>
-			// 	setUser(false);
-			
+    const handleSignUp = () => {
+        if (
+            !firstname ||
+            !lastname ||
+            !newUsername ||
+            !newPassword ||
+            !confirmPassword
+        ) {
+            Alert.alert("Oops!", "Please fill out all the fields", [
+                { text: "OK", onPress: () => console.log("okay button pressed") },
+            ]);
+        }
+    };
+    // getUser(username).then((user) => {
+    // if (user.username === newUsername) {
+    // 	<Text>This username already exists</Text>
+    // 	setUser(false);
 
     const handleSignIn = () => {
         getUser(username)
@@ -43,7 +51,7 @@ const LogInRegister = () => {
                 setError(true);
             });
     };
-
+    console.log(username);
     return (
         <View style={styles.container}>
             <View>
@@ -53,12 +61,20 @@ const LogInRegister = () => {
                     onChangeText={(text) => setFirstname(text)}
                     placeholder="Enter first name"
                 />
-				<TextInput
+                <TextInput
                     value={lastname}
                     onChangeText={(text) => setLastname(text)}
                     placeholder="Enter last name"
                 />
-                <TextInput title="Username" placeholder="Enter username" />
+                <TextInput
+                    title="Username"
+                    placeholder="Enter username"
+                    value={newUsername}
+                    onChangeText={(text) => {
+                        setError(false);
+                        setNewUsername(text);
+                    }}
+                />
                 <TextInput
                     title="Password"
                     secureTextEntry={true}
