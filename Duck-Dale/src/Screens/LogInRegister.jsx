@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { Button, StyleSheet, Text, TextInput, View, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../Contexts/UserContext";
-import { getAllUsers, getUser } from "../Lib/Api";
+import { getAllUsers, getUser, postUser } from "../Lib/Api";
 import { CoinContext } from "../Contexts/CoinContext";
 
 const LogInRegister = () => {
@@ -21,21 +21,47 @@ const LogInRegister = () => {
 
     const handleSignUp = () => {
         if (
-            !firstname ||
-            !lastname ||
-            !newUsername ||
-            !newPassword ||
-            !confirmPassword
+            firstname === "" ||
+            lastname === "" ||
+            newUsername === "" ||
+            newPassword === "" ||
+            confirmPassword === ""
         ) {
             Alert.alert("Oops!", "Please fill out all the fields", [
-                { text: "OK", onPress: () => console.log("okay button pressed") },
+                { text: "OK", onPress: () => {} },
             ]);
+        } else {
+            getAllUsers().then((users) => {
+                const usernames = users.map((user) => {
+                    console.log(user.username);
+                    return user.username;
+                });
+                if (usernames.includes(newUsername)) {
+                    Alert.alert("Sorry!", "This username already exists", [
+                        {
+                            text: "OK",
+                            onPress: () => {
+                                setNewUsername("");
+                            },
+                        },
+                    ]);
+                } else {
+                    postUser(newUsername, newPassword, firstname, lastname)
+                        .then(() => {
+                            console.log("user created");
+                            setUser(newUsername);
+                        })
+                        .catch((err) => {
+                            Alert.alert(
+                                "Something went wrong!",
+                                "The user couldn't be created",
+                                [{ text: "Try again", onPress: () => {} }]
+                            );
+                        });
+                }
+            });
         }
     };
-    // getUser(username).then((user) => {
-    // if (user.username === newUsername) {
-    // 	<Text>This username already exists</Text>
-    // 	setUser(false);
 
     const handleSignIn = () => {
         getUser(username)
@@ -51,7 +77,6 @@ const LogInRegister = () => {
                 setError(true);
             });
     };
-    console.log(username);
     return (
         <View style={styles.container}>
             <View>
@@ -79,11 +104,25 @@ const LogInRegister = () => {
                     title="Password"
                     secureTextEntry={true}
                     placeholder="Enter password"
+                    value={newPassword}
+                    onChangeText={(text) => {
+                        setError(false);
+                        setNewPassword(text);
+                    }}
                 />
                 <TextInput
                     title="Confirm password"
                     secureTextEntry={true}
                     placeholder="Confirm password"
+                    value={confirmPassword}
+                    onChangeText={(text) => {
+                        setError(false);
+                        setConfirmPassword(text);
+                        if (confirmPassword !== newPassword) {
+                            setError(true);
+                            // <Text></Text>
+                        }
+                    }}
                 />
                 <Button title="Sign Up" onPress={handleSignUp} />
             </View>
