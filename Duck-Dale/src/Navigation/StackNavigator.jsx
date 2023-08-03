@@ -21,6 +21,10 @@ export const AuthNavigator = () => {
                 headerShown: false,
             }}
         >
+            {!user && !newUser ? (
+                <Stack.Screen name="LogInRegister" component={LogInRegister} />
+            ) : null}
+
             {user ? (
                 <Stack.Screen name="HomeNavigator" component={HomeNavigator} />
             ) : null}
@@ -30,9 +34,6 @@ export const AuthNavigator = () => {
                     name="CharacterCreation"
                     component={CharacterCreation}
                 />
-            ) : null}
-            {!user && !newUser ? (
-                <Stack.Screen name="LogInRegister" component={LogInRegister} />
             ) : null}
         </Stack.Navigator>
     );

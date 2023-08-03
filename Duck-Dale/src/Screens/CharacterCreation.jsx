@@ -1,7 +1,13 @@
-import { View } from "react-native";
+import { View, Image } from "react-native";
 
 const CharacterCreation = () => {
-	return <View></View>;
+    return (
+        <View>
+            <TouchableOpacity onPress={() => {}}>
+                <Image source={require("../../assets/unicorn.png")} />
+            </TouchableOpacity>
+        </View>
+    );
 };
 
 export default CharacterCreation;

@@ -19,10 +19,12 @@ const LogInRegister = () => {
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
     const [passwordError, setPasswordError] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     // const nav = useNavigation();
 
     const handleSignUp = () => {
+        setIsLoading(true);
         if (
             firstname.length > 0 &&
             lastname.length > 0 &&
@@ -32,29 +34,32 @@ const LogInRegister = () => {
         ) {
             getAllUsers().then((users) => {
                 const usernames = users.map((user) => {
+                    setIsLoading(false);
                     return user.username;
                 });
-                if (usernames.includes(newUsername)) {
-                    Alert.alert("Sorry!", "This username already exists", [
-                        {
-                            text: "OK",
-                            onPress: () => {
-                                setNewUsername("");
+                if (!isLoading) {
+                    if (usernames.includes(newUsername)) {
+                        Alert.alert("Sorry!", "This username already exists", [
+                            {
+                                text: "OK",
+                                onPress: () => {
+                                    setNewUsername("");
+                                },
                             },
-                        },
-                    ]);
-                } else {
-                    postUser(newUsername, newPassword, firstname, lastname)
-                        .then(() => {
-                            setNewUser(newUsername);
-                        })
-                        .catch((err) => {
-                            Alert.alert(
-                                "Something went wrong!",
-                                "The user couldn't be created",
-                                [{ text: "Try again", onPress: () => {} }]
-                            );
-                        });
+                        ]);
+                    } else {
+                        postUser(newUsername, newPassword, firstname, lastname)
+                            .then(() => {
+                                setNewUser(newUsername);
+                            })
+                            .catch((err) => {
+                                Alert.alert(
+                                    "Something went wrong!",
+                                    "The user couldn't be created",
+                                    [{ text: "Try again", onPress: () => {} }]
+                                );
+                            });
+                    }
                 }
             });
         } else {
@@ -80,58 +85,64 @@ const LogInRegister = () => {
     };
     return (
         <View style={styles.container}>
-            <View>
-                <Text>Register</Text>
-                <TextInput
-                    value={firstname}
-                    onChangeText={(text) => setFirstname(text)}
-                    placeholder="Enter first name"
-                />
-                <TextInput
-                    value={lastname}
-                    onChangeText={(text) => setLastname(text)}
-                    placeholder="Enter last name"
-                />
-                <TextInput
-                    title="Username"
-                    placeholder="Enter username"
-                    value={newUsername}
-                    onChangeText={(text) => {
-                        setError(false);
-                        setNewUsername(text);
-                    }}
-                />
-                <TextInput
-                    title="Password"
-                    secureTextEntry={true}
-                    placeholder="Enter password"
-                    value={newPassword}
-                    onChangeText={(text) => {
-                        setError(false);
-                        setNewPassword(text);
-                    }}
-                />
-                <TextInput
-                    title="Confirm password"
-                    secureTextEntry={true}
-                    placeholder="Confirm password"
-                    value={confirmPassword}
-                    onChangeText={(text) => {
-                        setConfirmPassword(text);
-                        setPasswordError(() => {
-                            if (text !== newPassword) {
-                                return true;
-                            } else return false;
-                        });
-                    }}
-                />
-                {passwordError ? <Text>Password doesn't match!</Text> : null}
-                <Button
-                    title="Sign Up"
-                    onPress={handleSignUp}
-                    disabled={passwordError}
-                />
-            </View>
+            {isLoading ? (
+                <Text>Loading...</Text>
+            ) : (
+                <View>
+                    <Text>Register</Text>
+                    <TextInput
+                        value={firstname}
+                        onChangeText={(text) => setFirstname(text)}
+                        placeholder="Enter first name"
+                    />
+                    <TextInput
+                        value={lastname}
+                        onChangeText={(text) => setLastname(text)}
+                        placeholder="Enter last name"
+                    />
+                    <TextInput
+                        title="Username"
+                        placeholder="Enter username"
+                        value={newUsername}
+                        onChangeText={(text) => {
+                            setError(false);
+                            setNewUsername(text);
+                        }}
+                    />
+                    <TextInput
+                        title="Password"
+                        secureTextEntry={true}
+                        placeholder="Enter password"
+                        value={newPassword}
+                        onChangeText={(text) => {
+                            setError(false);
+                            setNewPassword(text);
+                        }}
+                    />
+                    <TextInput
+                        title="Confirm password"
+                        secureTextEntry={true}
+                        placeholder="Confirm password"
+                        value={confirmPassword}
+                        onChangeText={(text) => {
+                            setConfirmPassword(text);
+                            setPasswordError(() => {
+                                if (text !== newPassword) {
+                                    return true;
+                                } else return false;
+                            });
+                        }}
+                    />
+                    {passwordError ? (
+                        <Text>Password doesn't match!</Text>
+                    ) : null}
+                    <Button
+                        title="Sign Up"
+                        onPress={handleSignUp}
+                        disabled={passwordError}
+                    />
+                </View>
+            )}
             <Text>----------- OR -----------</Text>
             <View>
                 <Text>Log In</Text>
