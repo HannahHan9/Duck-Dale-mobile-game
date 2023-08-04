@@ -2,7 +2,7 @@ import { Dimensions, StyleSheet, View } from "react-native";
 import Crop from "./Crop";
 
 const { width, height } = Dimensions.get("window");
-const windowWidth = width / 2;
+const windowWidth = width / 1.5;
 const itemsPerRow = 3;
 const childWidth = windowWidth / itemsPerRow;
 const childHeight = (height - 80) / itemsPerRow;
@@ -33,15 +33,15 @@ export default FarmGrid;
 
 const styles = StyleSheet.create({
 	itemsWrap: {
-		backgroundColor: "red",
-
+		backgroundColor: "brown",
+		flex: 1,
 		display: "flex",
 		flexDirection: "row",
 		flexWrap: "wrap",
 		height: height - 20,
 	},
 	singleItem: {
-		backgroundColor: "brown",
+		backgroundColor: "transparent",
 		minWidth: childWidth,
 		maxWidth: childWidth,
 		height: childHeight,

@@ -15,10 +15,13 @@ const FarmItem = ({ item, setPlantChoice }) => {
 		<View>
 			<View style={[styles.container, { backgroundColor: color }]}>
 				<Text style={styles.items} onPress={handleSelect}>
-					{quantity}
-				</Text>
-				<Text style={styles.items} onPress={handleSelect}>
 					{item_name}
+				</Text>
+				<Text
+					style={[styles.items, { flex: 0.2, textAlign: "left" }]}
+					onPress={handleSelect}
+				>
+					{quantity}
 				</Text>
 			</View>
 		</View>
@@ -28,7 +31,7 @@ const FarmItem = ({ item, setPlantChoice }) => {
 const styles = StyleSheet.create({
 	container: { flexDirection: "row" },
 	items: {
-		flex: 0.5,
+		flex: 0.8,
 		textAlign: "center",
 		fontSize: 20,
 	},

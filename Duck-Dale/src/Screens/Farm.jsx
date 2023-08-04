@@ -25,13 +25,13 @@ function Farm() {
 				flexWrap: "wrap",
 			}}
 		>
-			<View style={{ flex: 1 }}>
+			<View style={{ flex: 0.5 }}>
 				<Text>Available Seeds</Text>
 				<ScrollView>
 					{items.map((item) => {
 						if (item.username === user && item.quantity > 0) {
 							return (
-								<View key={item._id} style={{ flex: 0.5 }}>
+								<View key={item._id}>
 									<FarmItem item={item} setPlantChoice={setPlantChoice} />
 								</View>
 							);
