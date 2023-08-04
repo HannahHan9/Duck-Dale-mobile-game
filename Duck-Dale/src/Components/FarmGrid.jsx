@@ -33,7 +33,7 @@ export default FarmGrid;
 
 const styles = StyleSheet.create({
 	itemsWrap: {
-		backgroundColor: "brown",
+		backgroundColor: "#7F5112",
 		flex: 1,
 		display: "flex",
 		flexDirection: "row",

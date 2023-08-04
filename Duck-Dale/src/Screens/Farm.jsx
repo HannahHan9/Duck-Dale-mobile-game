@@ -25,7 +25,7 @@ function Farm() {
 				flexWrap: "wrap",
 			}}
 		>
-			<View style={{ flex: 0.5 }}>
+			<View style={{ flex: 0.5, backgroundColor: "#c7c053" }}>
 				<Text>Available Seeds</Text>
 				<ScrollView>
 					{items.map((item) => {

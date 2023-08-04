@@ -1,35 +1,38 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import { useState } from "react";
 
 const FarmItem = ({ item, setPlantChoice }) => {
-	const { item_name, price, quantity } = item;
+	const { item_name, quantity } = item;
 	const [color, setColor] = useState("transparent");
 	const handleSelect = () => {
 		setColor((current) => {
-			return current === "transparent" ? "white" : "transparent";
+			return current === "#8e9f45" ? "white" : "#8e9f45";
 		});
 		setPlantChoice([item]);
 	};
 
 	return (
 		<View>
-			<View style={[styles.container, { backgroundColor: color }]}>
-				<Text style={styles.items} onPress={handleSelect}>
-					{item_name}
-				</Text>
-				<Text
-					style={[styles.items, { flex: 0.2, textAlign: "left" }]}
-					onPress={handleSelect}
-				>
-					{quantity}
-				</Text>
-			</View>
+			<TouchableWithoutFeedback onPress={handleSelect}>
+				<View style={[styles.container, { borderColor: color }]}>
+					<Text style={styles.items}>{item_name}</Text>
+					<Text style={[styles.items, { flex: 0.2, textAlign: "left" }]}>
+						{quantity}
+					</Text>
+				</View>
+			</TouchableWithoutFeedback>
 		</View>
 	);
 };
 
 const styles = StyleSheet.create({
-	container: { flexDirection: "row" },
+	container: {
+		flexDirection: "row",
+		borderWidth: 3,
+		borderRadius: 20,
+		backgroundColor: "#8e9f45",
+		marginVertical: 2,
+	},
 	items: {
 		flex: 0.8,
 		textAlign: "center",
