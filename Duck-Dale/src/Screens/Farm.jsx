@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import Crop from "../Components/Crop";
 import { useContext, useEffect, useState } from "react";
 import FarmItem from "../Components/FarmItem";
@@ -23,22 +23,24 @@ function Farm() {
 				flex: 1,
 				flexDirection: "row",
 				flexWrap: "wrap",
-				paddingHorizontal: 20,
 			}}
 		>
-			<View>
-				<FarmGrid item={plantChoice} />
+			<View style={{ flex: 1 }}>
+				<Text>Available Seeds</Text>
+				<ScrollView>
+					{items.map((item) => {
+						if (item.username === user && item.quantity > 0) {
+							return (
+								<View key={item._id} style={{ flex: 0.5 }}>
+									<FarmItem item={item} setPlantChoice={setPlantChoice} />
+								</View>
+							);
+						}
+					})}
+				</ScrollView>
 			</View>
-			<View style={{ flex: 0.5 }}>
-				{items.map((item) => {
-					if (item.username === user && item.quantity > 0) {
-						return (
-							<View key={item._id} style={{ flex: 0.5 }}>
-								<FarmItem item={item} setPlantChoice={setPlantChoice} />
-							</View>
-						);
-					}
-				})}
+			<View style={{ flex: 1 }}>
+				<FarmGrid item={plantChoice} />
 			</View>
 		</View>
 	);

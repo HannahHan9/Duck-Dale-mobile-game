@@ -1,11 +1,11 @@
 import { Dimensions, StyleSheet, View } from "react-native";
 import Crop from "./Crop";
-const { height } = Dimensions.get("window");
-const windowWidth = height;
-const gap = 12;
+
+const { width, height } = Dimensions.get("window");
+const windowWidth = width / 2;
 const itemsPerRow = 3;
-const totalGapSize = (itemsPerRow - 1) * gap;
-const childWidth = (windowWidth - totalGapSize) / itemsPerRow;
+const childWidth = windowWidth / itemsPerRow;
+const childHeight = (height - 80) / itemsPerRow;
 function FarmGrid(item) {
 	const squares = [
 		{ id: 1, title: "grid 1" },
@@ -34,15 +34,16 @@ export default FarmGrid;
 const styles = StyleSheet.create({
 	itemsWrap: {
 		backgroundColor: "red",
+
 		display: "flex",
 		flexDirection: "row",
 		flexWrap: "wrap",
-		marginVertical: -(gap / 2),
-		marginHorizontal: -(gap / 2),
+		height: height - 20,
 	},
 	singleItem: {
-		marginHorizontal: gap / 2,
+		backgroundColor: "brown",
 		minWidth: childWidth,
 		maxWidth: childWidth,
+		height: childHeight,
 	},
 });
