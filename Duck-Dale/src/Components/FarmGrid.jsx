@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, View } from "react-native";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
 import Crop from "./Crop";
 
 const { width, height } = Dimensions.get("window");
@@ -6,7 +6,7 @@ const windowWidth = width / 1.5;
 const itemsPerRow = 3;
 const childWidth = windowWidth / itemsPerRow;
 const childHeight = (height - 80) / itemsPerRow;
-function FarmGrid(item) {
+function FarmGrid({ item }) {
 	const squares = [
 		{ id: 1, title: "grid 1" },
 		{ id: 2, title: "grid 2" },
@@ -20,11 +20,17 @@ function FarmGrid(item) {
 	];
 	return (
 		<View style={styles.itemsWrap}>
-			{squares.map((square) => (
-				<View key={square.id} style={styles.singleItem}>
-					<Crop item={item} />
-				</View>
-			))}
+			{item.length > 0 ? (
+				squares.map((square) => (
+					<View key={square.id} style={styles.singleItem}>
+						<Crop item={item} />
+					</View>
+				))
+			) : (
+				<Text style={{ flex: 1, fontSize: 40, textAlign: "center" }}>
+					Select Seed
+				</Text>
+			)}
 		</View>
 	);
 }

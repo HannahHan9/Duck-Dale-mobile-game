@@ -68,7 +68,6 @@ function Buy() {
 		//if exists => patch
 		//patch user coins
 	};
-	console.log(buyChoices);
 	useEffect(() => {
 		getAllShopItems(user).then((items) => {
 			setItems(items);

@@ -60,10 +60,6 @@ function Sell() {
 				setSellChoices([]);
 				setIsLoading(false);
 			});
-
-		//check user inventory
-		//if exists => patch
-		//patch user coins
 	};
 
 	useEffect(() => {
@@ -83,7 +79,7 @@ function Sell() {
 
 			<ScrollView>
 				{items.map((item) => {
-					if (item.username === user && item.quantity > 0) {
+					if (item.quantity > 0) {
 						return (
 							<View key={item._id}>
 								{isLoading ? (

@@ -10,7 +10,18 @@ function Coin() {
 	// useEffect(() => {
 	// 	getUser(user).then(setCoins);
 	// }, []);
-	return <Text style={{ fontSize: 20 }}>{coins}🪙</Text>;
+	return (
+		<Text
+			style={{
+				maxHeight: 50,
+				fontSize: 30,
+				fontWeight: "bold",
+				backgroundColor: "#ffffffdd",
+			}}
+		>
+			{coins}🪙
+		</Text>
+	);
 }
 
 export default Coin;

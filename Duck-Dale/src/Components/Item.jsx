@@ -1,9 +1,21 @@
-import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+	Button,
+	Image,
+	ScrollView,
+	StyleSheet,
+	Text,
+	View,
+} from "react-native";
 import { getAllShopItems } from "../Lib/Api";
 import { useContext, useEffect, useState } from "react";
 
 const Item = ({ item, setChoices }) => {
-	const { item_name, price, quantity } = item;
+	const {
+		item_name,
+		price,
+		quantity,
+		item_img = require("../../assets/unicorn.png"),
+	} = item;
 	const [border, setBorder] = useState("transparent");
 	const handleSelect = () => {
 		setBorder((current) => {
@@ -24,12 +36,19 @@ const Item = ({ item, setChoices }) => {
 		<View>
 			<View style={[styles.container, { backgroundColor: border }]}>
 				<Text
-					style={[styles.items, { textAlign: "left", flex: 0.2 }]}
+					style={[styles.items, { textAlign: "left", flex: 0.1 }]}
 					onPress={handleSelect}
 				>
 					{quantity}
 				</Text>
-				<Text style={styles.items} onPress={handleSelect}>
+				<View style={{ flex: 0.1, justifyContent: "center" }}>
+					<Image
+						style={{ height: 30, width: 30 }}
+						source={require("../../assets/unicorn.png")}
+					/>
+				</View>
+
+				<Text style={[styles.items, { flex: 0.5 }]} onPress={handleSelect}>
 					{item_name}
 				</Text>
 				<Text style={styles.items} onPress={handleSelect}>
@@ -43,7 +62,7 @@ const Item = ({ item, setChoices }) => {
 const styles = StyleSheet.create({
 	container: { flexDirection: "row" },
 	items: {
-		flex: 0.4,
+		flex: 0.3,
 		textAlign: "center",
 		fontSize: 20,
 	},
