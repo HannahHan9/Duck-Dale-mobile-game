@@ -25,10 +25,14 @@ function Crop({ item }) {
 	const handleHarvest = () => {};
 	return (
 		<View>
-			<TouchableHighlight onPress={handlePlanted} disabled={isPlanted}>
+			<TouchableHighlight
+				onPress={handlePlanted}
+				disabled={isPlanted}
+				style={{ alignItems: "center" }}
+			>
 				<Image
 					source={require("../../assets/free-crop/free-crop/land-n-tile/soil_big.png")}
-					style={{ height: 100, width: 100 }}
+					style={{ height: 120, width: 120 }}
 				/>
 			</TouchableHighlight>
 			{isGrown ? <Button title="Harvest!" onPress={handleHarvest} /> : null}

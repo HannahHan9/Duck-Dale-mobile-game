@@ -3,9 +3,9 @@ import Crop from "./Crop";
 
 const { width, height } = Dimensions.get("window");
 const windowWidth = width / 1.5;
-const itemsPerRow = 3;
+const itemsPerRow = 4;
 const childWidth = windowWidth / itemsPerRow;
-const childHeight = (height - 80) / itemsPerRow;
+const childHeight = height / itemsPerRow;
 function FarmGrid({ item }) {
 	const squares = [
 		{ id: 1, title: "grid 1" },
@@ -17,6 +17,9 @@ function FarmGrid({ item }) {
 		{ id: 7, title: "grid 7" },
 		{ id: 8, title: "grid 8" },
 		{ id: 9, title: "grid 9" },
+		{ id: 10, title: "grid 10" },
+		{ id: 11, title: "grid 11" },
+		{ id: 12, title: "grid 12" },
 	];
 	return (
 		<View style={styles.itemsWrap}>
