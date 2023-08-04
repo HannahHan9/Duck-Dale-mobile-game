@@ -2,7 +2,7 @@ import { ScrollView, Text, View } from "react-native";
 import Crop from "../Components/Crop";
 import { useContext, useEffect, useState } from "react";
 import FarmItem from "../Components/FarmItem";
-import { getAllUserItems } from "../Lib/Api";
+import { getAllUserItems, getAllUserSeeds } from "../Lib/Api";
 import { UserContext } from "../Contexts/UserContext";
 import FarmGrid from "../Components/FarmGrid";
 
@@ -13,7 +13,7 @@ function Farm() {
 	const data = [{ item: plantChoice }];
 
 	useEffect(() => {
-		getAllUserItems().then((items) => {
+		getAllUserSeeds(user, "Seed").then((items) => {
 			setItems(items);
 		});
 	}, []);

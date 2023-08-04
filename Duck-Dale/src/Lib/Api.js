@@ -17,16 +17,24 @@ export const getUser = (username) => {
 	});
 };
 
-export const getAllShopItems = () => {
-	return duckDale.get(`/shopitems`).then(({ data }) => {
+export const getAllShopItems = (username) => {
+	return duckDale.get(`/shopitems/users/${username}`).then(({ data }) => {
 		return data.items;
 	});
 };
 
-export const getAllUserItems = () => {
-	return duckDale.get(`/useritems`).then(({ data }) => {
+export const getAllUserItems = (username) => {
+	return duckDale.get(`/useritems/users/${username}`).then(({ data }) => {
 		return data.items;
 	});
+};
+
+export const getAllUserSeeds = (username) => {
+	return duckDale
+		.get(`/useritems/users/${username}?item_type=Seed`)
+		.then(({ data }) => {
+			return data.items;
+		});
 };
 
 export const postUser = (username, password, first_name, last_name) => {

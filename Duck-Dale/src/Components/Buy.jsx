@@ -70,7 +70,7 @@ function Buy() {
 	};
 	console.log(buyChoices);
 	useEffect(() => {
-		getAllShopItems().then((items) => {
+		getAllShopItems(user).then((items) => {
 			setItems(items);
 		});
 	}, [coins]);
@@ -86,7 +86,7 @@ function Buy() {
 
 			<ScrollView>
 				{items.map((item) => {
-					if (item.username === user && item.quantity > 0) {
+					if (item.quantity > 0) {
 						return (
 							<View key={item._id}>
 								{isLoading ? (

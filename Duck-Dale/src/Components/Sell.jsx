@@ -67,7 +67,7 @@ function Sell() {
 	};
 
 	useEffect(() => {
-		getAllUserItems().then((items) => {
+		getAllUserItems(user).then((items) => {
 			setItems(items);
 		});
 	}, [coins]);
