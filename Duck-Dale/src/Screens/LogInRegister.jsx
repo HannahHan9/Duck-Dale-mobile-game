@@ -80,7 +80,6 @@ const LogInRegister = () => {
 		getUser(username)
 			.then((user) => {
 				// if (user.password === password) {
-				console.log(user.coins);
 				setCoins(user.coins);
 				setUser(user.username);
 				// } else {

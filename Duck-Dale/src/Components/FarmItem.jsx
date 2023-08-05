@@ -1,16 +1,19 @@
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const FarmItem = ({ item, setPlantChoice }) => {
+const FarmItem = ({ item, setPlantChoice, plantChoice }) => {
 	const { item_name, quantity } = item;
 	const [color, setColor] = useState("transparent");
 	const handleSelect = () => {
-		setColor((current) => {
-			return current === "white" ? "#8e9f45" : "white";
-		});
 		setPlantChoice([item]);
 	};
 
+	useEffect(() => {
+		setColor(() => {
+			return plantChoice[0] === item ? "white" : "#8e9f45";
+		});
+	}, [plantChoice]);
+	console.log(plantChoice[0]);
 	return (
 		<View>
 			<TouchableWithoutFeedback onPress={handleSelect}>

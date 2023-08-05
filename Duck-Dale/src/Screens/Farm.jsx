@@ -17,6 +17,7 @@ function Farm() {
 			setItems(items);
 		});
 	}, []);
+
 	return (
 		<View
 			style={{
@@ -32,7 +33,11 @@ function Farm() {
 						if (item.username === user && item.quantity > 0) {
 							return (
 								<View key={item._id}>
-									<FarmItem item={item} setPlantChoice={setPlantChoice} />
+									<FarmItem
+										item={item}
+										setPlantChoice={setPlantChoice}
+										plantChoice={plantChoice}
+									/>
 								</View>
 							);
 						}
