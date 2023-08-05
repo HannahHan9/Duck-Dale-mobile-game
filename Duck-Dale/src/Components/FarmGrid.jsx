@@ -1,11 +1,14 @@
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 import Crop from "./Crop";
 
+// const { width, height } = Dimensions.get("window");
+// const windowWidth = width / 1.5;
+// const itemsPerRow = 4;
+// const childWidth = windowWidth / itemsPerRow;
+// const childHeight = height / itemsPerRow;
+
 const { width, height } = Dimensions.get("window");
-const windowWidth = width / 1.5;
-const itemsPerRow = 4;
-const childWidth = windowWidth / itemsPerRow;
-const childHeight = height / itemsPerRow;
+const itemsPerRow = 5;
 function FarmGrid({ item }) {
 	const squares = [
 		{ id: 1, title: "grid 1" },
@@ -20,12 +23,18 @@ function FarmGrid({ item }) {
 		{ id: 10, title: "grid 10" },
 		{ id: 11, title: "grid 11" },
 		{ id: 12, title: "grid 12" },
+		{ id: 13, title: "grid 13" },
+		{ id: 14, title: "grid 14" },
+		{ id: 15, title: "grid 15" },
+		{ id: 16, title: "grid 16" },
+		{ id: 17, title: "grid 17" },
+		{ id: 18, title: "grid 18" },
 	];
 	return (
 		<View style={styles.itemsWrap}>
 			{item.length > 0 ? (
 				squares.map((square) => (
-					<View key={square.id} style={styles.singleItem}>
+					<View key={square.id}>
 						<Crop item={item} />
 					</View>
 				))
@@ -43,16 +52,8 @@ export default FarmGrid;
 const styles = StyleSheet.create({
 	itemsWrap: {
 		backgroundColor: "#7F5112",
-		flex: 1,
 		display: "flex",
-		flexDirection: "row",
 		flexWrap: "wrap",
-		height: height - 20,
-	},
-	singleItem: {
-		backgroundColor: "transparent",
-		minWidth: childWidth,
-		maxWidth: childWidth,
-		height: childHeight,
+		height: "fit-content",
 	},
 });

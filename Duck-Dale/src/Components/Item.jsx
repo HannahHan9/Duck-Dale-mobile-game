@@ -34,7 +34,7 @@ const Item = ({ item, setChoices }) => {
 
 	return (
 		<View>
-			<View style={[styles.container, { backgroundColor: border }]}>
+			<View style={[styles.container, { borderColor: border }]}>
 				<Text
 					style={[styles.items, { textAlign: "left", flex: 0.1 }]}
 					onPress={handleSelect}
@@ -60,7 +60,13 @@ const Item = ({ item, setChoices }) => {
 };
 
 const styles = StyleSheet.create({
-	container: { flexDirection: "row" },
+	container: {
+		flexDirection: "row",
+		borderWidth: 3,
+		borderRadius: 20,
+		backgroundColor: "#8e9f45",
+		marginVertical: 2,
+	},
 	items: {
 		flex: 0.3,
 		textAlign: "center",

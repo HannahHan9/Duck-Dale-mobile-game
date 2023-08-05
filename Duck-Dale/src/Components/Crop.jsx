@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Button, Image, Text, TouchableHighlight, View } from "react-native";
+import {
+	Button,
+	Image,
+	Pressable,
+	Text,
+	TouchableHighlight,
+	View,
+} from "react-native";
 import { patchUserItems } from "../Lib/Api";
 
 function Crop({ item }) {
@@ -32,10 +39,29 @@ function Crop({ item }) {
 			>
 				<Image
 					source={require("../../assets/free-crop/free-crop/land-n-tile/soil_big.png")}
-					style={{ height: 120, width: 120 }}
+					style={{ height: 90, width: 90 }}
 				/>
 			</TouchableHighlight>
-			{isGrown ? <Button title="Harvest!" onPress={handleHarvest} /> : null}
+			{/* {isPlanted ? <Text>Growing...</Text> : <Text>Select Plot</Text>} */}
+			{isGrown ? (
+				<Pressable
+					onPress={handleHarvest}
+					style={{
+						height: 20,
+						borderWidth: 1,
+						borderRadius: 20,
+						backgroundColor: "#8e9f45",
+					}}
+				>
+					<Text
+						style={{ color: "white", fontWeight: "bold", textAlign: "center" }}
+					>
+						Harvest!
+					</Text>
+				</Pressable>
+			) : (
+				<View style={{ height: 20 }}></View>
+			)}
 		</View>
 	);
 

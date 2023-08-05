@@ -39,7 +39,7 @@ function Farm() {
 					})}
 				</ScrollView>
 			</View>
-			<View style={{ flex: 1 }}>
+			<View style={{ flex: 1.5 }}>
 				<FarmGrid item={plantChoice} />
 			</View>
 		</View>

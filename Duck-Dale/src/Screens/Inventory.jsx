@@ -27,6 +27,7 @@ function Inventory() {
 								paddingHorizontal: 100,
 								borderWidth: 3,
 								borderRadius: 20,
+								borderColor: "transparent",
 								backgroundColor: "#8e9f45",
 								marginVertical: 2,
 							}}

@@ -6,7 +6,7 @@ const FarmItem = ({ item, setPlantChoice }) => {
 	const [color, setColor] = useState("transparent");
 	const handleSelect = () => {
 		setColor((current) => {
-			return current === "#8e9f45" ? "white" : "#8e9f45";
+			return current === "white" ? "#8e9f45" : "white";
 		});
 		setPlantChoice([item]);
 	};
