@@ -29,6 +29,10 @@ export default function Home() {
 			<View style={{ flexDirection: "row", justifyContent: "center" }}>
 				<Button title="Farm" onPress={() => nav.navigate("Farm")}></Button>
 				<Button title="Shop" onPress={() => nav.navigate("Shop")}></Button>
+				<Button
+					title="Inventory"
+					onPress={() => nav.navigate("Inventory")}
+				></Button>
 			</View>
 		</View>
 	);

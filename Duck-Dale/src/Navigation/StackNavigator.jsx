@@ -8,6 +8,7 @@ import { useContext, useState } from "react";
 import { UserContext, UserProvider } from "../Contexts/UserContext";
 import CharacterCreation from "../Screens/CharacterCreation";
 import { NewUserContext } from "../Contexts/NewUserContext";
+import Inventory from "../Screens/Inventory";
 
 const Stack = createStackNavigator();
 
@@ -42,6 +43,7 @@ export const HomeNavigator = () => {
 			<Stack.Screen name="Home" component={Home} />
 			<Stack.Screen name="Farm" component={Farm} />
 			<Stack.Screen name="Shop" component={Shop} />
+			<Stack.Screen name="Inventory" component={Inventory} />
 		</Stack.Navigator>
 	);
 };

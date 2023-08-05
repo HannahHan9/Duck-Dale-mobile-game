@@ -17,6 +17,7 @@ function Coin() {
 				fontSize: 30,
 				fontWeight: "bold",
 				backgroundColor: "#ffffffdd",
+				textAlign: "right",
 			}}
 		>
 			{coins}🪙
