@@ -10,12 +10,7 @@ import { getAllShopItems } from "../Lib/Api";
 import { useContext, useEffect, useState } from "react";
 
 const Item = ({ item, setChoices }) => {
-	const {
-		item_name,
-		price,
-		quantity,
-		item_img = require("../../assets/unicorn.png"),
-	} = item;
+	const { item_name, price, quantity, item_img } = item;
 	const [border, setBorder] = useState("transparent");
 	const handleSelect = () => {
 		setBorder((current) => {
@@ -31,7 +26,6 @@ const Item = ({ item, setChoices }) => {
 			}
 		});
 	};
-
 	return (
 		<View>
 			<View style={[styles.container, { borderColor: border }]}>
@@ -42,10 +36,7 @@ const Item = ({ item, setChoices }) => {
 					{quantity}
 				</Text>
 				<View style={{ flex: 0.1, justifyContent: "center" }}>
-					<Image
-						style={{ height: 30, width: 30 }}
-						source={require("../../assets/unicorn.png")}
-					/>
+					<Image style={{ height: 30, width: 30 }} source={{ uri: item_img }} />
 				</View>
 
 				<Text style={[styles.items, { flex: 0.5 }]} onPress={handleSelect}>

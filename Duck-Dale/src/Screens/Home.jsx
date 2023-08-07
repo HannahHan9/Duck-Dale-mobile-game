@@ -54,6 +54,7 @@ export default function Home() {
 
 					<View
 						style={{
+							flex: 5,
 							flexDirection: "row",
 							justifyContent: "space-evenly",
 							alignItems: "center",
@@ -65,7 +66,7 @@ export default function Home() {
 						>
 							<Image
 								source={require("../../assets/buttons/button-farm.png")}
-								style={{ maxWidth: 150, maxHeight: 150 }}
+								style={styles.img}
 							/>
 							<Text style={styles.text}>Farm</Text>
 						</Pressable>
@@ -75,7 +76,7 @@ export default function Home() {
 						>
 							<Image
 								source={require("../../assets/buttons/button-shop.png")}
-								style={{ maxWidth: 150, maxHeight: 150 }}
+								style={styles.img}
 							/>
 							<Text style={styles.text}>Shop</Text>
 						</Pressable>
@@ -83,10 +84,7 @@ export default function Home() {
 							onPress={() => nav.navigate("Inventory")}
 							style={styles.pressable}
 						>
-							<Image
-								source={{ uri: avatar }}
-								style={{ width: 150, height: 150 }}
-							/>
+							<Image source={{ uri: avatar }} style={styles.img} />
 							<Text style={styles.text}>Inventory</Text>
 						</Pressable>
 					</View>
@@ -109,11 +107,14 @@ const styles = StyleSheet.create({
 		backgroundColor: "transparent",
 	},
 	img: {
-		borderWidth: 2,
+		width: 150,
+		height: 150,
+		borderRadius: 10,
 	},
 	pressable: {
 		borderColor: "white",
 		borderWidth: 3,
 		backgroundColor: "white",
+		borderRadius: 10,
 	},
 });

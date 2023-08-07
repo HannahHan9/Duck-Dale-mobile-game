@@ -39,7 +39,15 @@ function FarmGrid({ item }) {
 					</View>
 				))
 			) : (
-				<Text style={{ flex: 1, fontSize: 40, textAlign: "center" }}>
+				<Text
+					style={{
+						flex: 1,
+						fontSize: 40,
+						textAlign: "center",
+						backgroundColor: "white",
+						maxHeight: 50,
+					}}
+				>
 					Select Seed
 				</Text>
 			)}
