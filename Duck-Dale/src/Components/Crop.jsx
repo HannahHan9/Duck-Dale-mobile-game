@@ -10,19 +10,21 @@ import {
 import { patchUserItems } from "../Lib/Api";
 
 function Crop({ item }) {
-	const [imageUrl, setImageUrl] = useState("");
+	const [imageUrl, setImageUrl] = useState(
+		require("../../assets/free-crop/free-crop/land-n-tile/soil_big.png")
+	);
 	const [isPlanted, setIsPlanted] = useState(false);
 	const [isGrown, setIsGrown] = useState(false);
-	const { _id, quantity } = item[0];
+	const { _id, quantity, stage_1_img, stage_2_img, stage_3_img } = item[0];
 
 	const handlePlanted = () => {
 		patchUserItems(_id, quantity - 1).then(() => {
 			setIsPlanted(true);
-			setImageUrl("");
+			setImageUrl(stage_1_img);
 			setTimeout(() => {
-				setImageUrl("");
+				setImageUrl(stage_2_img);
 				setTimeout(() => {
-					setImageUrl("");
+					setImageUrl(stage_3_img);
 					setIsGrown(true);
 				}, 10_000);
 			}, 10_000);
@@ -37,10 +39,7 @@ function Crop({ item }) {
 				disabled={isPlanted}
 				style={{ alignItems: "center" }}
 			>
-				<Image
-					source={require("../../assets/free-crop/free-crop/land-n-tile/soil_big.png")}
-					style={{ height: 90, width: 90 }}
-				/>
+				<Image source={imageUrl} style={{ height: 90, width: 90 }} />
 			</TouchableHighlight>
 			{/* {isPlanted ? <Text>Growing...</Text> : <Text>Select Plot</Text>} */}
 			{isGrown ? (

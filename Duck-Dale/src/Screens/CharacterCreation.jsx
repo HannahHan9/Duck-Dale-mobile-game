@@ -3,39 +3,70 @@ import { patchUserImage } from "../Lib/Api";
 import { Children, useContext } from "react";
 import { UserContext } from "../Contexts/UserContext";
 import { NewUserContext } from "../Contexts/NewUserContext";
+import { CoinContext } from "../Contexts/CoinContext";
 
 const CharacterCreation = () => {
 	const { newUser, setNewUser } = useContext(NewUserContext);
 	const { setUser } = useContext(UserContext);
-	const image1 = "../../assets/unicorn.png";
+	const { setCoins } = useContext(CoinContext);
+	const image1 =
+		"https://drive.google.com/uc?export=view&id=1wvBu5oPWGNti8IGBUV8Ng8NEboUFJrVK";
+	const image2 =
+		"https://drive.google.com/uc?export=view&id=1fz2QR-srrHSP1FWyLxxppwNqy_Vx_xoS";
+	const image3 =
+		"https://drive.google.com/uc?export=view&id=1IMsW5297niJENXRg0uLmax4seWLEHNY8";
 	const handleSelect = (image) => {
 		patchUserImage(newUser, image).then(() => {
 			setUser(newUser);
+			setCoins(100);
 			setNewUser("");
 		});
 	};
+	console.log(image1);
 	return (
-		<View>
+		<View
+			style={{
+				flex: 1,
+				justifyContent: "center",
+				flexDirection: "row",
+				alignItems: "center",
+			}}
+		>
 			<Pressable
 				onPress={() => {
 					handleSelect(image1);
 				}}
 			>
-				<Image source={require(image1)} />
+				<Image
+					source={{
+						uri: image1,
+					}}
+					style={{ width: 150, height: 150 }}
+				/>
 			</Pressable>
 			<Pressable
 				onPress={() => {
-					handleSelect(image1);
+					handleSelect(image2);
 				}}
 			>
-				<Image source={require(image1)} />
+				<Image
+					source={{
+						uri: image2,
+					}}
+					style={{ width: 150, height: 150 }}
+				/>
 			</Pressable>
 			<Pressable
 				onPress={() => {
-					handleSelect(image1);
+					handleSelect(image3);
 				}}
 			>
-				<Image source={require(image1)} />
+				<Image
+					source={{
+						uri: image3,
+					}}
+					style={{ width: 150, height: 150 }}
+				/>
 			</Pressable>
 		</View>
 	);

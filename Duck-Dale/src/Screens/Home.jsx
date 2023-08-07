@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import * as ScreenOrientation from "expo-screen-orientation";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
 	Button,
 	Image,
@@ -11,26 +11,29 @@ import {
 	View,
 } from "react-native";
 import { UserContext } from "../Contexts/UserContext";
-import { CoinContext } from "../Contexts/CoinContext";
 import Coin from "../Components/Coin";
+import { getUser } from "../Lib/Api";
 
 export default function Home() {
 	const nav = useNavigation();
-	const { coins } = useContext(CoinContext);
 	const { user } = useContext(UserContext);
+	const [avatar, setAvatar] = useState("../../assets/buttons/button-farm.png");
 	useEffect(() => {
 		lockOrientation();
+		getUser(user).then((user) => {
+			setAvatar(user.character_img);
+		});
 	}, []);
 	const lockOrientation = async () => {
 		await ScreenOrientation.lockAsync(
 			ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT
 		);
 	};
+	console.log(avatar);
 	return (
 		<View style={styles.container}>
 			<View style={[styles.container, { flexDirection: "row", gap: 250 }]}>
 				<Text style={styles.text}>Welcome {user}</Text>
-				<Text>[Avatar]</Text>
 				<Coin />
 			</View>
 
@@ -56,18 +59,9 @@ export default function Home() {
 					<Text style={{ textAlign: "center", fontSize: 20 }}>Shop</Text>
 				</Pressable>
 				<Pressable onPress={() => nav.navigate("Inventory")}>
-					<Image
-						source={require("../../assets/buttons/button-shop.png")}
-						style={{ maxWidth: 150, maxHeight: 150 }}
-					/>
+					<Image source={{ uri: avatar }} style={{ width: 150, height: 150 }} />
 					<Text style={{ textAlign: "center", fontSize: 20 }}>Inventory</Text>
 				</Pressable>
-				{/* <Button title="Farm" onPress={() => nav.navigate("Farm")}></Button> */}
-				{/* <Button title="Shop" onPress={() => nav.navigate("Shop")}></Button> */}
-				{/* <Button
-					title="Inventory"
-					onPress={() => nav.navigate("Inventory")}
-				></Button> */}
 			</View>
 		</View>
 	);
@@ -82,5 +76,8 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		fontSize: 20,
+	},
+	img: {
+		borderWidth: 2,
 	},
 });
