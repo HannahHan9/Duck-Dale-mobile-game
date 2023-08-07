@@ -34,15 +34,20 @@ export default function Home() {
 	return (
 		<View style={styles.container}>
 			<ImageBackground
-				source={require("../../assets/backgrounds/calm-countryside.png")}
+				source={require("../../assets/backgrounds/calm-anime-countryside.png")}
 				resizeMode="cover"
 				style={{
 					flex: 1,
 					justifyContent: "center",
 				}}
 			>
-				<View>
-					<View style={[styles.container, { flexDirection: "row", gap: 250 }]}>
+				<View style={{ flex: 1 }}>
+					<View
+						style={[
+							styles.container,
+							{ flexDirection: "row", gap: 250, backgroundColor: "#ffffffdd" },
+						]}
+					>
 						<Text style={styles.text}>Welcome {user}</Text>
 						<Coin />
 					</View>
@@ -54,28 +59,35 @@ export default function Home() {
 							alignItems: "center",
 						}}
 					>
-						<Pressable onPress={() => nav.navigate("Farm")}>
+						<Pressable
+							onPress={() => nav.navigate("Farm")}
+							style={styles.pressable}
+						>
 							<Image
 								source={require("../../assets/buttons/button-farm.png")}
 								style={{ maxWidth: 150, maxHeight: 150 }}
 							/>
-							<Text style={{ textAlign: "center", fontSize: 20 }}>Farm</Text>
+							<Text style={styles.text}>Farm</Text>
 						</Pressable>
-						<Pressable onPress={() => nav.navigate("Shop")}>
+						<Pressable
+							onPress={() => nav.navigate("Shop")}
+							style={styles.pressable}
+						>
 							<Image
 								source={require("../../assets/buttons/button-shop.png")}
 								style={{ maxWidth: 150, maxHeight: 150 }}
 							/>
-							<Text style={{ textAlign: "center", fontSize: 20 }}>Shop</Text>
+							<Text style={styles.text}>Shop</Text>
 						</Pressable>
-						<Pressable onPress={() => nav.navigate("Inventory")}>
+						<Pressable
+							onPress={() => nav.navigate("Inventory")}
+							style={styles.pressable}
+						>
 							<Image
 								source={{ uri: avatar }}
 								style={{ width: 150, height: 150 }}
 							/>
-							<Text style={{ textAlign: "center", fontSize: 20 }}>
-								Inventory
-							</Text>
+							<Text style={styles.text}>Inventory</Text>
 						</Pressable>
 					</View>
 				</View>
@@ -92,9 +104,16 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 	},
 	text: {
+		textAlign: "center",
 		fontSize: 20,
+		backgroundColor: "transparent",
 	},
 	img: {
 		borderWidth: 2,
+	},
+	pressable: {
+		borderColor: "white",
+		borderWidth: 3,
+		backgroundColor: "white",
 	},
 });
