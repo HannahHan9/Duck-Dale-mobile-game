@@ -52,7 +52,7 @@ export default FarmGrid;
 const styles = StyleSheet.create({
 	itemsWrap: {
 		flex: 1,
-		backgroundColor: "#7F5112",
+		backgroundColor: "transparent",
 		display: "flex",
 		flexWrap: "wrap",
 		height: "fit-content",
