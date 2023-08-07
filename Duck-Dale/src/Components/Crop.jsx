@@ -20,6 +20,7 @@ function Crop({ item }) {
 
 	const handlePlanted = () => {
 		setIsPlanted(true);
+
 		patchUserItems(_id, -1).then(() => {
 			setImageUrl(stage_1_img);
 			setTimeout(() => {
