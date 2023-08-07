@@ -94,7 +94,7 @@ function Buy() {
 				<Text style={styles.titles}>Price</Text>
 			</View>
 
-			<ScrollView style={{ backgroundColor: "transparent" }}>
+			<ScrollView>
 				{items.map((item) => {
 					if (item.quantity > 0) {
 						return (

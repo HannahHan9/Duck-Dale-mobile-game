@@ -1,5 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+	Button,
+	ImageBackground,
+	ScrollView,
+	StyleSheet,
+	Text,
+	View,
+} from "react-native";
 import {
 	getAllUserItems,
 	patchUserCoins,
@@ -68,8 +75,12 @@ function Sell() {
 		});
 	}, [coins]);
 	return (
-		<View style={{ flex: 1 }}>
-			<View style={styles.container}>
+		<ImageBackground
+			source={require("../../assets/backgrounds/wood-background.png")}
+			resizeMode="cover"
+			style={{ flex: 1, justifyContent: "center" }}
+		>
+			<View style={[styles.container, { backgroundColor: "white" }]}>
 				<Text style={[styles.titles, { textAlign: "left", flex: 0.2 }]}>
 					Quantity
 				</Text>
@@ -95,7 +106,7 @@ function Sell() {
 			{sellChoices.length ? (
 				<Button title="Sell" onPress={handleSell}></Button>
 			) : null}
-		</View>
+		</ImageBackground>
 	);
 }
 
