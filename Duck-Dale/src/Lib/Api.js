@@ -17,20 +17,20 @@ export const getUser = (username) => {
 };
 
 export const getAllShopItems = (username) => {
-    return duckDale.get(`/shopitems/users/${username}`).then(({ data }) => {
+    return duckDale.get(`/shopitems/${username}`).then(({ data }) => {
         return data.items;
     });
 };
 
 export const getAllUserItems = (username) => {
-    return duckDale.get(`/useritems/users/${username}`).then(({ data }) => {
+    return duckDale.get(`/useritems/${username}`).then(({ data }) => {
         return data.items;
     });
 };
 
 export const getAllUserSeeds = (username) => {
     return duckDale
-        .get(`/useritems/users/${username}?item_type=Seed`)
+        .get(`/useritems/${username}?item_type=Seed`)
         .then(({ data }) => {
             return data.items;
         });
@@ -98,24 +98,30 @@ export const postShopItems = (
         });
 };
 
-export const patchUserItems = (item_id, quantity) => {
+export const patchUserItems = (username, item_name, quantity) => {
     return duckDale
-        .patch(`/useritems/${item_id}`, { quantity })
+        .patch(`/useritems/${username}/${item_name}`, { quantity })
         .then(({ data }) => {
             return data.item;
         });
 };
 
-export const patchShopItems = (item_id, quantity) => {
+export const patchShopItems = (username, item_name, quantity) => {
     return duckDale
-        .patch(`/shopitems/${item_id}`, { quantity })
+        .patch(`/shopitems/${username}/${item_name}`, { quantity })
         .then(({ data }) => {
             return data.item;
         });
 };
 
-export const patchGarden = ({ username, planted, state, stage }) => {
-    return duckDale.patch(`/farm/:username/:grid_square`, {
+export const patchGarden = ({
+    username,
+    planted,
+    state,
+    stage,
+    grid_square,
+}) => {
+    return duckDale.patch(`/farm/${username}/${grid_square}`, {
         username,
         planted,
         state,
