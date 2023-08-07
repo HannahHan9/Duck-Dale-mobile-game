@@ -2,12 +2,10 @@ import { useNavigation } from "@react-navigation/native";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { useContext, useEffect, useState } from "react";
 import {
-	Button,
 	Image,
 	Pressable,
 	StyleSheet,
 	Text,
-	TextInput,
 	View,
 	ImageBackground,
 } from "react-native";
@@ -30,7 +28,6 @@ export default function Home() {
 			ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT
 		);
 	};
-	console.log(avatar);
 	return (
 		<View style={styles.container}>
 			<ImageBackground
@@ -58,7 +55,9 @@ export default function Home() {
 							{ flexDirection: "row", gap: 250, backgroundColor: "#ffffffdd" },
 						]}
 					>
-						<Text style={styles.text}>⭐This week's challenge: Sell items worth 500 coins⭐</Text>
+						<Text style={styles.text}>
+							⭐This week's challenge: Sell items worth 500 coins⭐
+						</Text>
 					</View>
 
 					<View
