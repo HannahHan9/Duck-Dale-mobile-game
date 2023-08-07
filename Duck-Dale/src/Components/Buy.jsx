@@ -37,8 +37,9 @@ function Buy() {
 		const removePromises = [];
 		let total = 0;
 		buyChoices.forEach(({ item_name, quantity, price }) => {
-			addPromises.push(patchUserItems(user, item_name, quantity * 2));
-			removePromises.push(patchShopItems(user, item_name, 0));
+			console.log(quantity);
+			addPromises.push(patchUserItems(user, item_name, quantity));
+			removePromises.push(patchShopItems(user, item_name, -quantity));
 			total += price * quantity;
 		});
 		if (coins - total >= 0) {
