@@ -1,4 +1,11 @@
-import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+	Button,
+	ImageBackground,
+	ScrollView,
+	StyleSheet,
+	Text,
+	View,
+} from "react-native";
 import {
 	getAllShopItems,
 	patchShopItems,
@@ -74,8 +81,12 @@ function Buy() {
 		});
 	}, [coins]);
 	return (
-		<View style={{ flex: 1 }}>
-			<View style={styles.container}>
+		<ImageBackground
+			source={require("../../assets/backgrounds/wood-background.png")}
+			resizeMode="cover"
+			style={{ flex: 1, justifyContent: "center" }}
+		>
+			<View style={[styles.container, { backgroundColor: "white" }]}>
 				<Text style={[styles.titles, { textAlign: "left", flex: 0.2 }]}>
 					Quantity
 				</Text>
@@ -83,7 +94,7 @@ function Buy() {
 				<Text style={styles.titles}>Price</Text>
 			</View>
 
-			<ScrollView>
+			<ScrollView style={{ backgroundColor: "transparent" }}>
 				{items.map((item) => {
 					if (item.quantity > 0) {
 						return (
@@ -102,7 +113,7 @@ function Buy() {
 				<Button title="Buy" onPress={handleBuy}></Button>
 			) : null}
 			{error ? <Text>{error}</Text> : null}
-		</View>
+		</ImageBackground>
 	);
 }
 
