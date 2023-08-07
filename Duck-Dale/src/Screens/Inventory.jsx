@@ -17,7 +17,7 @@ function Inventory() {
 			<Coin />
 			<ScrollView>
 				{items.map(({ quantity, item_name, _id, item_img }) => {
-					return (
+					return quantity > 0 ? (
 						<View
 							key={_id}
 							style={{
@@ -43,7 +43,7 @@ function Inventory() {
 							</Text>
 							<View style={{ alignItems: "center", flex: 0.2 }}>
 								<Image
-									source={require("../../assets/unicorn.png")}
+									source={{ uri: item_img }}
 									style={{ height: 80, width: 80 }}
 								/>
 							</View>
@@ -57,7 +57,7 @@ function Inventory() {
 								{item_name}
 							</Text>
 						</View>
-					);
+					) : null;
 				})}
 			</ScrollView>
 		</View>

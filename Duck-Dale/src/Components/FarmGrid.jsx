@@ -64,5 +64,6 @@ const styles = StyleSheet.create({
 		display: "flex",
 		flexWrap: "wrap",
 		height: "fit-content",
+		justifyContent: "space-evenly",
 	},
 });
