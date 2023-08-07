@@ -1,4 +1,4 @@
-import { View, Image, Pressable } from "react-native";
+import { View, Image, Pressable, ImageBackground } from "react-native";
 import { patchUserImage } from "../Lib/Api";
 import { Children, useContext, useEffect } from "react";
 import { UserContext } from "../Contexts/UserContext";
@@ -32,11 +32,12 @@ const CharacterCreation = () => {
 		);
 	};
 	return (
-		<View
+		<ImageBackground
+			source={require("../../assets/backgrounds/calm-countryside.png")}
 			style={{
 				flex: 1,
-				justifyContent: "center",
 				flexDirection: "row",
+				justifyContent: "space-evenly",
 				alignItems: "center",
 			}}
 		>
@@ -49,7 +50,10 @@ const CharacterCreation = () => {
 					source={{
 						uri: image1,
 					}}
-					style={{ width: 150, height: 150 }}
+					style={{
+						width: 150,
+						height: 150,
+					}}
 				/>
 			</Pressable>
 			<Pressable
@@ -76,7 +80,7 @@ const CharacterCreation = () => {
 					style={{ width: 150, height: 150 }}
 				/>
 			</Pressable>
-		</View>
+		</ImageBackground>
 	);
 };
 
