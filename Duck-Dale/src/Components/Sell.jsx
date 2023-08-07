@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import {
 	getAllUserItems,
+	patchShopItems,
 	patchUserCoins,
 	patchUserItems,
 	postShopItems,
@@ -35,18 +36,10 @@ function Sell() {
 		const addPromises = [];
 		const removePromises = [];
 		let total = coins;
-		sellChoices.forEach((item) => {
-			addPromises.push(
-				postShopItems(
-					user,
-					item.item_name,
-					item.description,
-					item.price,
-					item.quantity
-				)
-			);
-			removePromises.push(patchUserItems(item._id, 0));
-			total += item.price * item.quantity;
+		sellChoices.forEach(({ item_name, quantity, price }) => {
+			addPromises.push(patchShopItems(user, item_name, quantity));
+			removePromises.push(patchUserItems(user, item_name, 0));
+			total += price * quantity;
 		});
 
 		Promise.all(addPromises)

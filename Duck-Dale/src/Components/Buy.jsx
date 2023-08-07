@@ -10,6 +10,7 @@ import {
 	getAllShopItems,
 	patchShopItems,
 	patchUserCoins,
+	patchUserItems,
 	postUserItems,
 } from "../Lib/Api";
 import { useContext, useEffect, useState } from "react";
@@ -35,18 +36,10 @@ function Buy() {
 		const addPromises = [];
 		const removePromises = [];
 		let total = 0;
-		buyChoices.forEach((item) => {
-			addPromises.push(
-				postUserItems(
-					user,
-					item.item_name,
-					item.description,
-					item.price,
-					item.quantity
-				)
-			);
-			removePromises.push(patchShopItems(item._id, 0));
-			total += item.price * item.quantity;
+		buyChoices.forEach(({ item_name, quantity, price }) => {
+			addPromises.push(patchUserItems(user, item_name, quantity * 2));
+			removePromises.push(patchShopItems(user, item_name, 0));
+			total += price * quantity;
 		});
 		if (coins - total >= 0) {
 			Promise.all(addPromises)
@@ -68,7 +61,7 @@ function Buy() {
 					setIsLoading(false);
 				});
 		} else {
-			setError("U broke biatch");
+			setError("Not Enough Coins");
 		}
 
 		//check user inventory
