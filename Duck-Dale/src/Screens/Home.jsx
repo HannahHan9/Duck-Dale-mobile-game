@@ -53,6 +53,15 @@ export default function Home() {
 					</View>
 
 					<View
+						style={[
+							styles.container,
+							{ flexDirection: "row", gap: 250, backgroundColor: "#ffffffdd" },
+						]}
+					>
+						<Text style={styles.text}>⭐This week's challenge: Sell items worth 500 coins⭐</Text>
+					</View>
+
+					<View
 						style={{
 							flex: 5,
 							flexDirection: "row",
