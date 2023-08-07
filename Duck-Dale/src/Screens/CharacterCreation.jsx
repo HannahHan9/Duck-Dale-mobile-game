@@ -1,9 +1,10 @@
 import { View, Image, Pressable } from "react-native";
 import { patchUserImage } from "../Lib/Api";
-import { Children, useContext } from "react";
+import { Children, useContext, useEffect } from "react";
 import { UserContext } from "../Contexts/UserContext";
 import { NewUserContext } from "../Contexts/NewUserContext";
 import { CoinContext } from "../Contexts/CoinContext";
+import * as ScreenOrientation from "expo-screen-orientation";
 
 const CharacterCreation = () => {
 	const { newUser, setNewUser } = useContext(NewUserContext);
@@ -22,7 +23,14 @@ const CharacterCreation = () => {
 			setNewUser("");
 		});
 	};
-	console.log(image1);
+	useEffect(() => {
+		lockOrientation();
+	}, []);
+	const lockOrientation = async () => {
+		await ScreenOrientation.lockAsync(
+			ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT
+		);
+	};
 	return (
 		<View
 			style={{
