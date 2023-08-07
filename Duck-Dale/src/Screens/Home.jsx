@@ -96,6 +96,16 @@ export default function Home() {
 							<Image source={{ uri: avatar }} style={styles.img} />
 							<Text style={styles.text}>Inventory</Text>
 						</Pressable>
+						<Pressable
+							onPress={() => nav.navigate("Trophies")}
+							style={styles.pressable}
+						>
+							<Image
+								source={require("../../assets/buttons/button-trophies.png")}
+								style={styles.img}
+							/>
+							<Text style={styles.text}>Trophies</Text>
+						</Pressable>
 					</View>
 				</View>
 			</ImageBackground>
