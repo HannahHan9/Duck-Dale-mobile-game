@@ -7,7 +7,7 @@ import { NewUserContext } from "../Contexts/NewUserContext";
 const CharacterCreation = () => {
 	const { newUser, setNewUser } = useContext(NewUserContext);
 	const { setUser } = useContext(UserContext);
-	const image1 = require("../../assets/unicorn.png");
+	const image1 = "../../assets/unicorn.png";
 	const handleSelect = (image) => {
 		patchUserImage(newUser, image).then(() => {
 			setUser(newUser);
@@ -21,21 +21,21 @@ const CharacterCreation = () => {
 					handleSelect(image1);
 				}}
 			>
-				<Image source={image1} />
+				<Image source={require(image1)} />
 			</Pressable>
 			<Pressable
 				onPress={() => {
 					handleSelect(image1);
 				}}
 			>
-				<Image source={image1} />
+				<Image source={require(image1)} />
 			</Pressable>
 			<Pressable
 				onPress={() => {
 					handleSelect(image1);
 				}}
 			>
-				<Image source={image1} />
+				<Image source={require(image1)} />
 			</Pressable>
 		</View>
 	);
