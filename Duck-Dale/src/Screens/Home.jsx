@@ -17,12 +17,14 @@ export default function Home() {
 	const nav = useNavigation();
 	const { user } = useContext(UserContext);
 	const [avatar, setAvatar] = useState("../../assets/buttons/button-farm.png");
+
 	useEffect(() => {
 		lockOrientation();
 		getUser(user).then((user) => {
 			setAvatar(user.character_img);
 		});
 	}, []);
+	
 	const lockOrientation = async () => {
 		await ScreenOrientation.lockAsync(
 			ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT
