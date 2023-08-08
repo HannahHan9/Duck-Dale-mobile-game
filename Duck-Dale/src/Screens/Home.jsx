@@ -24,7 +24,7 @@ export default function Home() {
 			setAvatar(user.character_img);
 		});
 	}, []);
-	
+
 	const lockOrientation = async () => {
 		await ScreenOrientation.lockAsync(
 			ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT
@@ -45,8 +45,8 @@ export default function Home() {
 						style={[
 							styles.container,
 							{
+								// justifyContent: "center",
 								flexDirection: "row",
-								justifyContent: "space-evenly",
 								backgroundColor: "#ffffff55",
 							},
 						]}
@@ -54,15 +54,34 @@ export default function Home() {
 						<Text
 							style={[
 								styles.text,
-								{ fontSize: 30, flex: 0.8, textAlign: "left" },
+								{ fontSize: 30, textAlign: "left", flex: 0.8 },
 							]}
 						>
 							Welcome {user}
 						</Text>
-						<Coin />
-						<Pressable style={{ flex: 0.2, marginHorizontal: 10 }}>
-							<Text style={{ fontWeight: "bold", fontSize: 30 }}>COG</Text>
-						</Pressable>
+						<View style={{ flex: 0.2, flexDirection: "row" }}>
+							<Coin />
+							<Pressable
+								onPress={() => {
+									nav.navigate("Settings");
+								}}
+							>
+								{/* <Text
+									style={{
+										fontWeight: "bold",
+										fontSize: 30,
+										textAlign: "right",
+										marginHorizontal: 10,
+									}}
+								>
+									⚙️
+								</Text> */}
+								<Image
+									source={require("../../assets/buttons/cog.png")}
+									style={{ height: 40, width: 40, marginHorizontal: 10 }}
+								/>
+							</Pressable>
+						</View>
 					</View>
 
 					<View
@@ -75,7 +94,6 @@ export default function Home() {
 							⭐This week's challenge: Sell items worth 500 coins⭐
 						</Text>
 					</View>
-
 					<View
 						style={{
 							flex: 5,
