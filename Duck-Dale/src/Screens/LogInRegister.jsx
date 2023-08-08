@@ -1,5 +1,13 @@
 import { useState, useContext } from "react";
-import { Button, StyleSheet, Text, TextInput, View, Alert } from "react-native";
+import {
+	Button,
+	StyleSheet,
+	Text,
+	TextInput,
+	View,
+	Alert,
+	ImageBackground,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../Contexts/UserContext";
 import { getAllUsers, getUser, postUser } from "../Lib/Api";
@@ -94,89 +102,113 @@ const LogInRegister = () => {
 			});
 	};
 	return (
-		<View style={styles.container}>
-			{isLoading ? (
-				<Text>Loading...</Text>
-			) : (
-				<View>
-					<Text>Register</Text>
+		<ImageBackground
+			source={require("../../assets/backgrounds/weird-animals.png")}
+			resizeMode="cover"
+			style={[styles.container, { flex: 1 }]}
+		>
+			<View
+				style={{
+					backgroundColor: "#ffffffee",
+					borderWidth: 20,
+					borderColor: "#ffffff00",
+					width: 300,
+				}}
+			>
+				{isLoading ? (
+					<Text style={styles.text}>Loading...</Text>
+				) : (
+					<View style={{ marginVertical: 20 }}>
+						<Text style={[styles.text, { fontWeight: "bold", fontSize: 20 }]}>
+							Register
+						</Text>
+						<TextInput
+							style={styles.text}
+							value={firstname}
+							onChangeText={(text) => setFirstname(text)}
+							placeholder="Enter first name"
+						/>
+						<TextInput
+							style={styles.text}
+							value={lastname}
+							onChangeText={(text) => setLastname(text)}
+							placeholder="Enter last name"
+						/>
+						<TextInput
+							style={styles.text}
+							title="Username"
+							placeholder="Enter username"
+							value={newUsername}
+							onChangeText={(text) => {
+								setError(false);
+								setNewUsername(text);
+							}}
+						/>
+						<TextInput
+							style={styles.text}
+							title="Password"
+							secureTextEntry={true}
+							placeholder="Enter password"
+							value={newPassword}
+							onChangeText={(text) => {
+								setError(false);
+								setNewPassword(text);
+							}}
+						/>
+						<TextInput
+							style={styles.text}
+							title="Confirm password"
+							secureTextEntry={true}
+							placeholder="Confirm password"
+							value={confirmPassword}
+							onChangeText={(text) => {
+								setConfirmPassword(text);
+								setPasswordError(() => {
+									if (text !== newPassword) {
+										return true;
+									} else return false;
+								});
+							}}
+						/>
+						{passwordError ? <Text>Password doesn't match!</Text> : null}
+						<Button
+							title="Sign Up"
+							onPress={handleSignUp}
+							disabled={passwordError}
+						/>
+					</View>
+				)}
+				<Text style={styles.text}>----------- OR -----------</Text>
+				<View style={{ marginVertical: 20 }}>
+					<Text style={[styles.text, { fontWeight: "bold", fontSize: 20 }]}>
+						Log In
+					</Text>
 					<TextInput
-						value={firstname}
-						onChangeText={(text) => setFirstname(text)}
-						placeholder="Enter first name"
-					/>
-					<TextInput
-						value={lastname}
-						onChangeText={(text) => setLastname(text)}
-						placeholder="Enter last name"
-					/>
-					<TextInput
+						style={styles.text}
 						title="Username"
 						placeholder="Enter username"
-						value={newUsername}
+						value={username}
 						onChangeText={(text) => {
 							setError(false);
-							setNewUsername(text);
+							setUsername(text);
 						}}
 					/>
 					<TextInput
+						style={styles.text}
 						title="Password"
 						secureTextEntry={true}
 						placeholder="Enter password"
-						value={newPassword}
+						value={password}
 						onChangeText={(text) => {
 							setError(false);
-							setNewPassword(text);
+							setPassword(text);
 						}}
 					/>
-					<TextInput
-						title="Confirm password"
-						secureTextEntry={true}
-						placeholder="Confirm password"
-						value={confirmPassword}
-						onChangeText={(text) => {
-							setConfirmPassword(text);
-							setPasswordError(() => {
-								if (text !== newPassword) {
-									return true;
-								} else return false;
-							});
-						}}
-					/>
-					{passwordError ? <Text>Password doesn't match!</Text> : null}
-					<Button
-						title="Sign Up"
-						onPress={handleSignUp}
-						disabled={passwordError}
-					/>
+					<Button title="Sign In" onPress={handleSignIn} />
+					{error ? <Text>Username or password not found</Text> : null}
 				</View>
-			)}
-			<Text>----------- OR -----------</Text>
-			<View>
-				<Text>Log In</Text>
-				<TextInput
-					title="Username"
-					placeholder="Enter username"
-					value={username}
-					onChangeText={(text) => {
-						setError(false);
-						setUsername(text);
-					}}
-				/>
-				<TextInput
-					title="Password"
-					secureTextEntry={true}
-					placeholder="Enter password"
-					value={password}
-					onChangeText={(text) => {
-						setError(false);
-						setPassword(text);
-					}}
-				/>
-				<Button title="Sign In" onPress={handleSignIn} />
-				{error ? <Text>Username or password not found</Text> : null}
 			</View>
-		</View>
+		</ImageBackground>
 	);
 };
 
@@ -186,6 +218,9 @@ const styles = StyleSheet.create({
 		backgroundColor: "#fff",
 		alignItems: "center",
 		justifyContent: "center",
+	},
+	text: {
+		textAlign: "center",
 	},
 });
 

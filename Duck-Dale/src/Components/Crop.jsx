@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
 	Button,
 	Image,
@@ -7,31 +7,53 @@ import {
 	TouchableHighlight,
 	View,
 } from "react-native";
-import { patchUserItems } from "../Lib/Api";
+import { patchGarden, patchUserItems } from "../Lib/Api";
+import { UserContext } from "../Contexts/UserContext";
 
 function Crop({ item }) {
+	const { user } = useContext(UserContext);
 	const [imageUrl, setImageUrl] = useState(
-		require("../../assets/free-crop/free-crop/land-n-tile/soil_big.png")
+		"https://drive.google.com/uc?export=view&id=1UotkwssyRo8aV3dwbTHImD9xiG3fw-sF"
 	);
 	const [isPlanted, setIsPlanted] = useState(false);
 	const [isGrown, setIsGrown] = useState(false);
-	const { _id, quantity, stage_1_img, stage_2_img, stage_3_img } = item[0];
+	const { _id, quantity, stage_1_img, stage_2_img, stage_3_img, reference } =
+		item[0];
 
 	const handlePlanted = () => {
-		patchUserItems(_id, quantity - 1).then(() => {
-			setIsPlanted(true);
-			setImageUrl(stage_1_img);
-			setTimeout(() => {
-				setImageUrl(stage_2_img);
+		setIsPlanted(true);
+
+		patchGarden({
+			username: user,
+			planted: isPlanted,
+			state: reference,
+			stage: 1,
+		})
+			.then(() => {
+				patchUserItems(_id, -1);
+			})
+			.then(() => {
+				setImageUrl(stage_1_img);
 				setTimeout(() => {
-					setImageUrl(stage_3_img);
-					setIsGrown(true);
+					patchGarden({ username: user, stage: 2 });
+					setImageUrl(stage_2_img);
+					setTimeout(() => {
+						patchGarden({ username: user, stage: 3 });
+						setImageUrl(stage_3_img);
+						setIsGrown(true);
+					}, 10_000);
 				}, 10_000);
-			}, 10_000);
-		});
+			});
 	};
 
-	const handleHarvest = () => {};
+	const handleHarvest = () => {
+		setIsGrown(false);
+		setIsPlanted(false);
+		setImageUrl(
+			"https://drive.google.com/uc?export=view&id=1UotkwssyRo8aV3dwbTHImD9xiG3fw-sF"
+		);
+		patchUserItems(reference, 1);
+	};
 	return (
 		<View>
 			<TouchableHighlight
@@ -39,7 +61,7 @@ function Crop({ item }) {
 				disabled={isPlanted}
 				style={{ alignItems: "center" }}
 			>
-				<Image source={imageUrl} style={{ height: 90, width: 90 }} />
+				<Image source={{ uri: imageUrl }} style={{ height: 90, width: 90 }} />
 			</TouchableHighlight>
 			{/* {isPlanted ? <Text>Growing...</Text> : <Text>Select Plot</Text>} */}
 			{isGrown ? (
@@ -53,7 +75,11 @@ function Crop({ item }) {
 					}}
 				>
 					<Text
-						style={{ color: "white", fontWeight: "bold", textAlign: "center" }}
+						style={{
+							color: "white",
+							fontWeight: "bold",
+							textAlign: "center",
+						}}
 					>
 						Harvest!
 					</Text>

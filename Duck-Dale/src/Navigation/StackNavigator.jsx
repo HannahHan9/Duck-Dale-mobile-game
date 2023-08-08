@@ -9,6 +9,7 @@ import { UserContext, UserProvider } from "../Contexts/UserContext";
 import CharacterCreation from "../Screens/CharacterCreation";
 import { NewUserContext } from "../Contexts/NewUserContext";
 import Inventory from "../Screens/Inventory";
+import Trophies from "../Screens/Trophies";
 
 const Stack = createStackNavigator();
 
@@ -44,6 +45,7 @@ export const HomeNavigator = () => {
 			<Stack.Screen name="Farm" component={Farm} />
 			<Stack.Screen name="Shop" component={Shop} />
 			<Stack.Screen name="Inventory" component={Inventory} />
+			<Stack.Screen name="Trophies" component={Trophies} />
 		</Stack.Navigator>
 	);
 };

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { logger } from "react-native-logs";
 
 const duckDale = axios.create({
 	baseURL: "https://be-project-x36t.onrender.com/api",
@@ -18,20 +17,20 @@ export const getUser = (username) => {
 };
 
 export const getAllShopItems = (username) => {
-	return duckDale.get(`/shopitems/users/${username}`).then(({ data }) => {
+	return duckDale.get(`/shopitems/${username}`).then(({ data }) => {
 		return data.items;
 	});
 };
 
 export const getAllUserItems = (username) => {
-	return duckDale.get(`/useritems/users/${username}`).then(({ data }) => {
+	return duckDale.get(`/useritems/${username}`).then(({ data }) => {
 		return data.items;
 	});
 };
 
 export const getAllUserSeeds = (username) => {
 	return duckDale
-		.get(`/useritems/users/${username}?item_type=Seed`)
+		.get(`/useritems/${username}?item_type=Seed`)
 		.then(({ data }) => {
 			return data.items;
 		});
@@ -99,25 +98,33 @@ export const postShopItems = (
 		});
 };
 
-export const patchUserItems = (item_id, quantity) => {
+export const patchUserItems = (username, item_name, quantity) => {
 	return duckDale
-		.patch(`/useritems/${item_id}`, { quantity })
+		.patch(`/useritems/${username}/${item_name}`, { quantity })
 		.then(({ data }) => {
 			return data.item;
 		});
 };
 
-export const patchShopItems = (item_id, quantity) => {
+export const patchShopItems = (username, item_name, quantity) => {
 	return duckDale
-		.patch(`/shopitems/${item_id}`, { quantity })
+		.patch(`/shopitems/${username}/${item_name}`, { quantity })
 		.then(({ data }) => {
 			return data.item;
 		});
 };
 
-// GET all users - https://be-project-x36t.onrender.com/api/users
-// GET all user items - https://be-project-x36t.onrender.com/api/useritems
-// GET all shop items - https://be-project-x36t.onrender.com/api/shopitems
-// GET user - https://be-project-x36t.onrender.com/api/users/64c7bd2dc612cf6fcd492d99
-// GET user item - https://be-project-x36t.onrender.com/api/useritems/64c7bd2dc612cf6fcd492da0
-// GET shop item - https://be-project-x36t.onrender.com/api/shopitems/64c7bd2dc612cf6fcd492da0
+export const patchGarden = ({
+	username,
+	planted,
+	state,
+	stage,
+	grid_square,
+}) => {
+	return duckDale.patch(`/farm/${username}/${grid_square}`, {
+		username,
+		planted,
+		state,
+		stage,
+	});
+};

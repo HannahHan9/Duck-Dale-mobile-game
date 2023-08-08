@@ -13,7 +13,6 @@ function Shop() {
 			}}
 		>
 			<ShopNavigator />
-
 			<ImageBackground
 				source={require("../../assets/shop-owner-woman.png")}
 				resizeMode="cover"

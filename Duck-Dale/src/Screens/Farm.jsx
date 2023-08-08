@@ -20,7 +20,7 @@ function Farm() {
 
 	return (
 		<ImageBackground
-			source={require("../../assets/backgrounds/background-farm-soil.png")}
+			source={require("../../assets/backgrounds/calm-anime-field.png")}
 			resizeMode="cover"
 			style={{ flex: 1, justifyContent: "center" }}
 		>
