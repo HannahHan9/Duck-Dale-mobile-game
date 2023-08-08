@@ -42,17 +42,31 @@ export default function Home() {
 					<View
 						style={[
 							styles.container,
-							{ flexDirection: "row", gap: 250, backgroundColor: "#ffffffdd" },
+							{
+								flexDirection: "row",
+								justifyContent: "space-evenly",
+								backgroundColor: "#ffffff55",
+							},
 						]}
 					>
-						<Text style={styles.text}>Welcome {user}</Text>
+						<Text
+							style={[
+								styles.text,
+								{ fontSize: 30, flex: 0.8, textAlign: "left" },
+							]}
+						>
+							Welcome {user}
+						</Text>
 						<Coin />
+						<Pressable style={{ flex: 0.2, marginHorizontal: 10 }}>
+							<Text style={{ fontWeight: "bold", fontSize: 30 }}>COG</Text>
+						</Pressable>
 					</View>
 
 					<View
 						style={[
 							styles.container,
-							{ flexDirection: "row", gap: 250, backgroundColor: "#ffffffdd" },
+							{ flexDirection: "row", gap: 250, backgroundColor: "#ffffff55" },
 						]}
 					>
 						<Text style={styles.text}>

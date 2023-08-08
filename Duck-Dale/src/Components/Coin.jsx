@@ -16,7 +16,7 @@ function Coin() {
 				maxHeight: 50,
 				fontSize: 30,
 				fontWeight: "bold",
-				backgroundColor: "#ffffffdd",
+				backgroundColor: "transparent",
 				textAlign: "right",
 			}}
 		>

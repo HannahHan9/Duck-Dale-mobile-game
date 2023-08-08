@@ -14,6 +14,7 @@ import Coin from "../Components/Coin";
 function Inventory() {
 	const [items, setItems] = useState([]);
 	const [avatar, setAvatar] = useState("../../assets/buttons/button-farm.png");
+	const [selected, setSelected] = useState([]);
 	const { user } = useContext(UserContext);
 	useEffect(() => {
 		getUser(user)
@@ -42,9 +43,14 @@ function Inventory() {
 					style={{ flex: 1, justifyContent: "center" }}
 				>
 					<ScrollView style={{ flex: 0.5 }}>
-						{items.map(({ quantity, item_name, _id, item_img }) => {
-							return quantity > 0 ? (
-								<Pressable key={_id}>
+						{items.map((item) => {
+							return item.quantity > 0 ? (
+								<Pressable
+									key={item._id}
+									onPress={() => {
+										setSelected([item]);
+									}}
+								>
 									<View
 										style={{
 											flexDirection: "row",
@@ -65,14 +71,8 @@ function Inventory() {
 												textAlign: "center",
 											}}
 										>
-											{quantity}
+											{item.quantity}
 										</Text>
-										<View style={{ alignItems: "center", flex: 0.2 }}>
-											<Image
-												source={{ uri: item_img }}
-												style={{ height: 80, width: 80 }}
-											/>
-										</View>
 										<Text
 											style={{
 												flex: 0.6,
@@ -80,7 +80,7 @@ function Inventory() {
 												textAlign: "right",
 											}}
 										>
-											{item_name}
+											{item.item_name}
 										</Text>
 									</View>
 								</Pressable>
@@ -88,10 +88,22 @@ function Inventory() {
 						})}
 					</ScrollView>
 				</ImageBackground>
-				<Image
+				<ImageBackground
 					source={{ uri: avatar }}
-					style={{ width: 300, height: 300 }}
-				></Image>
+					resizeMode="cover"
+					// style={{ flex: 0.75 }}
+				>
+					<View style={{ flex: 1, alignItems: "bottom" }}>
+						{selected.length > 0 ? (
+							<View style={{ flex: 0.5 }}>
+								<Image
+									source={{ uri: selected[0].item_img }}
+									style={{ height: 80, width: 80 }}
+								/>
+							</View>
+						) : null}
+					</View>
+				</ImageBackground>
 			</View>
 		</View>
 	);
