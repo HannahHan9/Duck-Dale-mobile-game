@@ -13,7 +13,6 @@ import { UserContext } from "../Contexts/UserContext";
 import { getAllUsers, getUser, postUser } from "../Lib/Api";
 import { CoinContext } from "../Contexts/CoinContext";
 import { NewUserContext } from "../Contexts/NewUserContext";
-import * as ScreenOrientation from "expo-screen-orientation";
 
 const LogInRegister = () => {
 	const [username, setUsername] = useState("");
@@ -29,16 +28,6 @@ const LogInRegister = () => {
 	const [lastname, setLastname] = useState("");
 	const [passwordError, setPasswordError] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
-
-	useEffect(() => {
-		lockOrientation();
-	}, []);
-
-	const lockOrientation = async () => {
-		await ScreenOrientation.lockAsync(
-			ScreenOrientation.OrientationLock.PORTRAIT
-		);
-	};
 
 	const handleSignUp = () => {
 		setIsLoading(true);

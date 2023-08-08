@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { getUser } from "../Lib/Api";
 import { UserContext } from "../Contexts/UserContext";
+import * as ScreenOrientation from "expo-screen-orientation";
 
 function Settings() {
 	const { user, setUser } = useContext(UserContext);
@@ -18,7 +19,14 @@ function Settings() {
 	const logout = () => {
 		// AsyncStorage.clear();
 		// this.props.navigate.nav;
+		lockOrientation();
 		setUser(null);
+	};
+
+	const lockOrientation = async () => {
+		await ScreenOrientation.lockAsync(
+			ScreenOrientation.OrientationLock.PORTRAIT
+		);
 	};
 
 	return (
