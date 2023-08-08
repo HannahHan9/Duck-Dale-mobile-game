@@ -54,13 +54,17 @@ function Inventory() {
 					style={{ flex: 1 }}
 				>
 					<Coin />
-					<View style={{ flex: 1, alignItems: "bottom" }}>
+					<View style={styles.rightSide}>
 						{selected.length > 0 ? (
-							<View style={{ flex: 0.5 }}>
+							<View>
 								<Image
 									source={{ uri: selected[0].item_img }}
 									style={{ height: 80, width: 80 }}
 								/>
+								<Text>{selected[0].item_name}</Text>
+								<Text>{selected[0].description}</Text>
+								<Text>{selected[0].quantity}</Text>
+								<Text>{selected[0].item_type}</Text>
 							</View>
 						) : null}
 					</View>
@@ -83,6 +87,7 @@ const styles = StyleSheet.create({
 	},
 	rightSide: {
 		flex: 1,
-		alignItems: "flex-end",
+		justifyContent: "top",
+		alignItems: "center",
 	},
 });
