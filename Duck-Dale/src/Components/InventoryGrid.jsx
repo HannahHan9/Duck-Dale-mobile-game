@@ -52,7 +52,6 @@ function InventoryGrid({ items, setSelected }) {
 								/>
 								<Text
 									style={{
-										flex: 0.6,
 										fontSize: 30,
 										textAlign: "center",
 									}}
