@@ -63,8 +63,8 @@ function Inventory() {
 								/>
 								<Text>{selected[0].item_name}</Text>
 								<Text>{selected[0].description}</Text>
-								<Text>{selected[0].quantity}</Text>
-								<Text>{selected[0].item_type}</Text>
+								<Text>Quantity: {selected[0].quantity}</Text>
+								<Text>Type: {selected[0].item_type}</Text>
 							</View>
 						) : null}
 					</View>
@@ -87,7 +87,9 @@ const styles = StyleSheet.create({
 	},
 	rightSide: {
 		flex: 1,
-		justifyContent: "top",
+		backgroundColor: "white",
+		justifyContent: "center",
 		alignItems: "center",
+		
 	},
 });
