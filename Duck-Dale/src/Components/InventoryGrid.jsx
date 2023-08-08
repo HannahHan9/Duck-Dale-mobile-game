@@ -16,12 +16,14 @@ function InventoryGrid({ items, setSelected }) {
 					return item.quantity > 0 ? (
 						<Pressable
 							style={{
+								flexDirection: "row",
 								flexWrap: "wrap",
-								flex: 1,
-								height: 500,
-								width: 500,
+								// flex: 5,
+								height: 150,
+								width: 150,
 								alignItems: "center",
-								justifyContent: "center",
+								margin: 5,
+								// justifyContent: "space-evenly",
 							}}
 							key={item._id}
 							onPress={() => {
@@ -30,11 +32,12 @@ function InventoryGrid({ items, setSelected }) {
 						>
 							<View
 								style={{
-									flexWrap: "wrap",
-									height: 250,
-									width: 250,
-									justifyContent: "center",
-									// flex: 0.5,
+									// flexWrap: "wrap",
+									height: 150,
+									// width: 150,
+									// justifyContent: "space-evenly",
+									flex: 1,
+
 									alignItems: "center",
 									borderWidth: 3,
 									borderRadius: 20,
