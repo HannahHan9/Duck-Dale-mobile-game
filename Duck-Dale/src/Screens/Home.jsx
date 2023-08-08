@@ -13,12 +13,29 @@ import { UserContext } from "../Contexts/UserContext";
 import Coin from "../Components/Coin";
 import { getUser } from "../Lib/Api";
 
+import { Audio } from "expo-av"; // SOUND
+
 export default function Home() {
 	const nav = useNavigation();
 	const { user } = useContext(UserContext);
 	const [avatar, setAvatar] = useState("../../assets/buttons/button-farm.png");
 
+	const [sound, setSound] = useState();
+	const [status, setStatus] = useState(false); // SOUND
+
+	async function playSound() {
+		console.log("Loading Sound");
+		const { sound } = await Audio.Sound.createAsync(
+			require("../../assets/sounds/mama-s-not-here.mp3")
+		);
+		setSound(sound);
+		console.log("Playing Sound");
+		sound.setIsLoopingAsync(true);
+		await sound.playAsync();
+	} // SOUND
+
 	useEffect(() => {
+		playSound();
 		lockOrientation();
 		getUser(user).then((user) => {
 			setAvatar(user.character_img);

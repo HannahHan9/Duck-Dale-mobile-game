@@ -37,9 +37,9 @@ export const getAllUserSeeds = (username) => {
 };
 
 export const getAchievements = (username) => {
-  return duckDale.get(`/achievements/${username}`).then(({ data }) => {
-    return data.achievements;
-  });
+	return duckDale.get(`/achievements/${username}`).then(({ data }) => {
+		return data.achievements;
+	});
 };
 
 export const postUser = (username, password, first_name, last_name) => {

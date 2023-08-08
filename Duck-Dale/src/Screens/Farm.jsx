@@ -10,13 +10,13 @@ function Farm() {
 	const { user } = useContext(UserContext);
 	const [plantChoice, setPlantChoice] = useState([]);
 	const [items, setItems] = useState([]);
-	const data = [{ item: plantChoice }];
+	const [numPlanted, setNumPlanted] = useState(0);
 
 	useEffect(() => {
 		getAllUserSeeds(user, "Seed").then((items) => {
 			setItems(items);
 		});
-	}, []);
+	}, [numPlanted]);
 
 	return (
 		<ImageBackground
@@ -52,7 +52,7 @@ function Farm() {
 					</ScrollView>
 				</View>
 				<View style={{ flex: 1.5 }}>
-					<FarmGrid item={plantChoice} />
+					<FarmGrid item={plantChoice} setNumPlanted={setNumPlanted} />
 				</View>
 			</View>
 		</ImageBackground>

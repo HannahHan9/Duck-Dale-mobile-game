@@ -10,35 +10,38 @@ import {
 import { patchGarden, patchUserItems } from "../Lib/Api";
 import { UserContext } from "../Contexts/UserContext";
 
-function Crop({ item }) {
+function Crop({ item, id, setNumPlanted }) {
 	const { user } = useContext(UserContext);
 	const [imageUrl, setImageUrl] = useState(
 		"https://drive.google.com/uc?export=view&id=1UotkwssyRo8aV3dwbTHImD9xiG3fw-sF"
 	);
 	const [isPlanted, setIsPlanted] = useState(false);
 	const [isGrown, setIsGrown] = useState(false);
-	const { _id, quantity, stage_1_img, stage_2_img, stage_3_img, reference } =
+	const { item_name, stage_1_img, stage_2_img, stage_3_img, reference } =
 		item[0];
 
 	const handlePlanted = () => {
 		setIsPlanted(true);
-
+		setNumPlanted((current) => {
+			return current + 1;
+		});
 		patchGarden({
 			username: user,
 			planted: isPlanted,
 			state: reference,
 			stage: 1,
+			grid_square: id,
 		})
 			.then(() => {
-				patchUserItems(_id, -1);
+				patchUserItems(user, item_name, -1);
 			})
 			.then(() => {
 				setImageUrl(stage_1_img);
 				setTimeout(() => {
-					patchGarden({ username: user, stage: 2 });
+					patchGarden({ username: user, grid_square: id, stage: 2 });
 					setImageUrl(stage_2_img);
 					setTimeout(() => {
-						patchGarden({ username: user, stage: 3 });
+						patchGarden({ username: user, grid_square: id, stage: 3 });
 						setImageUrl(stage_3_img);
 						setIsGrown(true);
 					}, 10_000);
@@ -47,12 +50,16 @@ function Crop({ item }) {
 	};
 
 	const handleHarvest = () => {
+		console.log(reference);
 		setIsGrown(false);
 		setIsPlanted(false);
+		setNumPlanted((current) => {
+			return current - 1;
+		});
 		setImageUrl(
 			"https://drive.google.com/uc?export=view&id=1UotkwssyRo8aV3dwbTHImD9xiG3fw-sF"
 		);
-		patchUserItems(reference, 1);
+		patchUserItems(user, reference, 1);
 	};
 	return (
 		<View>
@@ -63,7 +70,11 @@ function Crop({ item }) {
 			>
 				<Image source={{ uri: imageUrl }} style={{ height: 90, width: 90 }} />
 			</TouchableHighlight>
-			{/* {isPlanted ? <Text>Growing...</Text> : <Text>Select Plot</Text>} */}
+			{/* {isPlanted && !isGrown ? (
+				<Text>Growing...</Text>
+			) : (
+				<Text>Select Plot</Text>
+			)} */}
 			{isGrown ? (
 				<Pressable
 					onPress={handleHarvest}
