@@ -13,7 +13,6 @@ const FarmItem = ({ item, setPlantChoice, plantChoice }) => {
 			return plantChoice[0] === item ? "white" : "#8e9f45";
 		});
 	}, [plantChoice]);
-	console.log(plantChoice[0]);
 	return (
 		<View>
 			<TouchableWithoutFeedback onPress={handleSelect}>

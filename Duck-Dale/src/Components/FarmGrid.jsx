@@ -9,7 +9,7 @@ import Crop from "./Crop";
 
 const { width, height } = Dimensions.get("window");
 const itemsPerRow = 5;
-function FarmGrid({ item }) {
+function FarmGrid({ item, setNumPlanted }) {
 	const squares = [
 		{ id: 1, title: "grid 1" },
 		{ id: 2, title: "grid 2" },
@@ -35,7 +35,7 @@ function FarmGrid({ item }) {
 			{item.length > 0 ? (
 				squares.map((square) => (
 					<View key={square.id}>
-						<Crop item={item} />
+						<Crop item={item} id={square.id} setNumPlanted={setNumPlanted} />
 					</View>
 				))
 			) : (
