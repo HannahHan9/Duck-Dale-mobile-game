@@ -70,11 +70,11 @@ function Crop({ item, id, setNumPlanted }) {
 			>
 				<Image source={{ uri: imageUrl }} style={{ height: 90, width: 90 }} />
 			</TouchableHighlight>
-			{isPlanted && !isGrown ? (
+			{/* {isPlanted && !isGrown ? (
 				<Text>Growing...</Text>
 			) : (
 				<Text>Select Plot</Text>
-			)}
+			)} */}
 			{isGrown ? (
 				<Pressable
 					onPress={handleHarvest}
