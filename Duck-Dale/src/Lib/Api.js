@@ -50,6 +50,15 @@ export const postUser = (username, password, first_name, last_name) => {
 		});
 };
 
+
+export const patchUser = (username, password, first_name, last_name) => {
+	return duckDale
+	.patch(`/users/${username}`, { username, password, first_name, last_name })
+	.then(({data}) => {
+		return data.user;
+	})
+};
+
 export const patchUserCoins = (username, coins) => {
 	return duckDale.patch(`/users/${username}`, { coins }).then(({ data }) => {
 		return data.user.coins;
