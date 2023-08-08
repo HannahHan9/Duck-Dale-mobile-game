@@ -52,7 +52,7 @@ const CharacterCreation = () => {
           style={{
             flex: 1,
             justifyContent: "center",
-            flexDirection: "row",
+            flexDirection: "column",
             alignItems: "center",
           }}
         >
@@ -60,8 +60,18 @@ const CharacterCreation = () => {
             source={{
               uri: images[current],
             }}
-            style={{ width: 150, height: 150 }}
+            style={{ width: 200, height: 256 }}
           />
+        </View>
+        <View
+          style={{
+            flex: 0,
+            justifyContent: "center",
+            flexDirection: "row",
+            alignItems: "center",
+            marginBottom: 10,
+          }}
+        >
           <Button
             onPress={() => {
               setCurrent((current) => current + 1);
@@ -80,13 +90,13 @@ const CharacterCreation = () => {
             }}
             title="Next"
           />
-          <Button
-            onPress={() => {
-              handleSelect(images[current]);
-            }}
-            title="Confirm"
-          />
         </View>
+        <Button
+          onPress={() => {
+            handleSelect(images[current]);
+          }}
+          title="Confirm"
+        />
       </ImageBackground>
     </View>
   );
