@@ -18,7 +18,7 @@ function Settings() {
 	const logout = () => {
 		// AsyncStorage.clear();
 		// this.props.navigate.nav;
-		setUser([]);
+		setUser(null);
 	};
 
 	return (
