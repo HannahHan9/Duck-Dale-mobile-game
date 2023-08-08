@@ -11,6 +11,7 @@ import { NewUserContext } from "../Contexts/NewUserContext";
 import Inventory from "../Screens/Inventory";
 import Trophies from "../Screens/Trophies";
 import Settings from "../Screens/Settings";
+import UpdateProfile from "../Screens/UpdateProfile";
 
 const Stack = createStackNavigator();
 
@@ -48,6 +49,7 @@ export const HomeNavigator = () => {
 			<Stack.Screen name="Inventory" component={Inventory} />
 			<Stack.Screen name="Trophies" component={Trophies} />
 			<Stack.Screen name="Settings" component={Settings} />
+			<Stack.Screen name="UpdateProfile" component={UpdateProfile} />
 		</Stack.Navigator>
 	);
 };
