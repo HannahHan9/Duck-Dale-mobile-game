@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	rightSide: {
-		flex: 1,
+		flex: 0.3,
 		backgroundColor: "white",
 		justifyContent: "center",
 		alignItems: "center",
