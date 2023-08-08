@@ -84,3 +84,5 @@ function Settings() {
     </View>
   );
 }
+
+export default Settings;
