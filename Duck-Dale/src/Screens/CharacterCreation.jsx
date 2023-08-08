@@ -2,9 +2,11 @@ import {
   View,
   Image,
   Pressable,
-  Button,
+  TouchableOpacity,
   ImageBackground,
   StyleSheet,
+  Button,
+  Text,
 } from "react-native";
 import { patchUserImage } from "../Lib/Api";
 import { Children, useContext, useEffect, useState } from "react";
@@ -72,24 +74,50 @@ const CharacterCreation = () => {
             marginBottom: 10,
           }}
         >
-          <Button
-            onPress={() => {
-              setCurrent((current) => current + 1);
-              if (current >= 2) {
-                setCurrent(0);
-              }
+          <View
+            style={{
+              marginRight: 10,
             }}
-            title="Previous"
-          />
-          <Button
+          >
+            <TouchableOpacity
+              style={{
+                backgroundColor: "white",
+                marginBottom: 20,
+                height: 30,
+                width: 80,
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: 4,
+              }}
+              onPress={() => {
+                setCurrent((current) => current + 1);
+                if (current >= 2) {
+                  setCurrent(0);
+                }
+              }}
+            >
+              <Text>Previous</Text>
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity
+            style={{
+              backgroundColor: "white",
+              marginBottom: 20,
+              height: 30,
+              width: 80,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 4,
+            }}
             onPress={() => {
               setCurrent((current) => current - 1);
               if (current <= 0) {
                 setCurrent(2);
               }
             }}
-            title="Next"
-          />
+          >
+            <Text>Next</Text>
+          </TouchableOpacity>
         </View>
         <Button
           onPress={() => {
