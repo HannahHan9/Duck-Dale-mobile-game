@@ -24,12 +24,10 @@ export default function Home() {
 	const [status, setStatus] = useState(false); // SOUND
 
 	async function playSound() {
-		console.log("Loading Sound");
 		const { sound } = await Audio.Sound.createAsync(
 			require("../../assets/sounds/mama-s-not-here.mp3")
 		);
 		setSound(sound);
-		console.log("Playing Sound");
 		sound.setIsLoopingAsync(true);
 		await sound.playAsync();
 	} // SOUND
