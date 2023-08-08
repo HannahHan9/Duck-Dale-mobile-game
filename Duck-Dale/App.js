@@ -1,10 +1,12 @@
-import { StyleSheet } from "react-native";
+import { LogBox, StyleSheet } from "react-native";
 import { AuthNavigator } from "./src/Navigation/StackNavigator";
 import { UserContext, UserProvider } from "./src/Contexts/UserContext";
 import { NavigationContainer } from "@react-navigation/native";
-import { useState } from "react";
 import { CoinProvider } from "./src/Contexts/CoinContext";
 import { NewUserProvider } from "./src/Contexts/NewUserContext";
+
+LogBox.ignoreLogs(["new NativeEventEmitter"]);
+LogBox.ignoreAllLogs();
 
 export default function App() {
     return (
