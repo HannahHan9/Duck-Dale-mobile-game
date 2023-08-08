@@ -57,11 +57,13 @@ function Inventory() {
 					<View style={styles.rightSide}>
 						{selected.length > 0 ? (
 							<View>
+								<View style={{flexDirection: "row"}}>
 								<Image
 									source={{ uri: selected[0].item_img }}
 									style={{ height: 80, width: 80 }}
 								/>
 								<Text>{selected[0].item_name}</Text>
+								</View>
 								<Text>{selected[0].description}</Text>
 								<Text>Quantity: {selected[0].quantity}</Text>
 								<Text>Type: {selected[0].item_type}</Text>
