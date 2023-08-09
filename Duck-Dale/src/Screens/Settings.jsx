@@ -44,14 +44,14 @@ function Settings() {
 						alignItems: "center",
 					}}
 				>
-					<View
+					{/* <View
 						style={[
 							styles.container,
 							{ flexDirection: "row", gap: 250, backgroundColor: "#ffffffdd" },
 						]}
 					>
 						<Text style={styles.text}>Welcome {user}</Text>
-					</View>
+					</View> */}
 
 					<View>
 						<TouchableOpacity
