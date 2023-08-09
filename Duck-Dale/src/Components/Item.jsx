@@ -64,10 +64,13 @@ const Item = ({ item, setChoices, setCost }) => {
 					<Image style={{ height: 30, width: 30 }} source={{ uri: item_img }} />
 				</View>
 
-				<Text style={[styles.items, { flex: 0.5 }]} onPress={handleSelect}>
+				<Text style={[styles.items, { flex: 0.7 }]} onPress={handleSelect}>
 					{item_name}
 				</Text>
-				<Text style={styles.items} onPress={handleSelect}>
+				<Text
+					style={[styles.items, { textAlign: "right", paddingRight: 70 }]}
+					onPress={handleSelect}
+				>
 					{price}🪙
 				</Text>
 			</View>
@@ -84,7 +87,7 @@ const styles = StyleSheet.create({
 		marginVertical: 2,
 	},
 	items: {
-		flex: 0.3,
+		flex: 0.1,
 		textAlign: "center",
 		fontSize: 20,
 	},
