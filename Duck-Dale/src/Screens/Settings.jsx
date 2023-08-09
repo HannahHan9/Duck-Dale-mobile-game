@@ -1,22 +1,24 @@
 import {
 	ImageBackground,
+  Image,
 	Text,
 	View,
 	TouchableOpacity,
 	StyleSheet,
 } from "react-native";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../Contexts/UserContext";
 import * as ScreenOrientation from "expo-screen-orientation";
+import { getUser } from "../Lib/Api";
+
 
 function Settings() {
 	const { user, setUser } = useContext(UserContext);
 	const nav = useNavigation();
+  const [avatar, setAvatar] = useState("../../assets/buttons/button-farm.png");
 
 	const logout = () => {
-		// AsyncStorage.clear();
-		// this.props.navigate.nav;
 		lockOrientation();
 		setUser(null);
 	};
@@ -26,6 +28,14 @@ function Settings() {
 			ScreenOrientation.OrientationLock.PORTRAIT
 		);
 	};
+
+  useEffect(() => {
+		// playSound();
+		lockOrientation();
+		getUser(user).then((user) => {
+			setAvatar(user.character_img);
+		});
+	}, []);
 
 	return (
 		<View style={styles.container}>
@@ -58,6 +68,7 @@ function Settings() {
 							onPress={() => nav.navigate("UpdateProfile")}
 							style={styles.pressable}
 						>
+             <Image source={{ uri: avatar }} style={styles.img} />
 							<Text style={styles.text}>Update Profile</Text>
 						</TouchableOpacity>
 
@@ -72,6 +83,7 @@ function Settings() {
 							//   onPress={auto - save} ///
 							style={styles.pressable}
 						>
+              {/* <Image source={require("../../assets/how-to-play.png")} style={styles.img} /> */}
 							<Text style={styles.text}>How To Play</Text>
 						</TouchableOpacity>
 
@@ -89,7 +101,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: "#fff",
-		alignItems: "centre",
+		alignItems: "center",
 		justifyContent: "center",
 	},
 	text: {
@@ -98,7 +110,9 @@ const styles = StyleSheet.create({
 		backgroundColor: "transparent",
 	},
 	img: {
-		borderWidth: 2,
+		width: 150,
+		height: 150,
+		borderRadius: 10,
 	},
 	pressable: {
 		borderColor: "white",
