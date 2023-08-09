@@ -6,10 +6,12 @@ import {
 	ScrollView,
 	Text,
 	View,
+	StyleSheet,
 } from "react-native";
 import { getAllUserItems, getUser } from "../Lib/Api";
 import { UserContext } from "../Contexts/UserContext";
 import Coin from "../Components/Coin";
+import InventoryGrid from "../Components/InventoryGrid";
 
 function Inventory() {
 	const [items, setItems] = useState([]);
@@ -28,78 +30,64 @@ function Inventory() {
 	}, []);
 	return (
 		<View style={{ flex: 1 }}>
-			<Coin />
 			<View
-				style={{
-					flexDirection: "row",
-					flex: 1,
-					justifyContent: "center",
-					alignItems: "center",
-				}}
+				style={[
+					styles.container,
+					{
+						flexDirection: "row",
+						flex: 1,
+						// justifyContent: "center",
+						alignItems: "center",
+					},
+				]}
 			>
 				<ImageBackground
 					source={require("../../assets/backgrounds/wood-background.png")}
 					resizeMode="cover"
-					style={{ flex: 1, justifyContent: "center" }}
+					style={{ flex: 1.5 }}
 				>
-					<ScrollView style={{ flex: 0.5 }}>
-						{items.map((item) => {
-							return item.quantity > 0 ? (
-								<Pressable
-									key={item._id}
-									onPress={() => {
-										setSelected([item]);
-									}}
-								>
-									<View
-										style={{
-											flexDirection: "row",
-											justifyContent: "center",
-											alignItems: "center",
-											paddingHorizontal: 100,
-											borderWidth: 3,
-											borderRadius: 20,
-											borderColor: "transparent",
-											backgroundColor: "#8e9f45",
-											marginVertical: 2,
-										}}
-									>
-										<Text
-											style={{
-												flex: 0.2,
-												fontSize: 30,
-												textAlign: "center",
-											}}
-										>
-											{item.quantity}
-										</Text>
-										<Text
-											style={{
-												flex: 0.6,
-												fontSize: 30,
-												textAlign: "right",
-											}}
-										>
-											{item.item_name}
-										</Text>
-									</View>
-								</Pressable>
-							) : null;
-						})}
-					</ScrollView>
+					<InventoryGrid items={items} setSelected={setSelected} />
 				</ImageBackground>
 				<ImageBackground
 					source={{ uri: avatar }}
 					resizeMode="cover"
-					// style={{ flex: 0.75 }}
+					style={{ flex: 1 }}
 				>
-					<View style={{ flex: 1, alignItems: "bottom" }}>
+					<Coin />
+					<View style={styles.rightSide}>
 						{selected.length > 0 ? (
-							<View style={{ flex: 0.5 }}>
-								<Image
-									source={{ uri: selected[0].item_img }}
-									style={{ height: 80, width: 80 }}
-								/>
+							<View
+								style={{
+									flexDirection: "row",
+									width: 300,
+									backgroundColor: "white",
+									justifyContent: "space-between",
+									padding: 10,
+									marginTop: 100,
+								}}
+							>
+								<View
+									style={{
+										flexDirection: "row",
+									}}
+								>
+									<Image
+										source={{ uri: selected[0].item_img }}
+										style={{ height: 80, width: 80 }}
+									/>
+									<Text>{selected[0].item_name}</Text>
+								</View>
+								<View>
+									<Text style={{ textAlign: "right" }}>
+										{selected[0].description}
+									</Text>
+									<Text style={{ textAlign: "right" }}>
+										Quantity: {selected[0].quantity}
+									</Text>
+									<Text style={{ textAlign: "right" }}>
+										Type: {selected[0].item_type}
+									</Text>
+								</View>
 							</View>
 						) : null}
 					</View>
@@ -110,3 +98,19 @@ function Inventory() {
 }
 
 export default Inventory;
+
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		// padding: 10,
+	},
+	leftSide: {
+		flex: 1,
+	},
+	rightSide: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
+	},
+});

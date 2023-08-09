@@ -23,17 +23,19 @@ export default function Home() {
 	const [sound, setSound] = useState();
 	const [status, setStatus] = useState(false); // SOUND
 
-	async function playSound() {
-		const { sound } = await Audio.Sound.createAsync(
-			require("../../assets/sounds/mama-s-not-here.mp3")
-		);
-		setSound(sound);
-		sound.setIsLoopingAsync(true);
-		await sound.playAsync();
-	} // SOUND
+	// async function playSound() {
+	// 	console.log("Loading Sound");
+	// 	const { sound } = await Audio.Sound.createAsync(
+	// 		require("../../assets/sounds/mama-s-not-here.mp3")
+	// 	);
+	// 	setSound(sound);
+	// 	console.log("Playing Sound");
+	// 	sound.setIsLoopingAsync(true);
+	// 	await sound.playAsync();
+	// } // SOUND
 
 	useEffect(() => {
-		playSound();
+		// playSound();
 		lockOrientation();
 		getUser(user).then((user) => {
 			setAvatar(user.character_img);
