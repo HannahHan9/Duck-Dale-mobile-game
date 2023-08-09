@@ -37,7 +37,9 @@ export default function Home() {
 
     // makeTimer();
 
-    console.log(season, "<-------- SEASON");
+	if (season >= 120) {
+    setSeason(0);
+  	}
 
 	// async function playSound() {
 	// 	console.log("Loading Sound");
@@ -52,9 +54,7 @@ export default function Home() {
 
 	useEffect(() => {
 		setInterval(() => {
-      setSeason(curr => {curr + 10;
-      });
-    }, 10000);
+      		setSeason(curr => curr + 10)}, 10000);
 		// playSound();
 		lockOrientation();
 		getUser(user).then((user) => {
@@ -71,11 +71,11 @@ export default function Home() {
     <View style={styles.container}>
       <ImageBackground
         source={
-          season > 30 && season < 60
+          season >= 30 && season < 60
             ? require("../../assets/backgrounds/calm-anime-countryside.png")
-            : season > 60 && season < 90
+            : season >= 60 && season < 90
             ? require("../../assets/backgrounds/calm-anime-farmyard.png")
-            : season > 90 && season < 120
+            : season >= 90 && season < 120
             ? require("../../assets/backgrounds/calm-anime-field.png")
             : require("../../assets/backgrounds/calm-countryside.png")
         }
