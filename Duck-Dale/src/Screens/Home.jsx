@@ -72,11 +72,11 @@ export default function Home() {
       <ImageBackground
         source={
           season >= 30 && season < 60
-            ? require("../../assets/backgrounds/calm-anime-countryside.png")
+            ? require("../../assets/backgrounds/summer-sun-shining-sun-rays-hot-weather-yellow-tint-sun-in-view-149007429.png")
             : season >= 60 && season < 90
-            ? require("../../assets/backgrounds/calm-anime-farmyard.png")
+            ? require("../../assets/backgrounds/autumn-134780164.png")
             : season >= 90 && season < 120
-            ? require("../../assets/backgrounds/calm-anime-field.png")
+            ? require("../../assets/backgrounds/covered-in-snow-snowfall-brown-tree-78562321.png")
             : require("../../assets/backgrounds/calm-countryside.png")
         }
         resizeMode="cover"
@@ -122,7 +122,7 @@ export default function Home() {
 									⚙️
 								</Text> */}
                 <Image
-                  source={require("../../assets/buttons/cog.png")}
+                  source={require("../../assets/buttons/gear(1).png")}
                   style={{ height: 40, width: 40, marginHorizontal: 10 }}
                 />
               </Pressable>

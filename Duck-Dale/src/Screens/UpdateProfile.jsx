@@ -79,78 +79,86 @@ const UpdateProfile = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={require("../../assets/backgrounds/calm-anime-countryside.png")}
-        resizeMode="cover"
+    // <View style={styles.container}>
+    <ImageBackground
+      source={require("../../assets/backgrounds/image.png")}
+      resizeMode="cover"
+      style={[styles.container, { flex: 1 }]}
+    >
+      <View
         style={{
-          flex: 1,
-          justifyContent: "center",
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          backgroundColor: "#ffffffee",
+          borderWidth: 20,
+          borderColor: "#ffffff00",
+          width: 300,
         }}
+        // style={{
+        //   backgroundColor: "#ffffffee",
+        //   borderWidth: 20,
+        //   borderColor: "#ffffff00",
+        //   width: 300,
+        //   alignItems: "center",
+        // }}
       >
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-          }}
-        >
-          {isLoading ? (
-            <Text style={styles.text}>Loading...</Text>
-          ) : (
-            <View style={{ marginVertical: 20 }}>
-              <Text style={[styles.text, { fontWeight: "bold", fontSize: 20 }]}>
-                Update Profile
-              </Text>
-              <TextInput
-                style={styles.text}
-                value={newFirstname}
-                onChangeText={(text) => setNewFirstname(text)}
-                placeholder="Enter first name"
-              />
-              <TextInput
-                style={styles.text}
-                value={newLastname}
-                onChangeText={(text) => setNewLastname(text)}
-                placeholder="Enter last name"
-              />
-              <TextInput
-                style={styles.text}
-                title="Password"
-                secureTextEntry={true}
-                placeholder="Enter password"
-                value={newPassword}
-                onChangeText={(text) => {
-                  setError(false);
-                  setNewPassword(text);
-                }}
-              />
-              <TextInput
-                style={styles.text}
-                title="Confirm password"
-                secureTextEntry={true}
-                placeholder="Confirm password"
-                value={confirmPassword}
-                onChangeText={(text) => {
-                  setConfirmPassword(text);
-                  setPasswordError(() => {
-                    if (text !== newPassword) {
-                      return true;
-                    } else return false;
-                  });
-                }}
-              />
-              {passwordError ? <Text>Password doesn't match!</Text> : null}
-              <Button
-                title="Update"
-                onPress={handleUpdate}
-                disabled={passwordError}
-              />
-            </View>
-          )}
-        </View>
-      </ImageBackground>
-    </View>
+        {isLoading ? (
+          <Text style={styles.text}>Loading...</Text>
+        ) : (
+          <View style={{ marginVertical: 20 }}>
+            <Text style={[styles.text, { fontWeight: "bold", fontSize: 20 }]}>
+              Update Profile
+            </Text>
+            <TextInput
+              style={styles.text}
+              value={newFirstname}
+              onChangeText={(text) => setNewFirstname(text)}
+              placeholder="Enter new first name"
+            />
+            <TextInput
+              style={styles.text}
+              value={newLastname}
+              onChangeText={(text) => setNewLastname(text)}
+              placeholder="Enter new last name"
+            />
+            <TextInput
+              style={styles.text}
+              title="Password"
+              secureTextEntry={true}
+              placeholder="Enter new password"
+              value={newPassword}
+              onChangeText={(text) => {
+                setError(false);
+                setNewPassword(text);
+              }}
+            />
+            <TextInput
+              style={styles.text}
+              title="Confirm password"
+              secureTextEntry={true}
+              placeholder="Confirm password"
+              value={confirmPassword}
+              onChangeText={(text) => {
+                setConfirmPassword(text);
+                setPasswordError(() => {
+                  if (text !== newPassword) {
+                    return true;
+                  } else return false;
+                });
+              }}
+            />
+            {passwordError ? <Text>Password doesn't match!</Text> : null}
+            <Button
+              title="Update"
+              onPress={handleUpdate}
+              disabled={passwordError}
+            />
+          </View>
+        )}
+      </View>
+    </ImageBackground>
+    // </View>
   );
 };
 
@@ -159,10 +167,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     justifyContent: "center",
+    alignItems: "center",
   },
   text: {
     textAlign: "center",
   },
+
 });
 
 export default UpdateProfile;
