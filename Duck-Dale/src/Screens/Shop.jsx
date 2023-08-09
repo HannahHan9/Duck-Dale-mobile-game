@@ -21,8 +21,8 @@ function Shop() {
     >
       <ShopNavigator />
       <ImageBackground
-        source={require("../../assets/cute-anime-fox-female-npc-shopkeeper-594500145.png")}
-        resizeMode="cover"
+        source={require("../../assets/backgrounds/cute-anime-fox-female-npc-shopkeeper-594500145.png")}
+        resizeMode="contain"
         style={{ flex: 1, justifyContent: "left" }}
       >
         <View
