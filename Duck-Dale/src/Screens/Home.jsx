@@ -38,8 +38,12 @@ export default function Home() {
 	// makeTimer();
 
 	if (season >= 120) {
-		setSeason(0);
+		setSeason(1);
 	}
+
+	//   setInterval(() => {
+    //   setSeason((curr) => curr + 10);
+    // }, 10000);
 
 	// async function playSound() {
 	// 	console.log("Loading Sound");
@@ -53,14 +57,16 @@ export default function Home() {
 	// } // SOUND
 
 	useEffect(() => {
-		setInterval(() => {
-			setSeason((curr) => curr + 10);
-		}, 10000);
 		// playSound();
 		lockOrientation();
 		getUser(user).then((user) => {
 			setAvatar(user.character_img);
 		});
+		if (!season) {
+      setInterval(() => {
+        setSeason((curr) => curr + 10);
+      }, 10000);
+    }
 	}, []);
 
 	const lockOrientation = async () => {
@@ -76,7 +82,7 @@ export default function Home() {
           season >= 30 && season < 60
             ? require("../../assets/backgrounds/summer-sun-shining-sun-rays-hot-weather-yellow-tint-sun-in-view-149007429.png")
             : season >= 60 && season < 90
-            ? require("../../assets/backgrounds/autumn-134780164.png")
+            ? require("../../assets/backgrounds/autumn-orange-tree-231872754.png")
             : season >= 90 && season < 120
             ? require("../../assets/backgrounds/covered-in-snow-snowfall-brown-tree-78562321.png")
             : require("../../assets/backgrounds/calm-countryside.png")
@@ -183,7 +189,7 @@ export default function Home() {
 							style={styles.pressable}
 						>
 							<Image
-								source={require("../../assets/buttons/button-trophies.png")}
+								source={require("../../assets/buttons/111.png")}
 								style={styles.img}
 							/>
 							<Text style={styles.text}>Trophies</Text>
