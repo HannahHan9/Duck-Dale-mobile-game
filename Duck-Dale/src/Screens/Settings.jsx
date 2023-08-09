@@ -1,6 +1,6 @@
 import {
 	ImageBackground,
-  Image,
+	Image,
 	Text,
 	View,
 	TouchableOpacity,
@@ -12,11 +12,10 @@ import { UserContext } from "../Contexts/UserContext";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { getUser } from "../Lib/Api";
 
-
 function Settings() {
 	const { user, setUser } = useContext(UserContext);
 	const nav = useNavigation();
-  const [avatar, setAvatar] = useState("../../assets/buttons/button-farm.png");
+	const [avatar, setAvatar] = useState("../../assets/buttons/button-farm.png");
 
 	const logout = () => {
 		lockOrientation();
@@ -29,9 +28,8 @@ function Settings() {
 		);
 	};
 
-  useEffect(() => {
+	useEffect(() => {
 		// playSound();
-		lockOrientation();
 		getUser(user).then((user) => {
 			setAvatar(user.character_img);
 		});
@@ -68,7 +66,7 @@ function Settings() {
 							onPress={() => nav.navigate("UpdateProfile")}
 							style={styles.pressable}
 						>
-             <Image source={{ uri: avatar }} style={styles.img} />
+							<Image source={{ uri: avatar }} style={styles.img} />
 							<Text style={styles.text}>Update Profile</Text>
 						</TouchableOpacity>
 
@@ -83,7 +81,7 @@ function Settings() {
 							//   onPress={auto - save} ///
 							style={styles.pressable}
 						>
-              {/* <Image source={require("../../assets/how-to-play.png")} style={styles.img} /> */}
+							{/* <Image source={require("../../assets/how-to-play.png")} style={styles.img} /> */}
 							<Text style={styles.text}>How To Play</Text>
 						</TouchableOpacity>
 
