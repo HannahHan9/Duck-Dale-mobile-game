@@ -47,7 +47,6 @@ const UpdateProfile = () => {
     if (
       !newFirstname.length ||
       !newLastname.length ||
-      // !newUsername.length ||
       !newPassword.length ||
       !confirmPassword.length
     ) {
