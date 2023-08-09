@@ -2,12 +2,14 @@ import { useNavigation } from "@react-navigation/native";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { useContext, useEffect, useState } from "react";
 import {
+
   Image,
   Pressable,
   StyleSheet,
   Text,
   View,
   ImageBackground,
+
 } from "react-native";
 import { UserContext } from "../Contexts/UserContext";
 import { getUser } from "../Lib/Api";
@@ -17,16 +19,19 @@ export default function Home() {
   const { user, setUser } = useContext(UserContext);
   const [avatar, setAvatar] = useState("../../assets/buttons/button-farm.png");
 
+
 const logout = () => {
 //   lockOrientation();
   setUser(null);
 };
+
 
   useEffect(() => {
     getUser(user).then((user) => {
       setAvatar(user.character_img);
     });
   }, []);
+
 
 //   const lockOrientation = async () => {
 //     await ScreenOrientation.lockAsync(
@@ -92,6 +97,7 @@ const logout = () => {
       </ImageBackground>
     </View>
   );
+
 }
 
 {/* <TouchableOpacity onPress={logout} style={styles.pressable}>

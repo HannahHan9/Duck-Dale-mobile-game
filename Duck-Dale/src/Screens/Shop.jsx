@@ -12,6 +12,7 @@ import { ShopNavigator } from "../Navigation/TabNavigator";
 
 function Shop() {
 	return (
+
     <View
       style={{
         flex: 1,
@@ -36,6 +37,7 @@ function Shop() {
       </ImageBackground>
     </View>
   );
+
 }
 
 export default Shop;

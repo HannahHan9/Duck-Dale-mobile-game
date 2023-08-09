@@ -1,6 +1,7 @@
 import {
 	Button,
 	ImageBackground,
+	Pressable,
 	ScrollView,
 	StyleSheet,
 	Text,
@@ -36,35 +37,35 @@ function Buy() {
 
 		const addPromises = [];
 		const removePromises = [];
-		let total = 0;
-		buyChoices.forEach(({ item_name, quantity, price }) => {
+		// let total = 0;
+		buyChoices.forEach(({ item_name, quantity, price, chosenQuantity }) => {
 			console.log(quantity);
-			addPromises.push(patchUserItems(user, item_name, quantity));
-			removePromises.push(patchShopItems(user, item_name, -quantity));
-			total += price * quantity;
+			addPromises.push(patchUserItems(user, item_name, chosenQuantity));
+			removePromises.push(patchShopItems(user, item_name, -chosenQuantity));
+			// total += price * quantity;
 		});
-		if (coins - total >= 0) {
-			Promise.all(addPromises)
-				.then(() => {
-					Promise.all(removePromises);
-				})
-				.then(() => {
-					return patchUserCoins(user, coins - total);
-				})
-				.then((money) => {
-					setCoins(money);
-				})
+		// if (coins - total >= 0) {
+		Promise.all(addPromises)
+			.then(() => {
+				Promise.all(removePromises);
+			})
+			.then(() => {
+				return patchUserCoins(user, coins - cost);
+			})
+			.then((money) => {
+				setCoins(money);
+			})
 
-				.catch(() => {
-					console.log("it broked");
-				})
-				.finally(() => {
-					setBuyChoices([]);
-					setIsLoading(false);
-				});
-		} else {
-			setError("Not Enough Coins");
-		}
+			.catch(() => {
+				console.log("it broked");
+			})
+			.finally(() => {
+				setBuyChoices([]);
+				setIsLoading(false);
+			});
+		// } else {
+		// 	setError("Not Enough Coins");
+		// }
 
 		//check user inventory
 		//if exists => patch
@@ -75,7 +76,7 @@ function Buy() {
 			setItems(items);
 		});
 	}, [coins]);
-	console.log(cost);
+	// console.log(cost);
 	return (
 		<ImageBackground
 			source={require("../../assets/backgrounds/wood-background.png")}
@@ -83,7 +84,7 @@ function Buy() {
 			style={{ flex: 1, justifyContent: "center" }}
 		>
 			<View style={[styles.container, { backgroundColor: "white" }]}>
-				<Text style={[styles.titles, { textAlign: "left", flex: 0.2 }]}>
+				<Text style={[styles.titles, { textAlign: "left", flex: 0.4 }]}>
 					Quantity
 				</Text>
 				<Text style={styles.titles}>Item</Text>
@@ -115,7 +116,20 @@ function Buy() {
 					onPress={handleBuy}
 					accessibilityLabel="Not enough coins!"
 					disabled={cost > coins}
-				></Button>
+					style={{ backgroundColor: "#83c5be", height: 30 }}
+				>
+					{/* <Text
+						style={{
+							textAlign: "center",
+							fontWeight: "bold",
+							fontSize: 25,
+							flex: 1,
+							color: "grey",
+						}}
+					>
+						Buy
+					</Text> */}
+				</Button>
 			) : null}
 			{error ? <Text>{error}</Text> : null}
 		</ImageBackground>

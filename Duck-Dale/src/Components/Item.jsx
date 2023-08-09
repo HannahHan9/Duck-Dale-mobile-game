@@ -3,6 +3,7 @@ import {
 	Image,
 	Pressable,
 	ScrollView,
+	SectionList,
 	StyleSheet,
 	Text,
 	View,
@@ -13,9 +14,11 @@ import { useContext, useEffect, useState } from "react";
 const Item = ({ item, setChoices, setCost }) => {
 	const { item_name, price, quantity, item_img } = item;
 	const [border, setBorder] = useState("transparent");
+	const [chosenQuantity, setChosenQuantity] = useState(0);
+
 	const handleSelect = () => {
 		setBorder((current) => {
-			return current === "transparent" ? "red" : "transparent";
+			return current === "transparent" ? "#f25c54" : "transparent";
 		});
 		setChoices((current) => {
 			if (current.includes(item)) {
@@ -27,19 +30,35 @@ const Item = ({ item, setChoices, setCost }) => {
 			}
 		});
 		setCost((current) => {
-			return border === "red"
-				? current - price * quantity
-				: current + price * quantity;
+			return border === "#f25c54"
+				? current - price * chosenQuantity
+				: current + price * chosenQuantity;
 		});
 	};
+	item.chosenQuantity = chosenQuantity;
+	// useEffect(() => {
+	// }, [chosenQuantity]);
+	console.log(item.chosenQuantity, "<==");
 	return (
 		<View>
-			<View style={[styles.container, { borderColor: border }]}>
+			<View
+				style={[
+					styles.container,
+					{ borderColor: border, backgroundColor: "#f0ead2" },
+				]}
+			>
+				{/* <Picker></Picker> */}
+				<Button
+					title={String(chosenQuantity)}
+					onPress={() => {
+						setChosenQuantity((current) => current + 1);
+					}}
+				></Button>
 				<Text
 					style={[styles.items, { textAlign: "left", flex: 0.1 }]}
 					onPress={handleSelect}
 				>
-					{quantity}
+					/{quantity}
 				</Text>
 				<View style={{ flex: 0.1, justifyContent: "center" }}>
 					<Image style={{ height: 30, width: 30 }} source={{ uri: item_img }} />

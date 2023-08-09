@@ -32,25 +32,13 @@ function FarmGrid({ item, setNumPlanted }) {
 	];
 	return (
 		<View style={styles.itemsWrap}>
-			{item.length > 0 ? (
-				squares.map((square) => (
-					<View key={square.id}>
-						<Crop item={item} id={square.id} setNumPlanted={setNumPlanted} />
-					</View>
-				))
-			) : (
-				<Text
-					style={{
-						flex: 1,
-						fontSize: 40,
-						textAlign: "center",
-						backgroundColor: "white",
-						maxHeight: 50,
-					}}
-				>
-					Select Seed
-				</Text>
-			)}
+			{item.length > 0
+				? squares.map((square) => (
+						<View key={square.id} style={{ marginLeft: 10 }}>
+							<Crop item={item} id={square.id} setNumPlanted={setNumPlanted} />
+						</View>
+				  ))
+				: null}
 		</View>
 	);
 }

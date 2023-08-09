@@ -42,7 +42,7 @@ function InventoryGrid({ items, setSelected }) {
 									borderWidth: 3,
 									borderRadius: 20,
 									borderColor: "transparent",
-									backgroundColor: "white",
+									backgroundColor: "#f0ead2",
 									marginVertical: 2,
 								}}
 							>
