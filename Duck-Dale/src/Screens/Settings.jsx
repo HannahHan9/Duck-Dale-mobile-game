@@ -14,11 +14,15 @@ import { getUser } from "../Lib/Api";
 
 export default function Home() {
   const nav = useNavigation();
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [avatar, setAvatar] = useState("../../assets/buttons/button-farm.png");
 
+const logout = () => {
+//   lockOrientation();
+  setUser(null);
+};
+
   useEffect(() => {
-    // lockOrientation();
     getUser(user).then((user) => {
       setAvatar(user.character_img);
     });
@@ -26,9 +30,10 @@ export default function Home() {
 
 //   const lockOrientation = async () => {
 //     await ScreenOrientation.lockAsync(
-//       ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT
+//       ScreenOrientation.OrientationLock.LANDSCAPE_PORTRAIT
 //     );
 //   };
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -75,10 +80,7 @@ export default function Home() {
               />
               <Text style={styles.text}>How To Play</Text>
             </Pressable>
-            <Pressable
-              onPress={() => nav.navigate("")}
-              style={styles.pressable}
-            >
+            <Pressable onPress={logout} style={styles.pressable}>
               {/* <Image
                 source={require("../../assets/buttons/button-trophies.png")}
                 style={styles.img}
@@ -91,6 +93,10 @@ export default function Home() {
     </View>
   );
 }
+
+{/* <TouchableOpacity onPress={logout} style={styles.pressable}>
+  <Text style={styles.text}>Sign Out</Text>
+</TouchableOpacity>; */}
 
 const styles = StyleSheet.create({
   container: {
