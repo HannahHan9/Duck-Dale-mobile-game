@@ -15,7 +15,7 @@ const Item = ({ item, setChoices, setCost }) => {
 	const [border, setBorder] = useState("transparent");
 	const handleSelect = () => {
 		setBorder((current) => {
-			return current === "transparent" ? "white" : "transparent";
+			return current === "transparent" ? "red" : "transparent";
 		});
 		setChoices((current) => {
 			if (current.includes(item)) {
@@ -27,7 +27,9 @@ const Item = ({ item, setChoices, setCost }) => {
 			}
 		});
 		setCost((current) => {
-			return current + price * quantity;
+			return border === "red"
+				? current - price * quantity
+				: current + price * quantity;
 		});
 	};
 	return (
