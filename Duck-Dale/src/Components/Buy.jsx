@@ -1,6 +1,7 @@
 import {
 	Button,
 	ImageBackground,
+	Pressable,
 	ScrollView,
 	StyleSheet,
 	Text,
@@ -83,7 +84,7 @@ function Buy() {
 			style={{ flex: 1, justifyContent: "center" }}
 		>
 			<View style={[styles.container, { backgroundColor: "white" }]}>
-				<Text style={[styles.titles, { textAlign: "left", flex: 0.2 }]}>
+				<Text style={[styles.titles, { textAlign: "left", flex: 0.4 }]}>
 					Quantity
 				</Text>
 				<Text style={styles.titles}>Item</Text>
@@ -110,12 +111,24 @@ function Buy() {
 				})}
 			</ScrollView>
 			{buyChoices.length ? (
-				<Button
+				<Pressable
 					title="Buy"
 					onPress={handleBuy}
 					accessibilityLabel="Not enough coins!"
 					disabled={cost > coins}
-				></Button>
+					style={{ backgroundColor: "#83c5be", height: 30 }}
+				>
+					<Text
+						style={{
+							textAlign: "center",
+							fontWeight: "bold",
+							fontSize: 25,
+							flex: 1,
+						}}
+					>
+						Buy
+					</Text>
+				</Pressable>
 			) : null}
 			{error ? <Text>{error}</Text> : null}
 		</ImageBackground>

@@ -41,7 +41,12 @@ const Item = ({ item, setChoices, setCost }) => {
 	console.log(item.chosenQuantity, "<==");
 	return (
 		<View>
-			<View style={[styles.container, { borderColor: border }]}>
+			<View
+				style={[
+					styles.container,
+					{ borderColor: border, backgroundColor: "#f0ead2" },
+				]}
+			>
 				{/* <Picker></Picker> */}
 				<Button
 					title={String(chosenQuantity)}

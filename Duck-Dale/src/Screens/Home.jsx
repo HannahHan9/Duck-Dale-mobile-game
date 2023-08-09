@@ -137,7 +137,7 @@ export default function Home() {
 						]}
 					>
 						<Text style={styles.text}>
-							⭐This week's challenge: Sell items worth 500 coins⭐
+							⭐Today's challenge: Sell items worth 500 coins⭐
 						</Text>
 					</View>
 					<View
