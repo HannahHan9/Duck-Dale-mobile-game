@@ -1,14 +1,19 @@
 import { useState, useContext } from "react";
-import { Button, StyleSheet, Text, TextInput, View, Alert, ImageBackground } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Alert,
+  ImageBackground,
+} from "react-native";
 import { UserContext } from "../Contexts/UserContext";
-import { getAllUsers, getUser, patchUser } from "../Lib/Api";
-import { CoinContext } from "../Contexts/CoinContext";
-import { NewUserContext } from "../Contexts/NewUserContext";
+import { patchUser } from "../Lib/Api";
 
 const UpdateProfile = () => {
   const [error, setError] = useState(false);
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -17,17 +22,8 @@ const UpdateProfile = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-
-
   const handleUpdate = () => {
     // setIsLoading(true);
-    // if (
-    //   newFirstname.length > 0 ||
-    //   newLastname.length > 0 ||
-    //   newUsername.length > 0 ||
-    //   newPassword.length > 0 ||
-    //   confirmPassword.length > 0
-    // ) 
     // {
     //   getAllUsers().then((users) => {
     //     const usernames = users.map((user) => {
@@ -44,34 +40,44 @@ const UpdateProfile = () => {
     //             },
     //           },
     //         ]);
-    //       } else 
-        //   {
-            patchUser(newUsername, newPassword, newFirstname, newLastname) 
-              .then(() => {
-                setNewUser(newUsername);
-                Alert.alert("Yay!", "Your profile has been updated", [
-                  {
-                    text: "OK",
-                    onPress: () => {},
-                  },
-                ]);
-              })
-              .catch((err) => {
-                Alert.alert(
-                  "Something went wrong!",
-                  "Your profile has not been updated",
-                  [{ text: "Try again", onPress: () => {} }]
-                );
-              });
-          }
-        
-    //   });
-    // } else {
-    //   Alert.alert("Oops!", "Please fill out all the fields", [
-    //     { text: "OK", onPress: () => {} },
-    //   ]);
-    // }
-//   };
+    //       } else
+
+    //   {
+
+    if (
+      !newFirstname.length ||
+      !newLastname.length ||
+      // !newUsername.length ||
+      !newPassword.length ||
+      !confirmPassword.length
+    ) {
+      Alert.alert("Something went wrong!", "Fields cannot be blank", [
+        { text: "Try again", onPress: () => {} },
+      ]);
+    } else {
+      patchUser(user, newPassword, newFirstname, newLastname)
+        .then(() => {
+          setNewPassword("");
+          setNewFirstname("");
+          setNewLastname("");
+          setNewUsername("");
+          setConfirmPassword("");
+          Alert.alert("Yay!", "Your profile has been updated", [
+            {
+              text: "OK",
+              onPress: () => {},
+            },
+          ]);
+        })
+        .catch((err) => {
+          Alert.alert(
+            "Something went wrong!",
+            "Your profile has not been updated",
+            [{ text: "Try again", onPress: () => {} }]
+          );
+        });
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -95,7 +101,7 @@ const UpdateProfile = () => {
           ) : (
             <View style={{ marginVertical: 20 }}>
               <Text style={[styles.text, { fontWeight: "bold", fontSize: 20 }]}>
-                Register
+                Update Profile
               </Text>
               <TextInput
                 style={styles.text}
@@ -108,16 +114,6 @@ const UpdateProfile = () => {
                 value={newLastname}
                 onChangeText={(text) => setNewLastname(text)}
                 placeholder="Enter last name"
-              />
-              <TextInput
-                style={styles.text}
-                title="Username"
-                placeholder="Enter username"
-                value={newUsername}
-                onChangeText={(text) => {
-                  setError(false);
-                  setNewUsername(text);
-                }}
               />
               <TextInput
                 style={styles.text}
@@ -160,15 +156,14 @@ const UpdateProfile = () => {
 };
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	text: {
-		textAlign: "center",
-	},
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+  },
+  text: {
+    textAlign: "center",
+  },
 });
 
 export default UpdateProfile;

@@ -53,7 +53,7 @@ export const postUser = (username, password, first_name, last_name) => {
 
 export const patchUser = (username, password, first_name, last_name) => {
 	return duckDale
-	.patch(`/users/${username}`, { username, password, first_name, last_name })
+	.patch(`/users/${username}`, { password, first_name, last_name })
 	.then(({data}) => {
 		return data.user;
 	})
