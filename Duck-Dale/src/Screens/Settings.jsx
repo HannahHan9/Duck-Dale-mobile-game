@@ -64,10 +64,10 @@ const logout = () => {
               //   onPress={() => nav.navigate("")}
               style={styles.pressable}
             >
-              {/* <Image
-                source={require("../../assets/buttons/button-shop.png")}
+              <Image
+                source={require("../../assets/buttons/anime-girl-listening-to-headphones-236667266.png")}
                 style={styles.img}
-              /> */}
+              />
               <Text style={styles.text}>Music</Text>
             </Pressable>
             <Pressable
@@ -75,16 +75,16 @@ const logout = () => {
               style={styles.pressable}
             >
               <Image
-                source={require("../../assets/how-to-play.png")}
+                source={require("../../assets/buttons/anime-girl-reading-book-670591613(1).png")}
                 style={styles.img}
               />
               <Text style={styles.text}>How To Play</Text>
             </Pressable>
             <Pressable onPress={logout} style={styles.pressable}>
-              {/* <Image
-                source={require("../../assets/buttons/button-trophies.png")}
+              <Image
+                source={require("../../assets/buttons/anime-man-waving-goodbye-happy-548729121.png")}
                 style={styles.img}
-              /> */}
+              />
               <Text style={styles.text}>Log Out</Text>
             </Pressable>
           </View>
