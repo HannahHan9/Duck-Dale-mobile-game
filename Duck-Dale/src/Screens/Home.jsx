@@ -24,22 +24,22 @@ export default function Home() {
 	const [sound, setSound] = useState();
 	const [status, setStatus] = useState(false); // SOUND
 
-	const { season, setSeason } = useContext(SeasonContext)
+	const { season, setSeason } = useContext(SeasonContext);
 
-    // const makeTimer = () => {
-    //   setInterval(() => {
-    //     setSeason((curr) => {
-    //       console.log(curr, "<---- curr");
-    //       curr++;
-    //     });
-    //   }, 10000);
-    // };
+	// const makeTimer = () => {
+	//   setInterval(() => {
+	//     setSeason((curr) => {
+	//       console.log(curr, "<---- curr");
+	//       curr++;
+	//     });
+	//   }, 10000);
+	// };
 
-    // makeTimer();
+	// makeTimer();
 
 	if (season >= 120) {
-    setSeason(0);
-  	}
+		setSeason(0);
+	}
 
 	// async function playSound() {
 	// 	console.log("Loading Sound");
@@ -54,7 +54,8 @@ export default function Home() {
 
 	useEffect(() => {
 		setInterval(() => {
-      		setSeason(curr => curr + 10)}, 10000);
+			setSeason((curr) => curr + 10);
+		}, 10000);
 		// playSound();
 		lockOrientation();
 		getUser(user).then((user) => {
@@ -68,50 +69,50 @@ export default function Home() {
 		);
 	};
 	return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={
-          season >= 30 && season < 60
-            ? require("../../assets/backgrounds/calm-anime-countryside.png")
-            : season >= 60 && season < 90
-            ? require("../../assets/backgrounds/calm-anime-farmyard.png")
-            : season >= 90 && season < 120
-            ? require("../../assets/backgrounds/calm-anime-field.png")
-            : require("../../assets/backgrounds/calm-countryside.png")
-        }
-        resizeMode="cover"
-        style={{
-          flex: 1,
-          justifyContent: "center",
-        }}
-      >
-        <View style={{ flex: 1 }}>
-          <View
-            style={[
-              styles.container,
-              {
-                // justifyContent: "center",
-                flexDirection: "row",
-                backgroundColor: "#ffffff55",
-              },
-            ]}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: 30, textAlign: "left", flex: 0.8 },
-              ]}
-            >
-              Welcome {user}
-            </Text>
-            <View style={{ flex: 0.2, flexDirection: "row" }}>
-              <Coin />
-              <Pressable
-                onPress={() => {
-                  nav.navigate("Settings");
-                }}
-              >
-                {/* <Text
+		<View style={styles.container}>
+			<ImageBackground
+				source={
+					season >= 30 && season < 60
+						? require("../../assets/backgrounds/calm-anime-countryside.png")
+						: season >= 60 && season < 90
+						? require("../../assets/backgrounds/calm-anime-farmyard.png")
+						: season >= 90 && season < 120
+						? require("../../assets/backgrounds/calm-anime-field.png")
+						: require("../../assets/backgrounds/calm-countryside.png")
+				}
+				resizeMode="cover"
+				style={{
+					flex: 1,
+					justifyContent: "center",
+				}}
+			>
+				<View style={{ flex: 1 }}>
+					<View
+						style={[
+							styles.container,
+							{
+								// justifyContent: "center",
+								flexDirection: "row",
+								backgroundColor: "#ffffff55",
+							},
+						]}
+					>
+						<Text
+							style={[
+								styles.text,
+								{ fontSize: 30, textAlign: "left", flex: 0.8 },
+							]}
+						>
+							Welcome {user}
+						</Text>
+						<View style={{ flex: 0.2, flexDirection: "row" }}>
+							<Coin />
+							<Pressable
+								onPress={() => {
+									nav.navigate("Settings");
+								}}
+							>
+								{/* <Text
 									style={{
 										fontWeight: "bold",
 										fontSize: 30,
@@ -121,74 +122,74 @@ export default function Home() {
 								>
 									⚙️
 								</Text> */}
-                <Image
-                  source={require("../../assets/buttons/cog.png")}
-                  style={{ height: 40, width: 40, marginHorizontal: 10 }}
-                />
-              </Pressable>
-            </View>
-          </View>
+								<Image
+									source={require("../../assets/buttons/gear(1).png")}
+									style={{ height: 40, width: 40, marginHorizontal: 10 }}
+								/>
+							</Pressable>
+						</View>
+					</View>
 
-          <View
-            style={[
-              styles.container,
-              { flexDirection: "row", gap: 250, backgroundColor: "#ffffff55" },
-            ]}
-          >
-            <Text style={styles.text}>
-              ⭐This week's challenge: Sell items worth 500 coins⭐
-            </Text>
-          </View>
-          <View
-            style={{
-              flex: 5,
-              flexDirection: "row",
-              justifyContent: "space-evenly",
-              alignItems: "center",
-            }}
-          >
-            <Pressable
-              onPress={() => nav.navigate("Farm")}
-              style={styles.pressable}
-            >
-              <Image
-                source={require("../../assets/buttons/button-farm.png")}
-                style={styles.img}
-              />
-              <Text style={styles.text}>Farm</Text>
-            </Pressable>
-            <Pressable
-              onPress={() => nav.navigate("Shop")}
-              style={styles.pressable}
-            >
-              <Image
-                source={require("../../assets/buttons/button-shop.png")}
-                style={styles.img}
-              />
-              <Text style={styles.text}>Shop</Text>
-            </Pressable>
-            <Pressable
-              onPress={() => nav.navigate("Inventory")}
-              style={styles.pressable}
-            >
-              <Image source={{ uri: avatar }} style={styles.img} />
-              <Text style={styles.text}>Inventory</Text>
-            </Pressable>
-            <Pressable
-              onPress={() => nav.navigate("Trophies")}
-              style={styles.pressable}
-            >
-              <Image
-                source={require("../../assets/buttons/button-trophies.png")}
-                style={styles.img}
-              />
-              <Text style={styles.text}>Trophies</Text>
-            </Pressable>
-          </View>
-        </View>
-      </ImageBackground>
-    </View>
-  );
+					<View
+						style={[
+							styles.container,
+							{ flexDirection: "row", gap: 250, backgroundColor: "#ffffff55" },
+						]}
+					>
+						<Text style={styles.text}>
+							⭐This week's challenge: Sell items worth 500 coins⭐
+						</Text>
+					</View>
+					<View
+						style={{
+							flex: 5,
+							flexDirection: "row",
+							justifyContent: "space-evenly",
+							alignItems: "center",
+						}}
+					>
+						<Pressable
+							onPress={() => nav.navigate("Farm")}
+							style={styles.pressable}
+						>
+							<Image
+								source={require("../../assets/buttons/button-farm.png")}
+								style={styles.img}
+							/>
+							<Text style={styles.text}>Farm</Text>
+						</Pressable>
+						<Pressable
+							onPress={() => nav.navigate("Shop")}
+							style={styles.pressable}
+						>
+							<Image
+								source={require("../../assets/buttons/button-shop.png")}
+								style={styles.img}
+							/>
+							<Text style={styles.text}>Shop</Text>
+						</Pressable>
+						<Pressable
+							onPress={() => nav.navigate("Inventory")}
+							style={styles.pressable}
+						>
+							<Image source={{ uri: avatar }} style={styles.img} />
+							<Text style={styles.text}>Inventory</Text>
+						</Pressable>
+						<Pressable
+							onPress={() => nav.navigate("Trophies")}
+							style={styles.pressable}
+						>
+							<Image
+								source={require("../../assets/buttons/button-trophies.png")}
+								style={styles.img}
+							/>
+							<Text style={styles.text}>Trophies</Text>
+						</Pressable>
+					</View>
+				</View>
+			</ImageBackground>
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
