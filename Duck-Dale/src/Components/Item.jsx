@@ -50,7 +50,6 @@ const Item = ({ item, setChoices, setCost }) => {
 			handleDeselect();
 		}
 	}, [chosenQuantity]);
-	console.log(item.chosenQuantity, "<==");
 
 	return (
 		<View>
@@ -62,7 +61,6 @@ const Item = ({ item, setChoices, setCost }) => {
 			>
 				<Picker
 					style={{ flex: 0.25 }}
-					itemStyle={{ backgroundColor: "red" }}
 					selectedValue={chosenQuantity}
 					onValueChange={(value) => {
 						setChosenQuantity((current) => {
