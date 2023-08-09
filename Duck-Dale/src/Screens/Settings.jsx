@@ -27,31 +27,31 @@ function Settings() {
     );
   };
 
-  return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={require("../../assets/backgrounds/calm-anime-countryside.png")}
-        resizeMode="cover"
-        style={{
-          flex: 1,
-          justifyContent: "center",
-        }}
-      >
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-          }}
-        >
-          <View
-            style={[
-              styles.container,
-              { flexDirection: "row", gap: 250, backgroundColor: "#ffffffdd" },
-            ]}
-          >
-            <Text style={styles.text}>Welcome {user}</Text>
-          </View>
+	return (
+		<View style={styles.container}>
+			<ImageBackground
+				source={require("../../assets/backgrounds/image.png")}
+				resizeMode="cover"
+				style={{
+					flex: 1,
+					justifyContent: "center",
+				}}
+			>
+				<View
+					style={{
+						flexDirection: "row",
+						justifyContent: "space-evenly",
+						alignItems: "center",
+					}}
+				>
+					<View
+						style={[
+							styles.container,
+							{ flexDirection: "row", gap: 250, backgroundColor: "#ffffffdd" },
+						]}
+					>
+						<Text style={styles.text}>Welcome {user}</Text>
+					</View>
 
           <View>
             <TouchableOpacity
