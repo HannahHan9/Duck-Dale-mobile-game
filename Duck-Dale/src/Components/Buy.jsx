@@ -76,7 +76,7 @@ function Buy() {
 			setItems(items);
 		});
 	}, [coins]);
-	// console.log(cost);
+	console.log(cost);
 	return (
 		<ImageBackground
 			source={require("../../assets/backgrounds/wood-background.png")}

@@ -2,12 +2,14 @@ import { useNavigation } from "@react-navigation/native";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { useContext, useEffect, useState } from "react";
 import {
+
   Image,
   Pressable,
   StyleSheet,
   Text,
   View,
   ImageBackground,
+
 } from "react-native";
 import { UserContext } from "../Contexts/UserContext";
 import { getUser } from "../Lib/Api";
@@ -56,11 +58,11 @@ export default function Settings() {
     setUser(null);
   };
 
-  useEffect(() => {
-    getUser(user).then((user) => {
-      setAvatar(user.character_img);
-    });
-  }, []);
+	useEffect(() => {
+		getUser(user).then((user) => {
+			setAvatar(user.character_img);
+		});
+	}, []);
 
   //   const lockOrientation = async () => {
   //     await ScreenOrientation.lockAsync(
@@ -135,31 +137,32 @@ export default function Settings() {
 
 {
   /* <TouchableOpacity onPress={logout} style={styles.pressable}>
+
   <Text style={styles.text}>Sign Out</Text>
 </TouchableOpacity>; */
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "centre",
-    justifyContent: "center",
-  },
-  text: {
-    textAlign: "center",
-    fontSize: 20,
-    backgroundColor: "transparent",
-  },
-  img: {
-    width: 150,
-    height: 150,
-    borderRadius: 10,
-  },
-  pressable: {
-    borderColor: "white",
-    borderWidth: 3,
-    backgroundColor: "white",
-    borderRadius: 10,
-  },
+	container: {
+		flex: 1,
+		backgroundColor: "#fff",
+		alignItems: "centre",
+		justifyContent: "center",
+	},
+	text: {
+		textAlign: "center",
+		fontSize: 20,
+		backgroundColor: "transparent",
+	},
+	img: {
+		width: 150,
+		height: 150,
+		borderRadius: 10,
+	},
+	pressable: {
+		borderColor: "white",
+		borderWidth: 3,
+		backgroundColor: "white",
+		borderRadius: 10,
+	},
 });
