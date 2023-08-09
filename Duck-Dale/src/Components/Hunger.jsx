@@ -1,16 +1,17 @@
 import { useContext, useEffect } from "react";
-import { CoinContext } from "../Contexts/CoinContext";
+
 import { Text } from "react-native";
 import { UserContext } from "../Contexts/UserContext";
 import { getUser } from "../Lib/Api";
+import { HungerContext } from "../Contexts/HungerContext";
 
-function Coin() {
-	const { coins } = useContext(CoinContext);
-	// const { user } = useContext(UserContext);
-	// useEffect(() => {
-	// 	getUser(user).then(setCoins);
-	// }, []);
-	return (
+function Hunger() {
+  const { hunger } = useContext(HungerContext);
+  // const { user } = useContext(UserContext);
+  // useEffect(() => {
+  // 	getUser(user).then(setHungers);
+  // }, []);
+  return (
     <Text
       style={{
         maxHeight: 50,
@@ -20,9 +21,9 @@ function Coin() {
         textAlign: "right",
       }}
     >
-      🪙 {coins}
+      ❤️ {hunger}/100 {""}
     </Text>
   );
 }
 
-export default Coin;
+export default Hunger;

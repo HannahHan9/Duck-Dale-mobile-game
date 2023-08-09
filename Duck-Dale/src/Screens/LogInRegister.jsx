@@ -10,9 +10,10 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../Contexts/UserContext";
-import { getAllUsers, getUser, postUser } from "../Lib/Api";
+import { getAllUsers, getUser, patchUserHunger, postUser } from "../Lib/Api";
 import { CoinContext } from "../Contexts/CoinContext";
 import { NewUserContext } from "../Contexts/NewUserContext";
+import { HungerContext } from "../Contexts/HungerContext";
 
 const LogInRegister = () => {
 	const [username, setUsername] = useState("");
@@ -28,6 +29,8 @@ const LogInRegister = () => {
 	const [lastname, setLastname] = useState("");
 	const [passwordError, setPasswordError] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+
+	const { hunger, setHunger } = useContext(HungerContext)
 
 	const handleSignUp = () => {
 		setIsLoading(true);
@@ -55,7 +58,7 @@ const LogInRegister = () => {
 						]);
 					} else {
 						postUser(newUsername, newPassword, firstname, lastname)
-							.then(() => {
+							.then((user) => {
 								setNewUser(newUsername);
 								Alert.alert("Yay!", "User created successfully", [
 									{
@@ -63,7 +66,15 @@ const LogInRegister = () => {
 										onPress: () => {},
 									},
 								]);
+
+setHunger(user.hunger);
+
+								setInterval(() => {
+                  setHunger((curr) => curr - 1);
+                }, 10000);
 							})
+
+							
 							.catch((err) => {
 								Alert.alert(
 									"Something went wrong!",
@@ -85,13 +96,21 @@ const LogInRegister = () => {
 		setIsLoading(true);
 		getUser(username)
 			.then((user) => {
-				// if (user.password === password) {
-				setCoins(user.coins);
-				setUser(user.username);
-				// } else {
-				// setError(true);
-				// }
-			})
+        // if (user.password === password) {
+        setCoins(user.coins);
+        setHunger(user.hunger)
+        setUser(user.username);
+        // } else {
+        // setError(true);
+        // }
+
+        		setInterval(() => {
+          setHunger((curr) => curr - 1)}, 10000);
+
+	// 	setInterval(() => {
+	// 		patchUserHunger(username, hunger)
+    // }, 10000);
+      })
 			.catch((err) => {
 				setError(true);
 			})
@@ -99,6 +118,13 @@ const LogInRegister = () => {
 				setIsLoading(false);
 			});
 	};
+
+// useEffect(() => {
+  	
+//   		patchUserHunger(username, hunger)
+  
+// }, [hunger]);
+
 	return (
 		<ImageBackground
 			source={require("../../assets/backgrounds/weird-animals.png")}
