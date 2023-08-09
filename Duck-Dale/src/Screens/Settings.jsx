@@ -31,7 +31,7 @@ function Settings() {
 	return (
 		<View style={styles.container}>
 			<ImageBackground
-				source={require("../../assets/backgrounds/calm-anime-countryside.png")}
+				source={require("../../assets/backgrounds/image.png")}
 				resizeMode="cover"
 				style={{
 					flex: 1,
