@@ -94,7 +94,7 @@ export default function Home() {
 									⚙️
 								</Text> */}
 								<Image
-									source={require("../../assets/buttons/cog.png")}
+									source={require("../../assets/buttons/gear(1).png")}
 									style={{ height: 40, width: 40, marginHorizontal: 10 }}
 								/>
 							</Pressable>

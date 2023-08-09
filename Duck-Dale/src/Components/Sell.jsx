@@ -68,39 +68,41 @@ function Sell() {
 		});
 	}, [coins]);
 	return (
-		<ImageBackground
-			source={require("../../assets/backgrounds/wood-background.png")}
-			resizeMode="cover"
-			style={{ flex: 1, justifyContent: "center" }}
-		>
-			<View style={[styles.container, { backgroundColor: "white" }]}>
-				<Text style={[styles.titles, { textAlign: "left", flex: 0.2 }]}>
-					Quantity
-				</Text>
-				<Text style={styles.titles}>Item</Text>
-				<Text style={styles.titles}>Price</Text>
-			</View>
+    <ImageBackground
+      source={require("../../assets/backgrounds/wood-background.png")}
+      resizeMode="cover"
+      style={{ flex: 1, justifyContent: "center" }}
+    >
+      <View style={[styles.container, { backgroundColor: "white" }]}>
+        <Text style={[styles.titles, { textAlign: "left", flex: 1.2 }]}>
+          Quantity
+        </Text>
+        <Text style={styles.titles}>
+          Item
+        </Text>
+        <Text style={styles.titles}>Price</Text>
+      </View>
 
-			<ScrollView>
-				{items.map((item) => {
-					if (item.quantity > 0) {
-						return (
-							<View key={item._id}>
-								{isLoading ? (
-									<Text>Loading</Text>
-								) : (
-									<Item item={item} setChoices={setSellChoices} />
-								)}
-							</View>
-						);
-					}
-				})}
-			</ScrollView>
-			{sellChoices.length ? (
-				<Button title="Sell" onPress={handleSell}></Button>
-			) : null}
-		</ImageBackground>
-	);
+      <ScrollView>
+        {items.map((item) => {
+          if (item.quantity > 0) {
+            return (
+              <View key={item._id}>
+                {isLoading ? (
+                  <Text>Loading</Text>
+                ) : (
+                  <Item item={item} setChoices={setSellChoices} />
+                )}
+              </View>
+            );
+          }
+        })}
+      </ScrollView>
+      {sellChoices.length ? (
+        <Button title="Sell" onPress={handleSell}></Button>
+      ) : null}
+    </ImageBackground>
+  );
 }
 
 const styles = StyleSheet.create({
