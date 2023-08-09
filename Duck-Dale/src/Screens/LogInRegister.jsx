@@ -176,7 +176,7 @@ const LogInRegister = () => {
 						/>
 					</View>
 				)}
-				<Text style={styles.text}>----------- OR -----------</Text>
+				{!isLoading ? <Text style={styles.text}>----------- OR -----------</Text> : null}
 				<View style={{ marginVertical: 20 }}>
 					<Text style={[styles.text, { fontWeight: "bold", fontSize: 20 }]}>
 						Log In

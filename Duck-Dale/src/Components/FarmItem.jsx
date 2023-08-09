@@ -10,7 +10,7 @@ const FarmItem = ({ item, setPlantChoice, plantChoice }) => {
 
 	useEffect(() => {
 		setColor(() => {
-			return plantChoice[0] === item ? "white" : "#8e9f45";
+			return plantChoice[0] === item ? "#87CEEB" : "#D7EFF9";
 		});
 	}, [plantChoice]);
 	return (
@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: "row",
 		borderWidth: 3,
-		borderRadius: 20,
-		backgroundColor: "#8e9f45",
+		borderRadius: 10,
+		backgroundColor: "white",
 		marginVertical: 2,
 	},
 	items: {
