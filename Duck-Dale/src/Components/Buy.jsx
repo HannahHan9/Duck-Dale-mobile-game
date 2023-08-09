@@ -25,6 +25,7 @@ function Buy() {
 	const [buyChoices, setBuyChoices] = useState([]);
 	const [error, setError] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
+	const [cost, setCost] = useState(0);
 
 	const handleBuy = () => {
 		setError(null);
@@ -96,7 +97,11 @@ function Buy() {
 								{isLoading ? (
 									<Text>Loading</Text>
 								) : (
-									<Item item={item} setChoices={setBuyChoices} />
+									<Item
+										item={item}
+										setChoices={setBuyChoices}
+										setCost={setCost}
+									/>
 								)}
 							</View>
 						);
@@ -104,7 +109,12 @@ function Buy() {
 				})}
 			</ScrollView>
 			{buyChoices.length ? (
-				<Button title="Buy" onPress={handleBuy}></Button>
+				<Button
+					title="Buy"
+					onPress={handleBuy}
+					accessibilityLabel="Not enough coins!"
+					disabled={cost > coins}
+				></Button>
 			) : null}
 			{error ? <Text>{error}</Text> : null}
 		</ImageBackground>
@@ -113,7 +123,12 @@ function Buy() {
 
 const styles = StyleSheet.create({
 	container: { flexDirection: "row" },
-	titles: { flex: 0.4, textAlign: "center", fontSize: 20, fontWeight: "bold" },
+	titles: {
+		flex: 0.4,
+		textAlign: "center",
+		fontSize: 20,
+		fontWeight: "bold",
+	},
 });
 
 export default Buy;

@@ -10,7 +10,7 @@ import {
 import { getAllShopItems } from "../Lib/Api";
 import { useContext, useEffect, useState } from "react";
 
-const Item = ({ item, setChoices }) => {
+const Item = ({ item, setChoices, setCost }) => {
 	const { item_name, price, quantity, item_img } = item;
 	const [border, setBorder] = useState("transparent");
 	const handleSelect = () => {
@@ -26,23 +26,30 @@ const Item = ({ item, setChoices }) => {
 				return [...current, item];
 			}
 		});
+		setCost((current) => {
+			return current + price * quantity;
+		});
 	};
 	return (
 		<View>
-			<Pressable
-				style={[styles.container, { borderColor: border }]}
-				onPress={handleSelect}
-			>
-				<Text style={[styles.items, { textAlign: "left", flex: 0.1 }]}>
+			<View style={[styles.container, { borderColor: border }]}>
+				<Text
+					style={[styles.items, { textAlign: "left", flex: 0.1 }]}
+					onPress={handleSelect}
+				>
 					{quantity}
 				</Text>
 				<View style={{ flex: 0.1, justifyContent: "center" }}>
 					<Image style={{ height: 30, width: 30 }} source={{ uri: item_img }} />
 				</View>
 
-				<Text style={[styles.items, { flex: 0.5 }]}>{item_name}</Text>
-				<Text style={styles.items}>{price}🪙</Text>
-			</Pressable>
+				<Text style={[styles.items, { flex: 0.5 }]} onPress={handleSelect}>
+					{item_name}
+				</Text>
+				<Text style={styles.items} onPress={handleSelect}>
+					{price}🪙
+				</Text>
+			</View>
 		</View>
 	);
 };
