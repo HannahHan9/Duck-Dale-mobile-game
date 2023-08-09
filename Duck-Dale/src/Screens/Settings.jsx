@@ -7,7 +7,6 @@ import {
 } from "react-native";
 import { useContext } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { getUser } from "../Lib/Api";
 import { UserContext } from "../Contexts/UserContext";
 import * as ScreenOrientation from "expo-screen-orientation";
 
