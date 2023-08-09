@@ -81,7 +81,7 @@ function Buy() {
 			style={{ flex: 1, justifyContent: "center" }}
 		>
 			<View style={[styles.container, { backgroundColor: "white" }]}>
-				<Text style={[styles.titles, { textAlign: "left", flex: 1.2 }]}>
+				<Text style={[styles.titles, { textAlign: "left", flex: 0.2 }]}>
 					Quantity
 				</Text>
 				<Text style={styles.titles}>Item</Text>

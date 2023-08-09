@@ -1,6 +1,7 @@
 import {
 	Button,
 	Image,
+	Pressable,
 	ScrollView,
 	StyleSheet,
 	Text,
@@ -28,24 +29,20 @@ const Item = ({ item, setChoices }) => {
 	};
 	return (
 		<View>
-			<View style={[styles.container, { borderColor: border }]}>
-				<Text
-					style={[styles.items, { textAlign: "left", flex: 0.1 }]}
-					onPress={handleSelect}
-				>
+			<Pressable
+				style={[styles.container, { borderColor: border }]}
+				onPress={handleSelect}
+			>
+				<Text style={[styles.items, { textAlign: "left", flex: 0.1 }]}>
 					{quantity}
 				</Text>
 				<View style={{ flex: 0.1, justifyContent: "center" }}>
 					<Image style={{ height: 30, width: 30 }} source={{ uri: item_img }} />
 				</View>
 
-				<Text style={[styles.items, { flex: 0.5 }]} onPress={handleSelect}>
-					{item_name}
-				</Text>
-				<Text style={styles.items} onPress={handleSelect}>
-					{price}🪙
-				</Text>
-			</View>
+				<Text style={[styles.items, { flex: 0.5 }]}>{item_name}</Text>
+				<Text style={styles.items}>{price}🪙</Text>
+			</Pressable>
 		</View>
 	);
 };

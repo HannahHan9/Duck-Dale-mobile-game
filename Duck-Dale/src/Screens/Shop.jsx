@@ -17,7 +17,6 @@ function Shop() {
 				flex: 1,
 				flexDirection: "row",
 				flexWrap: "wrap",
-				paddingHorizontal: 20,
 			}}
 		>
 			<ShopNavigator />

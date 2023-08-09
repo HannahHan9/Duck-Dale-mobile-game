@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useEffect, useState } from "react";
 
 const FarmItem = ({ item, setPlantChoice, plantChoice }) => {
@@ -15,14 +15,14 @@ const FarmItem = ({ item, setPlantChoice, plantChoice }) => {
 	}, [plantChoice]);
 	return (
 		<View>
-			<TouchableWithoutFeedback onPress={handleSelect}>
+			<Pressable onPress={handleSelect}>
 				<View style={[styles.container, { borderColor: color }]}>
 					<Text style={styles.items}>{item_name}</Text>
 					<Text style={[styles.items, { flex: 0.2, textAlign: "left" }]}>
 						{quantity}
 					</Text>
 				</View>
-			</TouchableWithoutFeedback>
+			</Pressable>
 		</View>
 	);
 };
