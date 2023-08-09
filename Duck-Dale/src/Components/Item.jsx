@@ -18,7 +18,7 @@ const Item = ({ item, setChoices, setCost }) => {
 
 	const handleSelect = () => {
 		setBorder((current) => {
-			return current === "transparent" ? "red" : "transparent";
+			return current === "transparent" ? "#f25c54" : "transparent";
 		});
 		setChoices((current) => {
 			if (current.includes(item)) {
@@ -30,14 +30,14 @@ const Item = ({ item, setChoices, setCost }) => {
 			}
 		});
 		setCost((current) => {
-			return border === "red"
+			return border === "#f25c54"
 				? current - price * chosenQuantity
 				: current + price * chosenQuantity;
 		});
 	};
-	useEffect(() => {
-		item.chosenQuantity = chosenQuantity;
-	}, [chosenQuantity]);
+	item.chosenQuantity = chosenQuantity;
+	// useEffect(() => {
+	// }, [chosenQuantity]);
 	console.log(item.chosenQuantity, "<==");
 	return (
 		<View>

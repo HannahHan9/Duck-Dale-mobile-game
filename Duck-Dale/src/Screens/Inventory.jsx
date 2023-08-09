@@ -60,7 +60,7 @@ function Inventory() {
 								style={{
 									flexDirection: "row",
 									width: 300,
-									backgroundColor: "white",
+									backgroundColor: "#f0ead2",
 									justifyContent: "space-between",
 									padding: 10,
 									marginTop: 100,

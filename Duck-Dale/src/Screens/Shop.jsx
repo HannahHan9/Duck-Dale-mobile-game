@@ -28,7 +28,7 @@ function Shop() {
 				<View
 					style={{
 						flex: 0.12,
-						backgroundColor: "#ffffffdd",
+						// backgroundColor: "#ffffffdd",
 					}}
 				>
 					<Coin />

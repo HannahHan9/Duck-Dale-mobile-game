@@ -111,24 +111,25 @@ function Buy() {
 				})}
 			</ScrollView>
 			{buyChoices.length ? (
-				<Pressable
+				<Button
 					title="Buy"
 					onPress={handleBuy}
 					accessibilityLabel="Not enough coins!"
 					disabled={cost > coins}
 					style={{ backgroundColor: "#83c5be", height: 30 }}
 				>
-					<Text
+					{/* <Text
 						style={{
 							textAlign: "center",
 							fontWeight: "bold",
 							fontSize: 25,
 							flex: 1,
+							color: "grey",
 						}}
 					>
 						Buy
-					</Text>
-				</Pressable>
+					</Text> */}
+				</Button>
 			) : null}
 			{error ? <Text>{error}</Text> : null}
 		</ImageBackground>
