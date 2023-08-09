@@ -37,9 +37,9 @@ function Sell() {
 		const addPromises = [];
 		const removePromises = [];
 		let total = coins;
-		sellChoices.forEach(({ item_name, quantity, price }) => {
-			addPromises.push(patchShopItems(user, item_name, quantity));
-			removePromises.push(patchUserItems(user, item_name, -quantity));
+		sellChoices.forEach(({ item_name, quantity, price, chosenQuantity }) => {
+			addPromises.push(patchShopItems(user, item_name, chosenQuantity));
+			removePromises.push(patchUserItems(user, item_name, -chosenQuantity));
 			total += price * quantity;
 		});
 
