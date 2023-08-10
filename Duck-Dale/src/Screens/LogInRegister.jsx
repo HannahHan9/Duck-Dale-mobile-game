@@ -15,6 +15,10 @@ import { CoinContext } from "../Contexts/CoinContext";
 import { NewUserContext } from "../Contexts/NewUserContext";
 import { HungerContext } from "../Contexts/HungerContext";
 
+export const hungerTimer = (setHunger) => setInterval(() => {
+  setHunger((curr) => curr - 1);
+}, 1000);
+
 const LogInRegister = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -69,9 +73,7 @@ const LogInRegister = () => {
 
 setHunger(user.hunger);
 
-								setInterval(() => {
-                  setHunger((curr) => curr - 1);
-                }, 10000);
+								hungerTimer(setHunger)
 							})
 
 							
@@ -104,8 +106,8 @@ setHunger(user.hunger);
         // setError(true);
         // }
 
-        		setInterval(() => {
-          setHunger((curr) => curr - 1)}, 10000);
+        		hungerTimer(setHunger)
+							
 
 	// 	setInterval(() => {
 	// 		patchUserHunger(username, hunger)

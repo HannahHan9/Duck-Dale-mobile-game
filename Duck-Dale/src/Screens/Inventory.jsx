@@ -15,6 +15,7 @@ import Coin from "../Components/Coin";
 import InventoryGrid from "../Components/InventoryGrid";
 
 import { HungerContext } from "../Contexts/HungerContext";
+import { hungerTimer } from "./LogInRegister";
 
 function Inventory() {
 	const [items, setItems] = useState([]);
@@ -85,16 +86,27 @@ function Inventory() {
                 }}
                 onPress={() => {
                   selected[0].item_type === "Food" && hunger + selected[0].hunger <= 100
-                    ? eatFood(
+                    ? 
+                    eatFood(
                         selected[0].hunger,
                         selected[0].item_name,
                         selected[0].quantity
                       )
+                      
                     : null
 				selected[0].item_type === "Food" && hunger + selected[0].hunger <= 100
-                    ? setQuantity((curr) => curr + 1) : null;
+                    ? 
+                    setQuantity((curr) => curr + 1) 
+                    : null;
 
-					
+if (
+  hunger <= 0 &&
+  selected[0].item_type === "Food" &&
+  hunger + selected[0].hunger <= 100
+) {
+  
+  hungerTimer(setHunger)
+}
 
 				} 
 				

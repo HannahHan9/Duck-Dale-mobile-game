@@ -17,6 +17,7 @@ import { Audio } from "expo-av"; // SOUND
 import { SeasonContext } from "../Contexts/SeasonContext";
 import Hunger from "../Components/Hunger";
 import { HungerContext } from "../Contexts/HungerContext";
+import { hungerTimer} from "./LogInRegister";
 
 export default function Home() {
 	const nav = useNavigation();
@@ -43,6 +44,11 @@ export default function Home() {
 
 	if (season >= 120) {
 		setSeason(1);
+	}
+
+	if (hunger <= 0) {
+		setHunger(0)
+		clearInterval(hungerTimer)
 	}
 
 	//   setInterval(() => {
@@ -75,6 +81,7 @@ export default function Home() {
 
 	useEffect(() => {
 		patchUserHunger(user, hunger);
+		
 	}, [hunger]);
 
 	const lockOrientation = async () => {
