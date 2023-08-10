@@ -63,23 +63,16 @@ const CharacterCreation = () => {
 			message:
 				"That’s all you’ll need to be able to play this game! Have fun farming away!",
 		},
-
-		// Add more alerts as needed
 	];
 
-	const showAlert = () => {
-		const currentAlert = alerts[alertIndex];
+	const showAlert = (num) => {
+		const currentAlert = alerts[num];
 		if (currentAlert) {
 			Alert.alert("Tutorial", currentAlert.message, [
 				{
 					text: "OK",
 					onPress: () => {
-						// console.log(alertIndex);
-						setAlertIndex((current) => {
-							console.log(current);
-							return current + 1;
-						});
-						showAlert(); // Chain the next alert
+						showAlert(num + 1);
 					},
 				},
 			]);
@@ -87,90 +80,13 @@ const CharacterCreation = () => {
 	};
 	const handleSelect = (image) => {
 		patchUserImage(newUser, image)
-			// .then(() => {
-			// Alert.alert(
-			// 	"Tutorial",
-			// 	"That’s all you’ll need to be able to play this game! Have fun farming away!",
-			// 	[
-			// 		{
-			// 			text: "OK",
-			// 			onPress: () => {},
-			// 		},
-			// 	]
-			// );
-			// Alert.alert(
-			// 	"Tutorial",
-			// 	"You can find these instructions in the How To Play tab in the Settings",
-			// 	[
-			// 		{
-			// 			text: "Next",
-			// 			onPress: () => {},
-			// 		},
-			// 	]
-			// );
-			// Alert.alert(
-			// 	"Tutorial",
-			// 	"",
-			// 	[
-			// 		{
-			// 			text: "Next",
-			// 			onPress: () => {},
-			// 		},
-			// 	]
-			// );
-			// Alert.alert(
-			// 	"Tutorial",
-			// 	"The inventory tab shows you your complete list of items your avatar owns. The more the merrier! The trophy’s cabinet shows the user which accomplishments they have achieved, and yet to achieve. All the best of luck trying to complete your missions!",
-			// 	[
-			// 		{
-			// 			text: "Next",
-			// 			onPress: () => {},
-			// 		},
-			// 	]
-			// );
-
-			// Alert.alert(
-			// 	"Tutorial",
-			// 	"You are provided with an initial 100 coins, giving you the ability to buy additional crops to grow, or buy food for your inventory from the market place. You can sell your existing food and crops to the market place to generate extra revenue and complete your weekly objectives!",
-			// 	[
-			// 		{
-			// 			text: "Next",
-			// 			onPress: () => {},
-			// 		},
-			// 	]
-			// );
-			// Alert.alert(
-			// 	"Tutorial",
-			// 	"In your farm, you have the ability to plant your seeds and witness your crops grow from the germination stage to its final maturation stage. Here, you must select the seed you with to plant and select the fields available to you. Now steady, it will take time for your crops to harvest. Once this is complete, you will be able to add this to your inventory of food and saplings.",
-			// 	[
-			// 		{
-			// 			text: "Next",
-			// 			onPress: () => {},
-			// 		},
-			// 	]
-			// );
-			// Alert.alert(
-			// 	"Tutorial",
-			// 	`Hello and welcome to DuckDale! This is your homepage where you can access your Farm, Shop, Inventory and Trophies`,
-			// 	[
-			// 		{
-			// 			text: "Next",
-			// 			onPress: () => {},
-			// 		},
-			// 	]
-			// );
-			// })
 			.then(() => {
-				if (alertIndex < 1) {
-					showAlert();
-				}
+				showAlert(0);
 			})
 			.then(() => {
-				if (alertIndex === 7) {
-					setUser(newUser);
-					setCoins(100);
-					setNewUser("");
-				}
+				setUser(newUser);
+				setCoins(100);
+				setNewUser("");
 			});
 	};
 	useEffect(() => {
