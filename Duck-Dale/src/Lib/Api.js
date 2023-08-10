@@ -65,6 +65,12 @@ export const patchUserCoins = (username, coins) => {
 	});
 };
 
+export const patchUserHunger = (username, hunger) => {
+  return duckDale.patch(`/users/${username}`, { hunger }).then(({ data }) => {
+    return data.user.hunger;
+  });
+};
+
 export const patchUserImage = (username, character_img) => {
 	return duckDale
 		.patch(`/users/${username}`, { character_img })

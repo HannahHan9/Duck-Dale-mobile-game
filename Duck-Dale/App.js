@@ -8,6 +8,7 @@ import { SeasonProvider } from "./src/Contexts/SeasonContext";
 import { useContext } from "react";
 import { SoundProvider } from "./src/Contexts/SoundContext";
 import { MusicPlayProvider } from "./src/Contexts/MusicPlayContext";
+import { HungerProvider } from "./src/Contexts/HungerContext";
 
 LogBox.ignoreLogs(["new NativeEventEmitter"]);
 LogBox.ignoreAllLogs();
@@ -18,15 +19,17 @@ export default function App() {
       <NewUserProvider>
         <UserProvider>
           <CoinProvider>
-            <SeasonProvider>
-              <SoundProvider>
-                <MusicPlayProvider>
-                  <NavigationContainer>
-                    <AuthNavigator style={styles.container} />
-                  </NavigationContainer>
-                </MusicPlayProvider>
-              </SoundProvider>
-            </SeasonProvider>
+            <HungerProvider>
+              <SeasonProvider>
+                <SoundProvider>
+                  <MusicPlayProvider>
+                    <NavigationContainer>
+                      <AuthNavigator style={styles.container} />
+                    </NavigationContainer>
+                  </MusicPlayProvider>
+                </SoundProvider>
+              </SeasonProvider>
+            </HungerProvider>
           </CoinProvider>
         </UserProvider>
       </NewUserProvider>

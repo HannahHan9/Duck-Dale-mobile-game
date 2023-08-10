@@ -11,10 +11,12 @@ import {
 } from "react-native";
 import { UserContext } from "../Contexts/UserContext";
 import Coin from "../Components/Coin";
-import { getUser } from "../Lib/Api";
+import { getUser, patchUserHunger } from "../Lib/Api";
 
 import { Audio } from "expo-av"; // SOUND
 import { SeasonContext } from "../Contexts/SeasonContext";
+import Hunger from "../Components/Hunger";
+import { HungerContext } from "../Contexts/HungerContext";
 
 export default function Home() {
 	const nav = useNavigation();
@@ -25,6 +27,8 @@ export default function Home() {
 	const [status, setStatus] = useState(false); // SOUND
 
 	const { season, setSeason } = useContext(SeasonContext);
+
+	const { hunger, setHunger } = useContext(HungerContext);
 
 	// const makeTimer = () => {
 	//   setInterval(() => {
@@ -69,6 +73,10 @@ export default function Home() {
 		}
 	}, []);
 
+	useEffect(() => {
+		patchUserHunger(user, hunger);
+	}, [hunger]);
+
 	const lockOrientation = async () => {
 		await ScreenOrientation.lockAsync(
 			ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT
@@ -112,6 +120,7 @@ export default function Home() {
 							Welcome {user}
 						</Text>
 						<View style={{ flex: 0.2, flexDirection: "row" }}>
+							<Hunger />
 							<Coin />
 							<Pressable
 								onPress={() => {
