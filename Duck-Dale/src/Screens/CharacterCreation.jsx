@@ -1,7 +1,6 @@
 import {
   View,
   Image,
-  Pressable,
   TouchableOpacity,
   ImageBackground,
   StyleSheet,
@@ -9,7 +8,7 @@ import {
   Text,
 } from "react-native";
 import { patchUserImage } from "../Lib/Api";
-import { Children, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../Contexts/UserContext";
 import { NewUserContext } from "../Contexts/NewUserContext";
 import { CoinContext } from "../Contexts/CoinContext";
@@ -62,7 +61,7 @@ const CharacterCreation = () => {
             source={{
               uri: images[current],
             }}
-            style={{ width: 200, height: 256 }}
+            style={{ width: 200, height: 256, borderRadius: 4 }}
           />
         </View>
         <View
@@ -90,9 +89,9 @@ const CharacterCreation = () => {
                 borderRadius: 4,
               }}
               onPress={() => {
-                setCurrent((current) => current + 1);
-                if (current >= 2) {
-                  setCurrent(0);
+                setCurrent((current) => current - 1);
+                if (current <= 0) {
+                  setCurrent(2);
                 }
               }}
             >
@@ -110,9 +109,9 @@ const CharacterCreation = () => {
               borderRadius: 4,
             }}
             onPress={() => {
-              setCurrent((current) => current - 1);
-              if (current <= 0) {
-                setCurrent(2);
+              setCurrent((current) => current + 1);
+              if (current >= 2) {
+                setCurrent(0);
               }
             }}
           >
