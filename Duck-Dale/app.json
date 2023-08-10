@@ -7,7 +7,7 @@
 		"icon": "./assets/icon.png",
 		"userInterfaceStyle": "light",
 		"splash": {
-			"image": "./assets/splash.png",
+			"image": "./assets/cartoon-rubber-ducks-75269292.png",
 			"resizeMode": "contain",
 			"backgroundColor": "#ffffff"
 		},

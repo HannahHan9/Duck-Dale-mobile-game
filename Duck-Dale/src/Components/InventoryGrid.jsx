@@ -8,7 +8,7 @@ import {
 	View,
 } from "react-native";
 
-function InventoryGrid({ items, setSelected }) {
+function InventoryGrid({ items, setSelected, setQuantity }) {
 	return (
 		<ScrollView>
 			<View style={{ flex: 0.25, flexWrap: "wrap", flexDirection: "row" }}>
@@ -28,6 +28,7 @@ function InventoryGrid({ items, setSelected }) {
 							key={item._id}
 							onPress={() => {
 								setSelected([item]);
+								setQuantity(0)
 							}}
 						>
 							<View
