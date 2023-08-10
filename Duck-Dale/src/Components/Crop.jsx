@@ -44,8 +44,8 @@ function Crop({ item, id, setNumPlanted }) {
 						patchGarden({ username: user, grid_square: id, stage: 3 });
 						setImageUrl(stage_3_img);
 						setIsGrown(true);
-					}, 10_000);
-				}, 10_000);
+					}, 5_000);
+				}, 5_000);
 			});
 	};
 
@@ -59,7 +59,7 @@ function Crop({ item, id, setNumPlanted }) {
 			"https://drive.google.com/uc?export=view&id=1UotkwssyRo8aV3dwbTHImD9xiG3fw-sF"
 		);
 		patchUserItems(user, reference, 1);
-		Alert.alert("Yum!", `Look at that tasty ${reference.toLowerCase()}!`, [
+		Alert.alert("Yay!", `Crop harvested!`, [
 			{
 				text: "OK",
 				onPress: () => {},

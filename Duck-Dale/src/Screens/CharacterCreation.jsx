@@ -104,8 +104,12 @@ const CharacterCreation = () => {
 				style={{
 					flex: 1,
 					justifyContent: "center",
+					alignItems: "center",
 				}}
 			>
+				<Text style={{ textAlign: "center", fontSize: 40 }}>
+					Select a Character
+				</Text>
 				<View
 					style={{
 						flex: 1,
