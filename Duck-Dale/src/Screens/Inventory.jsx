@@ -2,8 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import {
 	Image,
 	ImageBackground,
-	Pressable,
-	ScrollView,
 	Text,
 	View,
 	StyleSheet,

@@ -1,10 +1,5 @@
 import {
-	Image,
 	ImageBackground,
-	Pressable,
-	SectionList,
-	Switch,
-	Text,
 	View,
 } from "react-native";
 import Coin from "../Components/Coin";

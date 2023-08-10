@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import {
 	Alert,
-	Button,
 	Image,
 	Pressable,
 	Text,
@@ -51,7 +50,6 @@ function Crop({ item, id, setNumPlanted }) {
 	};
 
 	const handleHarvest = () => {
-		console.log(reference);
 		setIsGrown(false);
 		setIsPlanted(false);
 		setNumPlanted((current) => {
