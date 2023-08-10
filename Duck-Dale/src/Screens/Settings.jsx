@@ -112,7 +112,7 @@ export default function Settings() {
               </Text>
             </Pressable>
             <Pressable
-              onPress={() => nav.navigate("")}
+              onPress={() => nav.navigate("HowToPlay")}
               style={styles.pressable}
             >
               <Image
