@@ -10,7 +10,7 @@ const FarmItem = ({ item, setPlantChoice, plantChoice }) => {
 
 	useEffect(() => {
 		setColor(() => {
-			return plantChoice[0] === item ? "#f25c54" : "#D7EFF9";
+			return plantChoice[0] === item ? "#f25c54" : "transparent";
 		});
 	}, [plantChoice]);
 	return (

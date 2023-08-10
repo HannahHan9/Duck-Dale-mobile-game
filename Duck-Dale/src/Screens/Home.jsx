@@ -42,8 +42,8 @@ export default function Home() {
 	}
 
 	//   setInterval(() => {
-    //   setSeason((curr) => curr + 10);
-    // }, 10000);
+	//   setSeason((curr) => curr + 10);
+	// }, 10000);
 
 	// async function playSound() {
 	// 	console.log("Loading Sound");
@@ -63,10 +63,10 @@ export default function Home() {
 			setAvatar(user.character_img);
 		});
 		if (!season) {
-      setInterval(() => {
-        setSeason((curr) => curr + 10);
-      }, 10000);
-    }
+			setInterval(() => {
+				setSeason((curr) => curr + 10);
+			}, 10000);
+		}
 	}, []);
 
 	const lockOrientation = async () => {
@@ -75,51 +75,50 @@ export default function Home() {
 		);
 	};
 	return (
-
-    <View style={styles.container}>
-      <ImageBackground
-        source={
-          season >= 30 && season < 60
-            ? require("../../assets/backgrounds/summer-sun-shining-sun-rays-hot-weather-yellow-tint-sun-in-view-149007429.png")
-            : season >= 60 && season < 90
-            ? require("../../assets/backgrounds/autumn-orange-tree-231872754.png")
-            : season >= 90 && season < 120
-            ? require("../../assets/backgrounds/covered-in-snow-snowfall-brown-tree-78562321.png")
-            : require("../../assets/backgrounds/calm-countryside.png")
-        }
-        resizeMode="cover"
-        style={{
-          flex: 1,
-          justifyContent: "center",
-        }}
-      >
-        <View style={{ flex: 1 }}>
-          <View
-            style={[
-              styles.container,
-              {
-                // justifyContent: "center",
-                flexDirection: "row",
-                backgroundColor: "#ffffff55",
-              },
-            ]}
-          >
-            <Text
-              style={[
-                styles.text,
-                { fontSize: 30, textAlign: "left", flex: 0.8 },
-              ]}
-            >
-              Welcome {user}
-            </Text>
-            <View style={{ flex: 0.2, flexDirection: "row" }}>
-              <Coin />
-              <Pressable
-                onPress={() => {
-                  nav.navigate("Settings");
-                }}
-              >
-                {/* <Text
+		<View style={styles.container}>
+			<ImageBackground
+				source={
+					season >= 30 && season < 60
+						? require("../../assets/backgrounds/summer-sun-shining-sun-rays-hot-weather-yellow-tint-sun-in-view-149007429.png")
+						: season >= 60 && season < 90
+						? require("../../assets/backgrounds/autumn-orange-tree-231872754.png")
+						: season >= 90 && season < 120
+						? require("../../assets/backgrounds/covered-in-snow-snowfall-brown-tree-78562321.png")
+						: require("../../assets/backgrounds/calm-countryside.png")
+				}
+				resizeMode="cover"
+				style={{
+					flex: 1,
+					justifyContent: "center",
+				}}
+			>
+				<View style={{ flex: 1 }}>
+					<View
+						style={[
+							styles.container,
+							{
+								// justifyContent: "center",
+								flexDirection: "row",
+								backgroundColor: "#ffffff55",
+							},
+						]}
+					>
+						<Text
+							style={[
+								styles.text,
+								{ fontSize: 30, textAlign: "left", flex: 0.8 },
+							]}
+						>
+							Welcome {user}
+						</Text>
+						<View style={{ flex: 0.2, flexDirection: "row" }}>
+							<Coin />
+							<Pressable
+								onPress={() => {
+									nav.navigate("Settings");
+								}}
+							>
+								{/* <Text
 
 									style={{
 										fontWeight: "bold",
@@ -131,13 +130,13 @@ export default function Home() {
 									⚙️
 								</Text> */}
 
-                <Image
-                  source={require("../../assets/buttons/gear(1).png")}
-                  style={{ height: 40, width: 40, marginHorizontal: 10 }}
-                />
-              </Pressable>
-            </View>
-          </View>
+								<Image
+									source={require("../../assets/buttons/gear(1).png")}
+									style={{ height: 40, width: 40, marginHorizontal: 10 }}
+								/>
+							</Pressable>
+						</View>
+					</View>
 
 					<View
 						style={[
