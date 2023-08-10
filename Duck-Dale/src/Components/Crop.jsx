@@ -50,7 +50,6 @@ function Crop({ item, id, setNumPlanted }) {
 	};
 
 	const handleHarvest = () => {
-		console.log(reference);
 		setIsGrown(false);
 		setIsPlanted(false);
 		setNumPlanted((current) => {

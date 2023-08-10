@@ -40,7 +40,6 @@ function Buy() {
 		const removePromises = [];
 		// let total = 0;
 		buyChoices.forEach(({ item_name, quantity, price, chosenQuantity }) => {
-			console.log(quantity);
 			addPromises.push(patchUserItems(user, item_name, chosenQuantity));
 			removePromises.push(patchShopItems(user, item_name, -chosenQuantity));
 			// total += price * quantity;
@@ -64,7 +63,7 @@ function Buy() {
 			})
 
 			.catch(() => {
-				console.log("it broked");
+				console.log("buy error");
 			})
 			.finally(() => {
 				setBuyChoices([]);
@@ -83,7 +82,7 @@ function Buy() {
 			setItems(items);
 		});
 	}, [coins]);
-	console.log(cost);
+	
 	return (
 		<ImageBackground
 			source={require("../../assets/backgrounds/wood-background.png")}

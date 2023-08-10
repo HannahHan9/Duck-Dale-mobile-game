@@ -8,14 +8,11 @@ function Trophies() {
   const [achievements, setAchievements] = useState([]);
 
   useEffect(() => {
-    console.log("1");
     getUser(user)
       .then((user) => {
-        console.log("2");
         return getAchievements(user.username);
       })
       .then((achievements) => {
-        console.log("3");
         setAchievements(achievements);
       });
   }, []);

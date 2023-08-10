@@ -62,7 +62,7 @@ function Sell() {
 				]);
 			})
 			.catch(() => {
-				console.log("it broked");
+				console.log("sell broked");
 			})
 			.finally(() => {
 				setSellChoices([]);
