@@ -17,7 +17,7 @@ import { HungerContext } from "../Contexts/HungerContext";
 
 export const hungerTimer = (setHunger) => setInterval(() => {
   setHunger((curr) => curr - 1);
-}, 1000);
+}, 30000);
 
 const LogInRegister = () => {
 	const [username, setUsername] = useState("");
