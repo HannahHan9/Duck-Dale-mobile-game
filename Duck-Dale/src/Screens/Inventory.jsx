@@ -123,9 +123,9 @@ if (
                   <Text>{selected[0].item_name}</Text>
                 </View>
                 <View>
-                  <Text style={{ textAlign: "right" }}>
+                  {/* <Text style={{ textAlign: "right" }}>
                     {selected[0].description}
-                  </Text>
+                  </Text> */}
                   <Text style={{ textAlign: "right" }}>
                     Quantity: {selected[0].quantity - quantity}
                   </Text>
