@@ -119,7 +119,7 @@ export default function Home() {
 						>
 							Welcome {user}
 						</Text>
-						<View style={{ flex: 0.2, flexDirection: "row" }}>
+						<View style={{ flex: 0.3, flexDirection: "row" }}>
 							<Hunger />
 							<Coin />
 							<Pressable
@@ -141,7 +141,7 @@ export default function Home() {
 
 								<Image
 									source={require("../../assets/buttons/gear(1).png")}
-									style={{ height: 40, width: 40, marginHorizontal: 10 }}
+									style={{ height: 30, width: 30, marginHorizontal: 10 }}
 								/>
 							</Pressable>
 						</View>

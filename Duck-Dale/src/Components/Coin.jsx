@@ -11,18 +11,18 @@ function Coin() {
 	// 	getUser(user).then(setCoins);
 	// }, []);
 	return (
-    <Text
-      style={{
-        maxHeight: 50,
-        fontSize: 10,
-        fontWeight: "bold",
-        backgroundColor: "transparent",
-        textAlign: "right",
-      }}
-    >
-      🪙 {coins}
-    </Text>
-  );
+		<Text
+			style={{
+				maxHeight: 50,
+				fontSize: 20,
+				fontWeight: "bold",
+				backgroundColor: "transparent",
+				textAlign: "right",
+			}}
+		>
+			🪙 {coins}
+		</Text>
+	);
 }
 
 export default Coin;
