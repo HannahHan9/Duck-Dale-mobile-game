@@ -71,6 +71,9 @@ export default function Home() {
 				setSeason((curr) => curr + 10);
 			}, 10000);
 		}
+		if (hunger <= 0) {
+			setHunger(0);
+		}
 	}, []);
 
 	useEffect(() => {

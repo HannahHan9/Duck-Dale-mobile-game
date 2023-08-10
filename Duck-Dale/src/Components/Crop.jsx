@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import {
+	Alert,
 	Button,
 	Image,
 	Pressable,
@@ -60,6 +61,12 @@ function Crop({ item, id, setNumPlanted }) {
 			"https://drive.google.com/uc?export=view&id=1UotkwssyRo8aV3dwbTHImD9xiG3fw-sF"
 		);
 		patchUserItems(user, reference, 1);
+		Alert.alert("Yum!", `Look at that tasty ${reference.toLowerCase()}!`, [
+			{
+				text: "OK",
+				onPress: () => {},
+			},
+		]);
 	};
 	return (
 		<View>

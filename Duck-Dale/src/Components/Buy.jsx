@@ -1,4 +1,5 @@
 import {
+	Alert,
 	Button,
 	ImageBackground,
 	Pressable,
@@ -54,6 +55,12 @@ function Buy() {
 			})
 			.then((money) => {
 				setCoins(money);
+				Alert.alert("Yay!", "Added to inventory", [
+					{
+						text: "OK",
+						onPress: () => {},
+					},
+				]);
 			})
 
 			.catch(() => {
