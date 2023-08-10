@@ -20,7 +20,6 @@ const CharacterCreation = () => {
 	const { setUser } = useContext(UserContext);
 	const { setCoins } = useContext(CoinContext);
 	const [current, setCurrent] = useState(0);
-	const [alertIndex, setAlertIndex] = useState(0);
 	const images = [
 		"https://drive.google.com/uc?export=view&id=1wvBu5oPWGNti8IGBUV8Ng8NEboUFJrVK",
 		"https://drive.google.com/uc?export=view&id=1fz2QR-srrHSP1FWyLxxppwNqy_Vx_xoS",
@@ -29,7 +28,7 @@ const CharacterCreation = () => {
 
 	const alerts = [
 		{
-			message: "Hello and welcome to DuckDale!",
+			message: "Hello and welcome to Duck Dale!",
 		},
 		{
 			message:

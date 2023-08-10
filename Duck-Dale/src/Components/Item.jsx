@@ -1,15 +1,10 @@
 import {
-	Button,
 	Image,
-	Pressable,
-	ScrollView,
-	SectionList,
 	StyleSheet,
 	Text,
 	View,
 } from "react-native";
-import { getAllShopItems } from "../Lib/Api";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Picker } from "@react-native-picker/picker";
 
 const Item = ({ item, setChoices, setCost }) => {

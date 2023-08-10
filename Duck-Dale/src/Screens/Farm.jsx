@@ -1,8 +1,7 @@
 import { ImageBackground, ScrollView, Text, View } from "react-native";
-import Crop from "../Components/Crop";
 import { useContext, useEffect, useState } from "react";
 import FarmItem from "../Components/FarmItem";
-import { getAllUserItems, getAllUserSeeds } from "../Lib/Api";
+import { getAllUserSeeds } from "../Lib/Api";
 import { UserContext } from "../Contexts/UserContext";
 import FarmGrid from "../Components/FarmGrid";
 

@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import {
 	Alert,
-	Button,
 	Image,
 	Pressable,
 	Text,
