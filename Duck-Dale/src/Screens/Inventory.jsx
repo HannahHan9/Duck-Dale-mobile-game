@@ -1,13 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import {
-	Image,
-	ImageBackground,
-	Text,
-	View,
-	StyleSheet,
-	TouchableOpacity,
+  Image,
+  ImageBackground,
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
 } from "react-native";
-import { getAllUserItems, getUser, patchUserHunger, patchUserItems } from "../Lib/Api";
+import {
+  getAllUserItems,
+  getUser,
+  patchUserHunger,
+  patchUserItems,
+} from "../Lib/Api";
 import { UserContext } from "../Contexts/UserContext";
 import Coin from "../Components/Coin";
 import InventoryGrid from "../Components/InventoryGrid";
@@ -16,36 +21,36 @@ import { HungerContext } from "../Contexts/HungerContext";
 import { hungerTimer } from "./LogInRegister";
 
 function Inventory() {
-	const [items, setItems] = useState([]);
-	const [avatar, setAvatar] = useState("../../assets/buttons/button-farm.png");
-	const [selected, setSelected] = useState([]);
-	const { user } = useContext(UserContext);
+  const [items, setItems] = useState([]);
+  const [avatar, setAvatar] = useState("../../assets/buttons/button-farm.png");
+  const [selected, setSelected] = useState([]);
+  const { user } = useContext(UserContext);
 
-	const { hunger, setHunger } = useContext(HungerContext)
+  const { hunger, setHunger } = useContext(HungerContext);
 
-	const [quantity, setQuantity] = useState(0)
+  const [quantity, setQuantity] = useState(0);
 
-	useEffect(() => {
-		getUser(user)
-			.then((user) => {
-				setAvatar(user.character_img);
-				return getAllUserItems(user.username);
-			})
-			.then((items) => {
-				setItems(items);
-			});
-	}, [quantity]);
+  useEffect(() => {
+    getUser(user)
+      .then((user) => {
+        setAvatar(user.character_img);
+        return getAllUserItems(user.username);
+      })
+      .then((items) => {
+        setItems(items);
+      });
+  }, [quantity]);
 
-	const eatFood = (hungerAmount, item_name, quantity) => {
-		patchUserHunger(user, hungerAmount)
-		quantity =- 1
-		patchUserItems(user, item_name, quantity)
-		setHunger((curr) => {
-			return curr + hungerAmount
-		})
-	}
+  const eatFood = (hungerAmount, item_name, quantity) => {
+    patchUserHunger(user, hungerAmount);
+    quantity = -1;
+    patchUserItems(user, item_name, quantity);
+    setHunger((curr) => {
+      return curr + hungerAmount;
+    });
+  };
 
-	return (
+  return (
     <View style={{ flex: 1 }}>
       <View
         style={[
@@ -63,7 +68,11 @@ function Inventory() {
           resizeMode="cover"
           style={{ flex: 1.5 }}
         >
-          <InventoryGrid items={items} setSelected={setSelected} setQuantity={setQuantity} />
+          <InventoryGrid
+            items={items}
+            setSelected={setSelected}
+            setQuantity={setQuantity}
+          />
         </ImageBackground>
         <ImageBackground
           source={{ uri: avatar }}
@@ -83,33 +92,27 @@ function Inventory() {
                   marginTop: 100,
                 }}
                 onPress={() => {
-                  selected[0].item_type === "Food" && hunger + selected[0].hunger <= 100
-                    ? 
-                    eatFood(
+                  selected[0].item_type === "Food" &&
+                  hunger + selected[0].hunger <= 100
+                    ? eatFood(
                         selected[0].hunger,
                         selected[0].item_name,
                         selected[0].quantity
                       )
-                      
-                    : null
-				selected[0].item_type === "Food" && hunger + selected[0].hunger <= 100
-                    ? 
-                    setQuantity((curr) => curr + 1) 
+                    : null;
+                  selected[0].item_type === "Food" &&
+                  hunger + selected[0].hunger <= 100
+                    ? setQuantity((curr) => curr + 1)
                     : null;
 
-if (
-  hunger <= 0 &&
-  selected[0].item_type === "Food" &&
-  hunger + selected[0].hunger <= 100
-) {
-  
-  hungerTimer(setHunger)
-}
-
-				} 
-				
-			}
-					
+                  if (
+                    hunger <= 0 &&
+                    selected[0].item_type === "Food" &&
+                    hunger + selected[0].hunger <= 100
+                  ) {
+                    hungerTimer(setHunger);
+                  }
+                }}
               >
                 <View
                   style={{
@@ -145,17 +148,17 @@ if (
 export default Inventory;
 
 const styles = StyleSheet.create({
-	container: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		// padding: 10,
-	},
-	leftSide: {
-		flex: 1,
-	},
-	rightSide: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-	},
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    // padding: 10,
+  },
+  leftSide: {
+    flex: 1,
+  },
+  rightSide: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
