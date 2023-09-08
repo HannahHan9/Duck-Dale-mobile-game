@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "expo": "^49.0.6",
     "react-native-orientation-locker": "^1.5.0"
   }
 }
