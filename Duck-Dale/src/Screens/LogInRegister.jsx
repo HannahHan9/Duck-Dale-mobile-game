@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import {
 	Button,
 	StyleSheet,
@@ -8,12 +8,16 @@ import {
 	Alert,
 	ImageBackground,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../Contexts/UserContext";
-import { getAllUsers, getUser, patchUserHunger, postUser } from "../Lib/Api";
+import { getAllUsers, getUser, postUser } from "../Lib/Api";
 import { CoinContext } from "../Contexts/CoinContext";
 import { NewUserContext } from "../Contexts/NewUserContext";
 import { HungerContext } from "../Contexts/HungerContext";
+
+export const hungerTimer = (setHunger) =>
+	setInterval(() => {
+		setHunger((curr) => curr - 1);
+	}, 30000);
 
 const LogInRegister = () => {
 	const [username, setUsername] = useState("");
@@ -30,7 +34,7 @@ const LogInRegister = () => {
 	const [passwordError, setPasswordError] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 
-	const { hunger, setHunger } = useContext(HungerContext)
+	const { setHunger } = useContext(HungerContext);
 
 	const handleSignUp = () => {
 		setIsLoading(true);
@@ -66,15 +70,10 @@ const LogInRegister = () => {
 										onPress: () => {},
 									},
 								]);
-
-setHunger(user.hunger);
-
-								setInterval(() => {
-                  setHunger((curr) => curr - 1);
-                }, 10000);
+								setHunger(user.hunger);
+								hungerTimer(setHunger);
 							})
 
-							
 							.catch((err) => {
 								Alert.alert(
 									"Something went wrong!",
@@ -89,6 +88,7 @@ setHunger(user.hunger);
 			Alert.alert("Oops!", "Please fill out all the fields", [
 				{ text: "OK", onPress: () => {} },
 			]);
+			setIsLoading(false);
 		}
 	};
 
@@ -96,21 +96,15 @@ setHunger(user.hunger);
 		setIsLoading(true);
 		getUser(username)
 			.then((user) => {
-        // if (user.password === password) {
-        setCoins(user.coins);
-        setHunger(user.hunger)
-        setUser(user.username);
-        // } else {
-        // setError(true);
-        // }
-
-        		setInterval(() => {
-          setHunger((curr) => curr - 1)}, 10000);
-
-	// 	setInterval(() => {
-	// 		patchUserHunger(username, hunger)
-    // }, 10000);
-      })
+				if (user.password === password) {
+					setCoins(user.coins);
+					setHunger(user.hunger);
+					setUser(user.username);
+					hungerTimer(setHunger);
+				} else {
+					setError(true);
+				}
+			})
 			.catch((err) => {
 				setError(true);
 			})
@@ -118,12 +112,6 @@ setHunger(user.hunger);
 				setIsLoading(false);
 			});
 	};
-
-// useEffect(() => {
-  	
-//   		patchUserHunger(username, hunger)
-  
-// }, [hunger]);
 
 	return (
 		<ImageBackground
@@ -202,7 +190,9 @@ setHunger(user.hunger);
 						/>
 					</View>
 				)}
-				{!isLoading ? <Text style={styles.text}>----------- OR -----------</Text> : null}
+				{!isLoading ? (
+					<Text style={styles.text}>----------- OR -----------</Text>
+				) : null}
 				<View style={{ marginVertical: 20 }}>
 					<Text style={[styles.text, { fontWeight: "bold", fontSize: 20 }]}>
 						Log In

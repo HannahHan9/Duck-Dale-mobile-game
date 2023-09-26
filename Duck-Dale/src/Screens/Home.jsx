@@ -13,55 +13,29 @@ import { UserContext } from "../Contexts/UserContext";
 import Coin from "../Components/Coin";
 import { getUser, patchUserHunger } from "../Lib/Api";
 
-import { Audio } from "expo-av"; // SOUND
 import { SeasonContext } from "../Contexts/SeasonContext";
 import Hunger from "../Components/Hunger";
 import { HungerContext } from "../Contexts/HungerContext";
+import { hungerTimer } from "./LogInRegister";
 
 export default function Home() {
 	const nav = useNavigation();
 	const { user } = useContext(UserContext);
 	const [avatar, setAvatar] = useState("../../assets/buttons/button-farm.png");
 
-	const [sound, setSound] = useState();
-	const [status, setStatus] = useState(false); // SOUND
-
 	const { season, setSeason } = useContext(SeasonContext);
-
 	const { hunger, setHunger } = useContext(HungerContext);
-
-	// const makeTimer = () => {
-	//   setInterval(() => {
-	//     setSeason((curr) => {
-	//       console.log(curr, "<---- curr");
-	//       curr++;
-	//     });
-	//   }, 10000);
-	// };
-
-	// makeTimer();
 
 	if (season >= 120) {
 		setSeason(1);
 	}
 
-	//   setInterval(() => {
-	//   setSeason((curr) => curr + 10);
-	// }, 10000);
-
-	// async function playSound() {
-	// 	console.log("Loading Sound");
-	// 	const { sound } = await Audio.Sound.createAsync(
-	// 		require("../../assets/sounds/mama-s-not-here.mp3")
-	// 	);
-	// 	setSound(sound);
-	// 	console.log("Playing Sound");
-	// 	sound.setIsLoopingAsync(true);
-	// 	await sound.playAsync();
-	// } // SOUND
+	if (hunger <= 0) {
+		setHunger(0);
+		clearInterval(hungerTimer);
+	}
 
 	useEffect(() => {
-		// playSound();
 		lockOrientation();
 		getUser(user).then((user) => {
 			setAvatar(user.character_img);
@@ -70,6 +44,9 @@ export default function Home() {
 			setInterval(() => {
 				setSeason((curr) => curr + 10);
 			}, 10000);
+		}
+		if (hunger <= 0) {
+			setHunger(0);
 		}
 	}, []);
 
@@ -87,12 +64,12 @@ export default function Home() {
 			<ImageBackground
 				source={
 					season >= 30 && season < 60
-						? require("../../assets/backgrounds/summer-sun-shining-sun-rays-hot-weather-yellow-tint-sun-in-view-149007429.png")
+						? require("../../assets/backgrounds/season-summer.png")
 						: season >= 60 && season < 90
-						? require("../../assets/backgrounds/autumn-orange-tree-231872754.png")
+						? require("../../assets/backgrounds/season-autumn.png")
 						: season >= 90 && season < 120
-						? require("../../assets/backgrounds/covered-in-snow-snowfall-brown-tree-78562321.png")
-						: require("../../assets/backgrounds/calm-countryside.png")
+						? require("../../assets/backgrounds/season-winter.png")
+						: require("../../assets/backgrounds/season-spring.png")
 				}
 				resizeMode="cover"
 				style={{

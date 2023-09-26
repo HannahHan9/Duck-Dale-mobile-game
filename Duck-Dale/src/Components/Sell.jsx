@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import {
+	Alert,
 	Button,
 	ImageBackground,
 	ScrollView,
@@ -40,7 +41,7 @@ function Sell() {
 		sellChoices.forEach(({ item_name, quantity, price, chosenQuantity }) => {
 			addPromises.push(patchShopItems(user, item_name, chosenQuantity));
 			removePromises.push(patchUserItems(user, item_name, -chosenQuantity));
-			total += price * quantity;
+			total += price * chosenQuantity;
 		});
 
 		Promise.all(addPromises)
@@ -53,9 +54,15 @@ function Sell() {
 			})
 			.then((money) => {
 				setCoins(money);
+				Alert.alert("Cha-ching!", "Sold", [
+					{
+						text: "OK",
+						onPress: () => {},
+					},
+				]);
 			})
 			.catch(() => {
-				console.log("it broked");
+				console.log("sell error");
 			})
 			.finally(() => {
 				setSellChoices([]);
